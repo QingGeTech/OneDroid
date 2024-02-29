@@ -4,4 +4,5 @@
     <string name="device_info">Device Info</string>
     <string name="search">search</string>
     <string name="filter">filter</string>
+    <string name="app_manager_search_hint">app or pkg name</string>
 </resources>

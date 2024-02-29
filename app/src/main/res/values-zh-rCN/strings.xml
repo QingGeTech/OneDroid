@@ -4,4 +4,5 @@
     <string name="device_info">设备信息</string>
     <string name="search">搜索</string>
     <string name="filter">过滤</string>
+    <string name="app_manager_search_hint">应用名或包名</string>
 </resources>
