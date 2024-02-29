@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AndroidDevToolbox</string>
+    <string name="app_manager">App Manager</string>
+    <string name="device_info">Device Info</string>
+    <string name="search">search</string>
+    <string name="filter">filter</string>
 </resources>

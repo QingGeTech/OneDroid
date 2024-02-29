@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_page_1"
+        android:enabled="true"
+        android:icon="@drawable/ic_app_manager"
+        android:title="@string/app_manager"/>
+    <item
+        android:id="@+id/action_page_2"
+        android:enabled="true"
+        android:icon="@drawable/ic_device_info"
+        android:title="@string/device_info"/>
+</menu>
