@@ -5,4 +5,10 @@
     <string name="search">搜索</string>
     <string name="filter">过滤</string>
     <string name="app_manager_search_hint">应用名或包名</string>
+    <string name="app_type">应用类型</string>
+    <string name="app_order">排序</string>
+    <string name="app_order_type">排序类型</string>
+    <string name="all">全部</string>
+    <string name="system">系统</string>
+    <string name="user">用户</string>
 </resources>

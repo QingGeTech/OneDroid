@@ -5,4 +5,10 @@
     <string name="search">search</string>
     <string name="filter">filter</string>
     <string name="app_manager_search_hint">app or pkg name</string>
+    <string name="app_type">App Type</string>
+    <string name="app_order">Order</string>
+    <string name="app_order_type">Order Type</string>
+    <string name="all">All</string>
+    <string name="system">System</string>
+    <string name="user">User</string>
 </resources>

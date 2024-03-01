@@ -10,6 +10,8 @@ import androidx.transition.TransitionManager
 import cn.recommender.androiddevtoolbox.R
 import cn.recommender.androiddevtoolbox.base.BaseFragment
 import cn.recommender.androiddevtoolbox.databinding.FragmentAppManagerBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.transition.MaterialSharedAxis
 
 object AppManagerFragment : BaseFragment() {
@@ -69,7 +71,7 @@ object AppManagerFragment : BaseFragment() {
     }
 
     private fun openFilterSheet() {
-
+        AppFilterDialogFragment.show(childFragmentManager,"filterAppFragment")
     }
 
     private fun openSearchView() {
