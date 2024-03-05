@@ -1,10 +1,14 @@
 package cn.recommender.androiddevtoolbox.ui.fragment
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowInsets
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.transition.Transition
 import androidx.transition.TransitionManager
 import cn.recommender.androiddevtoolbox.R
