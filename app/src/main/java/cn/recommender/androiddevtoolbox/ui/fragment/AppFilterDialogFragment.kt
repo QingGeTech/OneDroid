@@ -8,7 +8,7 @@ import cn.recommender.androiddevtoolbox.databinding.FragmentFilterAppBinding
 import cn.recommender.androiddevtoolbox.util.LogUtil
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-object AppFilterDialogFragment : BottomSheetDialogFragment() {
+class AppFilterDialogFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentFilterAppBinding
 

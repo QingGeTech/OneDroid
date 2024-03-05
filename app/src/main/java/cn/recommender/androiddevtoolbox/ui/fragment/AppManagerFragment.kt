@@ -1,24 +1,25 @@
 package cn.recommender.androiddevtoolbox.ui.fragment
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowInsets
+import android.widget.ArrayAdapter
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updatePadding
+import androidx.core.content.res.ResourcesCompat.ThemeCompat
 import androidx.transition.Transition
 import androidx.transition.TransitionManager
+import cn.recommender.androiddevtoolbox.App
 import cn.recommender.androiddevtoolbox.R
 import cn.recommender.androiddevtoolbox.base.BaseFragment
 import cn.recommender.androiddevtoolbox.databinding.FragmentAppManagerBinding
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.transition.MaterialSharedAxis
 
-object AppManagerFragment : BaseFragment() {
+class AppManagerFragment : BaseFragment() {
 
     private val TAG = javaClass.name
 
@@ -41,11 +42,46 @@ object AppManagerFragment : BaseFragment() {
             when (it.itemId) {
                 R.id.search -> openSearchView()
                 R.id.filter -> openFilterSheet()
+                R.id.theme -> chooseTheme()
             }
             true
         }
 
         return binding.root
+    }
+
+    /**
+     * TODO: 测试，后续移动到个性化模块
+     */
+    private fun chooseTheme() {
+
+        AlertDialog.Builder(requireContext()).setAdapter(
+            ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_list_item_1,
+                listOf("Light", "Dark", "AppTheme1", "AppTheme2")
+            )
+        ) { _, position ->
+            when (position) {
+                0 -> {
+                    AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
+                }
+
+                1 -> {
+                    AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
+                }
+
+                2 ->{
+                    App.sp.setTheme(R.style.AppTheme)
+                    requireActivity().recreate()
+                }
+
+                3 -> {
+                    App.sp.setTheme(R.style.AppTheme2)
+                    requireActivity().recreate()
+                }
+            }
+        }.show()
     }
 
     private fun initTransition() {
@@ -75,7 +111,7 @@ object AppManagerFragment : BaseFragment() {
     }
 
     private fun openFilterSheet() {
-        AppFilterDialogFragment.show(childFragmentManager,"filterAppFragment")
+        AppFilterDialogFragment().show(childFragmentManager, "filterAppFragment")
     }
 
     private fun openSearchView() {

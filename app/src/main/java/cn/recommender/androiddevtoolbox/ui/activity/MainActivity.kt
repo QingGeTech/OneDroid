@@ -1,24 +1,25 @@
 package cn.recommender.androiddevtoolbox.ui.activity
 
-import android.content.res.Configuration
-import android.os.Build
-import android.os.Build.VERSION.SDK_INT
-import android.os.Build.VERSION_CODES
+import android.app.Activity
+import android.app.Application
+import android.gesture.Prediction
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.view.WindowInsets
 import androidx.activity.enableEdgeToEdge
-import androidx.core.view.OnApplyWindowInsetsListener
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
+import cn.recommender.androiddevtoolbox.App
 import cn.recommender.androiddevtoolbox.R
 import cn.recommender.androiddevtoolbox.base.BaseActivity
 import cn.recommender.androiddevtoolbox.databinding.ActivityMainBinding
 import cn.recommender.androiddevtoolbox.ui.fragment.AppManagerFragment
 import cn.recommender.androiddevtoolbox.ui.fragment.DeviceInfoFragment
 import cn.recommender.androiddevtoolbox.util.CommonUtils
+import com.google.android.material.color.DynamicColors
+import com.google.android.material.color.DynamicColorsOptions
+import com.google.android.material.color.HarmonizedColors
+import com.google.android.material.color.HarmonizedColorsOptions
 
 class MainActivity : BaseActivity() {
 
@@ -26,10 +27,11 @@ class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val fragments = listOf(AppManagerFragment, DeviceInfoFragment)
+    private val fragments = listOf(AppManagerFragment(), DeviceInfoFragment())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
+        setThemeBySp()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -47,6 +49,13 @@ class MainActivity : BaseActivity() {
             WindowInsetsCompat.CONSUMED
         }
 
+
+    }
+
+    private fun setThemeBySp() {
+        if (App.sp.getTheme() != -1){
+            setTheme(App.sp.getTheme())
+        }
     }
 
     private fun switchFragment(position: Int) {

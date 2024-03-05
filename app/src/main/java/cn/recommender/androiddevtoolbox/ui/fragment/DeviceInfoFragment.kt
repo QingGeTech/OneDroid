@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import cn.recommender.androiddevtoolbox.base.BaseFragment
 import cn.recommender.androiddevtoolbox.databinding.FragmentDeviceInfoBinding
 
-object DeviceInfoFragment : BaseFragment() {
+class DeviceInfoFragment : BaseFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
