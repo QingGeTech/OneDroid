@@ -11,27 +11,33 @@ import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.core.content.res.ResourcesCompat.ThemeCompat
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.Transition
 import androidx.transition.TransitionManager
 import cn.recommender.androiddevtoolbox.App
 import cn.recommender.androiddevtoolbox.R
 import cn.recommender.androiddevtoolbox.base.BaseFragment
 import cn.recommender.androiddevtoolbox.databinding.FragmentAppManagerBinding
+import cn.recommender.androiddevtoolbox.ui.adapter.AppListRvAdapter
+import cn.recommender.androiddevtoolbox.viewmodel.AppManagerViewModel
 import com.google.android.material.transition.MaterialSharedAxis
 
 class AppManagerFragment : BaseFragment() {
 
-    private val TAG = javaClass.name
+    companion object {
+        private const val TAG = "AppManagerFragment"
+    }
 
     private lateinit var binding: FragmentAppManagerBinding
 
     private lateinit var openSearchViewTransition: Transition
     private lateinit var closeSearchViewTransition: Transition
 
+    private val viewModel by activityViewModels<AppManagerViewModel>()
+
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentAppManagerBinding.inflate(layoutInflater, container, false)
 
@@ -46,6 +52,18 @@ class AppManagerFragment : BaseFragment() {
             }
             true
         }
+
+        binding.rv.apply {
+            adapter = AppListRvAdapter(emptyList())
+            layoutManager = LinearLayoutManager(requireContext())
+        }
+
+        viewModel.appList.observe(viewLifecycleOwner) {
+            (binding.rv.adapter as AppListRvAdapter).appData = it
+            (binding.rv.adapter as AppListRvAdapter).notifyDataSetChanged()
+        }
+
+        viewModel.loadAppData()
 
         return binding.root
     }
@@ -71,7 +89,7 @@ class AppManagerFragment : BaseFragment() {
                     AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
                 }
 
-                2 ->{
+                2 -> {
                     App.sp.setTheme(R.style.AppTheme)
                     requireActivity().recreate()
                 }

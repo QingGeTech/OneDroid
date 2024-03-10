@@ -1,4 +1,4 @@
-package cn.recommender.androiddevtoolbox.data.sp
+package cn.recommender.androiddevtoolbox.data.local.sp
 
 import android.content.Context
 import android.content.SharedPreferences
