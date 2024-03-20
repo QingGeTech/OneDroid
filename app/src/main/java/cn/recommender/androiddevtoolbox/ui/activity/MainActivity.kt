@@ -12,22 +12,32 @@ import androidx.core.view.updatePadding
 import cn.recommender.androiddevtoolbox.App
 import cn.recommender.androiddevtoolbox.R
 import cn.recommender.androiddevtoolbox.base.BaseActivity
+import cn.recommender.androiddevtoolbox.data.local.sp.SpApi
 import cn.recommender.androiddevtoolbox.databinding.ActivityMainBinding
 import cn.recommender.androiddevtoolbox.ui.fragment.AppManagerFragment
 import cn.recommender.androiddevtoolbox.ui.fragment.DeviceInfoFragment
 import cn.recommender.androiddevtoolbox.util.CommonUtils
+import cn.recommender.androiddevtoolbox.util.LogUtil
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.color.DynamicColorsOptions
 import com.google.android.material.color.HarmonizedColors
 import com.google.android.material.color.HarmonizedColorsOptions
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
-    private val TAG: String = javaClass.name
+    @Inject
+    lateinit var spApi: SpApi
 
     private lateinit var binding: ActivityMainBinding
 
-    private val fragments = listOf(AppManagerFragment(), DeviceInfoFragment())
+    @Inject
+    lateinit var appManagerFragment: AppManagerFragment
+
+    @Inject
+    lateinit var deviceInfoFragment: DeviceInfoFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
@@ -44,7 +54,7 @@ class MainActivity : BaseActivity() {
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.container) { v, insets ->
             val statusBarInsets = insets.getInsets(WindowInsetsCompat.Type.statusBars())
-            Log.d(TAG, "statusBarInsets:$statusBarInsets")
+            LogUtil.d("statusBarInsets:$statusBarInsets")
             v.updatePadding(v.paddingLeft, statusBarInsets.top, v.paddingRight, v.paddingBottom)
             WindowInsetsCompat.CONSUMED
         }
@@ -53,15 +63,15 @@ class MainActivity : BaseActivity() {
     }
 
     private fun setThemeBySp() {
-        if (App.sp.getTheme() != -1){
-            setTheme(App.sp.getTheme())
+        if (spApi.getTheme() != -1) {
+            setTheme(spApi.getTheme())
         }
     }
 
     private fun switchFragment(position: Int) {
-        supportFragmentManager.beginTransaction().replace(R.id.container, fragments[position])
-            .setReorderingAllowed(true)
-            .commit()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, if (position == 0) appManagerFragment else deviceInfoFragment)
+            .setReorderingAllowed(true).commit()
     }
 
 }

@@ -12,7 +12,6 @@ class AppFilterDialogFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentFilterAppBinding
 
-    private val TAG = javaClass.name
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,7 +20,7 @@ class AppFilterDialogFragment : BottomSheetDialogFragment() {
     ): View {
         binding = FragmentFilterAppBinding.inflate(inflater, container, false)
         binding.btnGroupAppType.addOnButtonCheckedListener { group, checkedId, isChecked ->
-            LogUtil.d(TAG,"listener:$group, $checkedId, $isChecked")
+            LogUtil.d("listener:$group, $checkedId, $isChecked")
         }
         return binding.root
     }

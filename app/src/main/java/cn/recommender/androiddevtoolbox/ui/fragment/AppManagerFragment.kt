@@ -12,29 +12,35 @@ import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.core.content.res.ResourcesCompat.ThemeCompat
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.Transition
 import androidx.transition.TransitionManager
 import cn.recommender.androiddevtoolbox.App
 import cn.recommender.androiddevtoolbox.R
 import cn.recommender.androiddevtoolbox.base.BaseFragment
+import cn.recommender.androiddevtoolbox.data.local.sp.SpApi
 import cn.recommender.androiddevtoolbox.databinding.FragmentAppManagerBinding
 import cn.recommender.androiddevtoolbox.ui.adapter.AppListRvAdapter
 import cn.recommender.androiddevtoolbox.viewmodel.AppManagerViewModel
 import com.google.android.material.transition.MaterialSharedAxis
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class AppManagerFragment : BaseFragment() {
+@AndroidEntryPoint
+@Singleton
+class AppManagerFragment @Inject constructor(
+    private val spApi: SpApi
+) : BaseFragment() {
 
-    companion object {
-        private const val TAG = "AppManagerFragment"
-    }
 
     private lateinit var binding: FragmentAppManagerBinding
 
     private lateinit var openSearchViewTransition: Transition
     private lateinit var closeSearchViewTransition: Transition
 
-    private val viewModel by activityViewModels<AppManagerViewModel>()
+    private val viewModel: AppManagerViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -90,12 +96,12 @@ class AppManagerFragment : BaseFragment() {
                 }
 
                 2 -> {
-                    App.sp.setTheme(R.style.AppTheme)
+                    spApi.setTheme(R.style.AppTheme)
                     requireActivity().recreate()
                 }
 
                 3 -> {
-                    App.sp.setTheme(R.style.AppTheme2)
+                    spApi.setTheme(R.style.AppTheme2)
                     requireActivity().recreate()
                 }
             }

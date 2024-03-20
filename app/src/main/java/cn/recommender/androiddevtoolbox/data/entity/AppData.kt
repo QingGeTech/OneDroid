@@ -7,5 +7,5 @@ data class AppData(
     val appName: String,
     val pkgName: String,
     val versionCode: Int,
-    val versionName: String
+    val versionName: String?
 )

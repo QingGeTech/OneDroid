@@ -1,5 +1,5 @@
 [versions]
-agp = "8.2.2"
+agp = "8.3.0"
 kotlin = "1.9.22"
 core-ktx = "1.12.0"
 junit = "4.13.2"
@@ -8,6 +8,8 @@ espresso-core = "3.5.1"
 appcompat = "1.6.1"
 material = "1.11.0"
 constraintlayout = "2.1.4"
+hilt = "2.51"
+hiltCompiler = "2.51"
 fragmentKtx = "1.6.2"
 
 [libraries]
@@ -18,9 +20,12 @@ espresso-core = { group = "androidx.test.espresso", name = "espresso-core", vers
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
-fragmentKtx = {group = "androidx.fragment", name="fragment-ktx", version.ref="fragmentKtx"}
+fragmentKtx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
+hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hiltCompiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hiltCompiler" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-
+kotlinKapt = {id = "org.jetbrains.kotlin.kapt", version.ref="kotlin"}
+hiltAndroid = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }

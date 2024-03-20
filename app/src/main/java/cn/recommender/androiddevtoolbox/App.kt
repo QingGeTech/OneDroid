@@ -10,18 +10,13 @@ import com.google.android.material.color.DynamicColors
 import com.google.android.material.color.DynamicColorsOptions
 import com.google.android.material.color.HarmonizedColors
 import com.google.android.material.color.HarmonizedColorsOptions
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class App : Application() {
-
-    companion object {
-        lateinit var sp: SpApi
-        lateinit var sys: SysApi
-    }
 
     override fun onCreate() {
         super.onCreate()
-        sp = SpApiImpl(this)
-        sys = SysApiImpl(this)
 //        DynamicColors.applyToActivitiesIfAvailable(this,
 //            DynamicColorsOptions.Builder()
 //                .setPrecondition { _, _ -> true }

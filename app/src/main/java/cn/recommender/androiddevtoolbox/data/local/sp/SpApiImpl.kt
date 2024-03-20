@@ -1,9 +1,12 @@
 package cn.recommender.androiddevtoolbox.data.local.sp
 
+import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class SpApiImpl(private val appContext: Context) : SpApi {
+class SpApiImpl @Inject constructor(private val appContext: Application) : SpApi {
 
     companion object {
         private const val SP_NAME = "AndroidDevToolbox"
