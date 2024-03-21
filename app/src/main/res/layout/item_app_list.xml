@@ -7,7 +7,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="10dp">
 
         <ImageView
             android:id="@+id/iv_logo"
@@ -20,29 +21,31 @@
         <TextView
             android:id="@+id/tv_app_name"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginStart="20dp"
+            android:textAppearance="?textAppearanceTitleMedium"
+            app:layout_constraintBottom_toTopOf="@id/tv_pkg_name"
             app:layout_constraintLeft_toRightOf="@id/iv_logo"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_logo"
+            app:layout_constraintVertical_weight="1"
             tools:text="AppName" />
 
         <TextView
             android:id="@+id/tv_pkg_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="50dp"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:textIsSelectable="true"
+            app:layout_constraintBottom_toBottomOf="@id/iv_logo"
+            app:layout_constraintLeft_toLeftOf="@id/tv_app_name"
             app:layout_constraintLeft_toRightOf="@id/iv_logo"
             app:layout_constraintTop_toBottomOf="@id/tv_app_name"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintVertical_weight="1"
             tools:text="PkgName" />
 
-        <TextView
-            android:id="@+id/tv_version"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            app:layout_constraintLeft_toRightOf="@id/tv_pkg_name"
-            app:layout_constraintTop_toBottomOf="@id/tv_app_name"
-            tools:text="Version" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

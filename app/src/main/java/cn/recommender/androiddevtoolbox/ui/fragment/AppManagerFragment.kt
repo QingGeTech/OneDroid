@@ -31,7 +31,8 @@ import javax.inject.Singleton
 @AndroidEntryPoint
 @Singleton
 class AppManagerFragment @Inject constructor(
-    private val spApi: SpApi
+    private val spApi: SpApi,
+    private val appFilterDialogFragment: AppFilterDialogFragment
 ) : BaseFragment() {
 
 
@@ -135,7 +136,7 @@ class AppManagerFragment @Inject constructor(
     }
 
     private fun openFilterSheet() {
-        AppFilterDialogFragment().show(childFragmentManager, "filterAppFragment")
+        appFilterDialogFragment.show(childFragmentManager, "filterAppFragment")
     }
 
     private fun openSearchView() {

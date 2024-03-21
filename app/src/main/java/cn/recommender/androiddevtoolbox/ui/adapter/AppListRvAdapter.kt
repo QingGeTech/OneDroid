@@ -24,7 +24,7 @@ class AppListRvAdapter(var appData: List<AppData>) :
         holder.binding.apply {
             ivLogo.setImageDrawable(appData[position].icon)
             tvAppName.text = appData[position].appName
-            tvVersion.text = "${appData[position].versionName}(${appData[position].versionCode})"
+//            tvVersion.text = "${appData[position].versionName}(${appData[position].versionCode})"
             tvPkgName.text = appData[position].pkgName
         }
     }

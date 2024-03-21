@@ -7,8 +7,13 @@ import android.view.ViewGroup
 import cn.recommender.androiddevtoolbox.databinding.FragmentFilterAppBinding
 import cn.recommender.androiddevtoolbox.util.LogUtil
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class AppFilterDialogFragment : BottomSheetDialogFragment() {
+@AndroidEntryPoint
+@Singleton
+class AppFilterDialogFragment @Inject constructor() : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentFilterAppBinding
 

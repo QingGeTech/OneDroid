@@ -41,8 +41,8 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
-        setThemeBySp()
         super.onCreate(savedInstanceState)
+        setThemeBySp()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         switchFragment(0)
