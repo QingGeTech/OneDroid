@@ -10,4 +10,14 @@
         android:enabled="true"
         android:icon="@drawable/ic_device_info"
         android:title="@string/device_info"/>
+    <item
+        android:id="@+id/action_page_3"
+        android:enabled="true"
+        android:icon="@drawable/ic_tools"
+        android:title="@string/small_tools"/>
+    <item
+        android:id="@+id/action_page_4"
+        android:enabled="true"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/settings"/>
 </menu>

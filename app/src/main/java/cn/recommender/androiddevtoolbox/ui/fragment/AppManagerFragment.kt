@@ -10,13 +10,10 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
-import androidx.core.content.res.ResourcesCompat.ThemeCompat
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.Transition
 import androidx.transition.TransitionManager
-import cn.recommender.androiddevtoolbox.App
 import cn.recommender.androiddevtoolbox.R
 import cn.recommender.androiddevtoolbox.base.BaseFragment
 import cn.recommender.androiddevtoolbox.data.local.sp.SpApi

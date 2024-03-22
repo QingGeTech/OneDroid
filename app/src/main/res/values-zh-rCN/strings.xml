@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Android开发工具箱</string>
-    <string name="app_manager">应用管理</string>
-    <string name="device_info">设备信息</string>
+    <string name="app_manager">应用</string>
+    <string name="device_info">设备</string>
     <string name="search">搜索</string>
     <string name="filter">过滤</string>
     <string name="app_manager_search_hint">应用名或包名</string>
@@ -11,4 +11,8 @@
     <string name="all">全部</string>
     <string name="system">系统</string>
     <string name="user">用户</string>
+    <string name="small_tools">工具</string>
+    <string name="settings">设置</string>
+    <string name="sys_info">系统信息</string>
+    <string name="hardware_info">硬件信息</string>
 </resources>

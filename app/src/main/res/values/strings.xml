@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AndroidDevToolbox</string>
-    <string name="app_manager">App Manager</string>
-    <string name="device_info">Device Info</string>
+    <string name="app_manager">Apps</string>
+    <string name="device_info">Device</string>
     <string name="search">search</string>
     <string name="filter">filter</string>
     <string name="app_manager_search_hint">app or pkg name</string>
@@ -11,4 +11,8 @@
     <string name="all">All</string>
     <string name="system">System</string>
     <string name="user">User</string>
+    <string name="small_tools">Tools</string>
+    <string name="settings">Settings</string>
+    <string name="sys_info">System Info</string>
+    <string name="hardware_info">Hardware Info</string>
 </resources>
