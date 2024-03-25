@@ -15,13 +15,10 @@ import javax.inject.Singleton
 
 
 @AndroidEntryPoint
-@Singleton
-class SysInfoFragment @Inject constructor(): BaseFragment() {
+class SysInfoFragment @Inject constructor() : BaseFragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         val binding = FragmentSysInfoBinding.inflate(layoutInflater, container, false)
         return binding.root

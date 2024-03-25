@@ -39,23 +39,19 @@ class MainActivity : BaseActivity() {
     @Inject
     lateinit var settingsFragment: SettingsFragment
 
-    private lateinit var fragments: List<Fragment>
-
+    private val fragmentTags = listOf("AppManager", "DeviceInfo", "SmallTools", "Settings")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-        fragments =
-            listOf(appManagerFragment, deviceInfoFragment, smallToolsFragment, settingsFragment)
         setThemeBySp()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        switchFragment(0)
         binding.bnv.setOnItemSelectedListener {
-            val position = CommonUtils.findMenuPosition(binding.bnv.menu, it)
-            switchFragment(position)
+            switchFragmentByBottomNav(it.itemId)
             true
         }
+        binding.bnv.selectedItemId = spApi.getLastBottomItemId()
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.container) { v, insets ->
             val statusBarInsets = insets.getInsets(WindowInsetsCompat.Type.statusBars())
@@ -64,7 +60,22 @@ class MainActivity : BaseActivity() {
             WindowInsetsCompat.CONSUMED
         }
 
+    }
 
+    private fun switchFragmentByBottomNav(itemId: Int) {
+
+        val position = CommonUtils.findMenuPosition(binding.bnv.menu, itemId)
+
+        var targetFragment: Fragment = appManagerFragment
+        when (position) {
+            0 -> targetFragment = appManagerFragment
+            1 -> targetFragment = deviceInfoFragment
+            2 -> targetFragment = smallToolsFragment
+            3 -> targetFragment = settingsFragment
+        }
+
+        switchFragment(targetFragment, fragmentTags[position])
+        spApi.setLastBottomItemId(itemId)
     }
 
     private fun setThemeBySp() {
@@ -73,21 +84,20 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private fun switchFragment(position: Int) {
+    private fun switchFragment(fragment: Fragment, tag: String) {
         val transaction = supportFragmentManager.beginTransaction()
 
-        if (!fragments[position].isAdded) {
-            transaction.add(R.id.container, fragments[position])
+        supportFragmentManager.fragments.forEach {
+            if (it.tag != tag) {
+                transaction.hide(it)
+            }
         }
 
-        for (i in fragments.indices) {
-            if (i == position) {
-                transaction.show(fragments[i])
-            } else {
-                if (fragments[i].isAdded) {
-                    transaction.hide(fragments[i])
-                }
-            }
+        val targetFragment = supportFragmentManager.findFragmentByTag(tag)
+        if (targetFragment == null) {
+            transaction.add(R.id.container, fragment, tag)
+        } else {
+            transaction.show(targetFragment)
         }
 
         transaction.setReorderingAllowed(true).commit()

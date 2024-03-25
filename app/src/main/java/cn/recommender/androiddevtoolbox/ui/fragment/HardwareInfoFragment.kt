@@ -16,7 +16,6 @@ import javax.inject.Singleton
 
 
 @AndroidEntryPoint
-@Singleton
 class HardwareInfoFragment @Inject constructor(): BaseFragment() {
 
     override fun onCreateView(

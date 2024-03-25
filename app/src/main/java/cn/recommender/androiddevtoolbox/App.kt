@@ -4,24 +4,23 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
 import cn.recommender.androiddevtoolbox.data.local.sp.SpApi
-import cn.recommender.androiddevtoolbox.data.local.sp.SpApiImpl
-import cn.recommender.androiddevtoolbox.data.local.sys.SysApi
-import cn.recommender.androiddevtoolbox.data.local.sys.SysApiImpl
 import cn.recommender.androiddevtoolbox.util.LogUtil
-import com.google.android.material.color.DynamicColors
-import com.google.android.material.color.DynamicColorsOptions
-import com.google.android.material.color.HarmonizedColors
-import com.google.android.material.color.HarmonizedColorsOptions
 import dagger.hilt.android.HiltAndroidApp
+import javax.inject.Inject
 
 @HiltAndroidApp
 class App : Application() {
 
+    @Inject
+    lateinit var spApi: SpApi
+
     override fun onCreate() {
         super.onCreate()
         addActivityLifecycleObserver()
+        initDarkMode()
+
 //        DynamicColors.applyToActivitiesIfAvailable(this,
 //            DynamicColorsOptions.Builder()
 //                .setPrecondition { _, _ -> true }
@@ -31,6 +30,14 @@ class App : Application() {
 //                    )
 //                }
 //                .build())
+    }
+
+    private fun initDarkMode() {
+        if (spApi.isDarkTheme()) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 
     private fun addActivityLifecycleObserver() {

@@ -16,11 +16,13 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @AndroidEntryPoint
-@Singleton
-class DeviceInfoFragment @Inject constructor(
-    private val sysInfoFragment: SysInfoFragment,
-    private val hardwareInfoFragment: HardwareInfoFragment
-) : BaseFragment() {
+class DeviceInfoFragment @Inject constructor() : BaseFragment() {
+
+    @Inject
+     lateinit var sysInfoFragment: SysInfoFragment
+
+    @Inject
+     lateinit var hardwareInfoFragment: HardwareInfoFragment
 
     private lateinit var binding: FragmentDeviceInfoBinding
 

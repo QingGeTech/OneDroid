@@ -12,7 +12,6 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @AndroidEntryPoint
-@Singleton
 class AppFilterDialogFragment @Inject constructor() : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentFilterAppBinding

@@ -26,12 +26,13 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @AndroidEntryPoint
-@Singleton
-class AppManagerFragment @Inject constructor(
-    private val spApi: SpApi,
-    private val appFilterDialogFragment: AppFilterDialogFragment
-) : BaseFragment() {
+class AppManagerFragment @Inject constructor() : BaseFragment() {
 
+    @Inject
+    lateinit var spApi: SpApi
+
+    @Inject
+    lateinit var appFilterDialogFragment: AppFilterDialogFragment
 
     private lateinit var binding: FragmentAppManagerBinding
 
@@ -86,7 +87,7 @@ class AppManagerFragment @Inject constructor(
         ) { _, position ->
             when (position) {
                 0 -> {
-                    AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
+
                 }
 
                 1 -> {

@@ -9,9 +9,9 @@ object CommonUtils {
     /**
      * find position of menuItem in a menu
      */
-    fun findMenuPosition(menu: Menu, menuItem: MenuItem): Int {
+    fun findMenuPosition(menu: Menu, menuItemId: Int): Int {
         for (i in (0..<menu.size())) {
-            if (menuItem.itemId == menu[i].itemId) {
+            if (menuItemId == menu[i].itemId) {
                 return i
             }
         }

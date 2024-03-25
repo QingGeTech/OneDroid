@@ -15,4 +15,7 @@
     <string name="settings">设置</string>
     <string name="sys_info">系统信息</string>
     <string name="hardware_info">硬件信息</string>
+    <string name="appearance">外观</string>
+    <string name="dark_theme">深色主题</string>
+    <string name="theme_color">主题颜色</string>
 </resources>

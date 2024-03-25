@@ -12,7 +12,6 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @AndroidEntryPoint
-@Singleton
 class SmallToolsFragment @Inject constructor(): BaseFragment() {
 
     override fun onCreateView(
