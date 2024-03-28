@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import cn.recommender.androiddevtoolbox.R
 import cn.recommender.androiddevtoolbox.databinding.ItemColorPaletteBinding
 import cn.recommender.androiddevtoolbox.databinding.ItemPureColorBinding
+import com.google.android.material.color.MaterialColors
 import java.lang.IllegalStateException
 
 class ChooseColorRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -83,7 +84,9 @@ class ChooseColorRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 holder.binding.root.context.resources,
                 COLOR_IDS[position - 1], holder.binding.root.context.theme
             )
-            holder.binding.ccv.setColor(color)
+            val harmonizedColor =
+                MaterialColors.harmonizeWithPrimary(holder.binding.root.context, color)
+            holder.binding.ccv.setColor(harmonizedColor)
             holder.binding.root.setOnClickListener {
                 callback?.onChooseColor(color)
             }
