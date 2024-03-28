@@ -18,4 +18,5 @@
     <string name="appearance">外观</string>
     <string name="dark_theme">深色主题</string>
     <string name="theme_color">主题颜色</string>
+    <string name="choose_color">选择颜色</string>
 </resources>

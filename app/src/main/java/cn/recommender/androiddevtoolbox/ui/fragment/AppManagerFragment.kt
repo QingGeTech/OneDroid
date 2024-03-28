@@ -53,7 +53,6 @@ class AppManagerFragment @Inject constructor() : BaseFragment() {
             when (it.itemId) {
                 R.id.search -> openSearchView()
                 R.id.filter -> openFilterSheet()
-                R.id.theme -> chooseTheme()
             }
             true
         }
@@ -71,40 +70,6 @@ class AppManagerFragment @Inject constructor() : BaseFragment() {
         viewModel.loadAppData()
 
         return binding.root
-    }
-
-    /**
-     * TODO: 测试，后续移动到个性化模块
-     */
-    private fun chooseTheme() {
-
-        AlertDialog.Builder(requireContext()).setAdapter(
-            ArrayAdapter(
-                requireContext(),
-                android.R.layout.simple_list_item_1,
-                listOf("Light", "Dark", "AppTheme1", "AppTheme2")
-            )
-        ) { _, position ->
-            when (position) {
-                0 -> {
-
-                }
-
-                1 -> {
-                    AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
-                }
-
-                2 -> {
-                    spApi.setTheme(R.style.AppTheme)
-                    requireActivity().recreate()
-                }
-
-                3 -> {
-                    spApi.setTheme(R.style.AppTheme2)
-                    requireActivity().recreate()
-                }
-            }
-        }.show()
     }
 
     private fun initTransition() {

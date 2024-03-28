@@ -2,38 +2,37 @@ package cn.recommender.androiddevtoolbox.view
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.SweepGradient
 import android.util.AttributeSet
 import android.view.View
-import cn.recommender.androiddevtoolbox.R
 import kotlin.math.min
 
-/**
- * Circle pure color view
- */
-class CircleColorView @JvmOverloads constructor(
+
+class CircleColorPaletteView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    fun setColor(color: Int){
-        paint.color = color
-        invalidate()
-    }
 
     private val paint = Paint().apply {
         isAntiAlias = true
     }
 
     init {
-        val typedArray =
-            context.obtainStyledAttributes(attrs, R.styleable.CircleColorView)
-        paint.color = typedArray.getColor(R.styleable.CircleColorView_color, Color.BLACK)
-        typedArray.recycle()
+        val gradientColors = intArrayOf(
+            0xFFFF0000.toInt(),
+            0xFFFF00FF.toInt(),
+            0xFF0000FF.toInt(),
+            0xFF00FFFF.toInt(),
+            0xFF00FF00.toInt(),
+            0xFFFFFF00.toInt(),
+            0xFFFF0000.toInt()
+        )
+        val shader = SweepGradient(0f, 0f, gradientColors, null)
+        paint.shader = shader
     }
-
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)

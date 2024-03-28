@@ -13,19 +13,19 @@ class SpApiImpl @Inject constructor(private val appContext: Application) : SpApi
 
     companion object {
         private const val SP_NAME = "AndroidDevToolbox"
-        private const val THEME_KEY = "theme"
+        private const val THEME_COLOR_KEY = "themeColor"
         private const val DARK_THEME_KEY = "isDarkTheme"
         private const val LAST_BOTTOM_ITEM_ID = "lastBottomItemId"
     }
 
-    override fun setTheme(theme: Int) {
-        getSp().edit().putInt(THEME_KEY, theme).apply()
+    override fun setThemeColor(themeColor: Int) {
+        getSp().edit().putInt(THEME_COLOR_KEY, themeColor).apply()
     }
 
-    override fun getTheme(): Int {
+    override fun getThemeColor(): Int {
         return getSp().getInt(
-            THEME_KEY,
-            R.style.AppTheme
+            THEME_COLOR_KEY,
+            R.color.color_primary_1
         )
     }
 

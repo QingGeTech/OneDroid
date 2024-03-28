@@ -18,4 +18,5 @@
     <string name="appearance">Appearance</string>
     <string name="theme_color">Theme Color</string>
     <string name="dark_theme">Dark Theme</string>
+    <string name="choose_color">Choose Color</string>
 </resources>

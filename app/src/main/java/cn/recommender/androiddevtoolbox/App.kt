@@ -5,8 +5,14 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.res.ResourcesCompat
 import cn.recommender.androiddevtoolbox.data.local.sp.SpApi
 import cn.recommender.androiddevtoolbox.util.LogUtil
+import com.google.android.material.color.DynamicColors
+import com.google.android.material.color.DynamicColorsOptions
+import com.google.android.material.color.HarmonizedColors
+import com.google.android.material.color.HarmonizedColorsOptions
+import com.google.android.material.color.utilities.MaterialDynamicColors
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
@@ -20,16 +26,6 @@ class App : Application() {
         super.onCreate()
         addActivityLifecycleObserver()
         initDarkMode()
-
-//        DynamicColors.applyToActivitiesIfAvailable(this,
-//            DynamicColorsOptions.Builder()
-//                .setPrecondition { _, _ -> true }
-//                .setOnAppliedCallback { activity: Activity ->
-//                    HarmonizedColors.applyToContextIfAvailable(
-//                        activity, HarmonizedColorsOptions.createMaterialDefaults()
-//                    )
-//                }
-//                .build())
     }
 
     private fun initDarkMode() {
@@ -82,6 +78,5 @@ class App : Application() {
         super.onLowMemory()
         LogUtil.d("onLowMemory")
     }
-
 
 }

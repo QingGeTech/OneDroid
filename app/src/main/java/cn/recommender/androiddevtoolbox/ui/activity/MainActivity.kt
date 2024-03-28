@@ -1,5 +1,6 @@
 package cn.recommender.androiddevtoolbox.ui.activity
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
@@ -16,6 +17,10 @@ import cn.recommender.androiddevtoolbox.ui.fragment.SettingsFragment
 import cn.recommender.androiddevtoolbox.ui.fragment.SmallToolsFragment
 import cn.recommender.androiddevtoolbox.util.CommonUtils
 import cn.recommender.androiddevtoolbox.util.LogUtil
+import com.google.android.material.color.DynamicColors
+import com.google.android.material.color.DynamicColorsOptions
+import com.google.android.material.color.HarmonizedColors
+import com.google.android.material.color.HarmonizedColorsOptions
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -44,7 +49,7 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-        setThemeBySp()
+        initThemeColor()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.bnv.setOnItemSelectedListener {
@@ -60,6 +65,20 @@ class MainActivity : BaseActivity() {
             WindowInsetsCompat.CONSUMED
         }
 
+    }
+
+    private fun initThemeColor() {
+        DynamicColors.applyToActivityIfAvailable(this,
+            DynamicColorsOptions.Builder()
+                .setPrecondition { _, _ -> true }
+                .setContentBasedSource(spApi.getThemeColor())
+                .setOnAppliedCallback { activity: Activity ->
+                    LogUtil.d("onApplied:$activity")
+                    HarmonizedColors.applyToContextIfAvailable(
+                        activity, HarmonizedColorsOptions.createMaterialDefaults()
+                    )
+                }
+                .build())
     }
 
     private fun switchFragmentByBottomNav(itemId: Int) {
@@ -78,11 +97,11 @@ class MainActivity : BaseActivity() {
         spApi.setLastBottomItemId(itemId)
     }
 
-    private fun setThemeBySp() {
-        if (spApi.getTheme() != -1) {
-            setTheme(spApi.getTheme())
-        }
-    }
+//    private fun setThemeBySp() {
+//        if (spApi.getTheme() != -1) {
+//            setTheme(spApi.getTheme())
+//        }
+//    }
 
     private fun switchFragment(fragment: Fragment, tag: String) {
         val transaction = supportFragmentManager.beginTransaction()

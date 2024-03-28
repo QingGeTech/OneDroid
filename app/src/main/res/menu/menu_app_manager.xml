@@ -15,10 +15,10 @@
         app:showAsAction="ifRoom" />
 
     <!-- for test -->
-    <item
-        android:id="@+id/theme"
-        android:enabled="true"
-        android:icon="@android:drawable/btn_star"
-        android:title="主题"
-        app:showAsAction="ifRoom" />
+<!--    <item-->
+<!--        android:id="@+id/theme"-->
+<!--        android:enabled="true"-->
+<!--        android:icon="@android:drawable/btn_star"-->
+<!--        android:title="主题"-->
+<!--        app:showAsAction="ifRoom" />-->
 </menu>
