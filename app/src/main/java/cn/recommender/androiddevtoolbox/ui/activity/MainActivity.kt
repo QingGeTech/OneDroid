@@ -15,7 +15,7 @@ import cn.recommender.androiddevtoolbox.ui.fragment.AppManagerFragment
 import cn.recommender.androiddevtoolbox.ui.fragment.DeviceInfoFragment
 import cn.recommender.androiddevtoolbox.ui.fragment.SettingsFragment
 import cn.recommender.androiddevtoolbox.ui.fragment.SmallToolsFragment
-import cn.recommender.androiddevtoolbox.util.CommonUtils
+import cn.recommender.androiddevtoolbox.util.CommonUtil
 import cn.recommender.androiddevtoolbox.util.LogUtil
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.color.DynamicColorsOptions
@@ -83,7 +83,7 @@ class MainActivity : BaseActivity() {
 
     private fun switchFragmentByBottomNav(itemId: Int) {
 
-        val position = CommonUtils.findMenuPosition(binding.bnv.menu, itemId)
+        val position = CommonUtil.findMenuPosition(binding.bnv.menu, itemId)
 
         var targetFragment: Fragment = appManagerFragment
         when (position) {

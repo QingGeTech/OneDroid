@@ -3,6 +3,7 @@ package cn.recommender.androiddevtoolbox.data.local.sp
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.content.res.ResourcesCompat.ThemeCompat
 import cn.recommender.androiddevtoolbox.R
@@ -25,7 +26,7 @@ class SpApiImpl @Inject constructor(private val appContext: Application) : SpApi
     override fun getThemeColor(): Int {
         return getSp().getInt(
             THEME_COLOR_KEY,
-            R.color.color_primary_1
+            ContextCompat.getColor(appContext, R.color.color_primary_1)
         )
     }
 

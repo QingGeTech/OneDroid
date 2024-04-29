@@ -2,10 +2,13 @@ package cn.recommender.androiddevtoolbox.view
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.LinearGradient
 import android.graphics.Paint
+import android.graphics.Shader
 import android.graphics.SweepGradient
 import android.util.AttributeSet
 import android.view.View
+import com.google.android.material.color.MaterialColors
 import kotlin.math.min
 
 
@@ -14,7 +17,6 @@ class CircleColorPaletteView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
-
 
     private val paint = Paint().apply {
         isAntiAlias = true
@@ -36,12 +38,11 @@ class CircleColorPaletteView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-
+        val cx = (width / 2).toFloat()
+        val cy = (height / 2).toFloat()
+        canvas.translate(cx, cy)
         canvas.drawCircle(
-            (width / 2).toFloat(),
-            (height / 2).toFloat(),
-            (min(width, height) / 2).toFloat(),
-            paint
+            0f, 0f, (min(width, height) / 2).toFloat(), paint
         )
     }
 

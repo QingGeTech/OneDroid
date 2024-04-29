@@ -1,6 +1,8 @@
 package cn.recommender.androiddevtoolbox.ui.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +20,8 @@ class ChooseColorRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     var callback: Callback? = null
+
+    var paletteAsColor: Int = -1
 
     companion object {
         const val ITEM_SIZE = 8
@@ -76,7 +80,16 @@ class ChooseColorRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         if (position == 0) {
             holder as ViewHolderColorPalette
             holder.binding.root.setOnClickListener {
-                callback?.onOpenPalette()
+                if (paletteAsColor != -1) {
+                    callback?.onChooseColor(paletteAsColor)
+                } else {
+                    callback?.onOpenPalette()
+                }
+            }
+            holder.binding.ccpv.visibility = if (paletteAsColor == -1) View.VISIBLE else View.GONE
+            holder.binding.ccv.visibility = if (paletteAsColor == -1) View.GONE else View.VISIBLE
+            if (paletteAsColor != -1) {
+                holder.binding.ccv.setColor(paletteAsColor)
             }
         } else {
             holder as ViewHolderPureColor

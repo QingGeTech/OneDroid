@@ -1,10 +1,9 @@
 package cn.recommender.androiddevtoolbox.util
 
 import android.view.Menu
-import android.view.MenuItem
 import androidx.core.view.get
 
-object CommonUtils {
+object CommonUtil {
 
     /**
      * find position of menuItem in a menu
