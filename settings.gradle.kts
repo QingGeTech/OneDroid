@@ -26,6 +26,7 @@ dependencyResolutionManagement {
         maven("https://maven.aliyun.com/repository/spring-plugin")
         maven("https://maven.aliyun.com/repository/grails-core")
         maven("https://maven.aliyun.com/repository/apache-snapshots")
+        maven("https://jitpack.io")
         google()
         mavenCentral()
     }

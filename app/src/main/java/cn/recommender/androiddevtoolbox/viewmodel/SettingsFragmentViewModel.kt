@@ -2,7 +2,9 @@ package cn.recommender.androiddevtoolbox.viewmodel
 
 import android.app.Activity
 import android.app.Application
+import android.content.Context
 import android.graphics.Color
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.LiveData
@@ -14,6 +16,8 @@ import cn.recommender.androiddevtoolbox.R
 import cn.recommender.androiddevtoolbox.data.entity.AppData
 import cn.recommender.androiddevtoolbox.data.local.sp.SpApi
 import cn.recommender.androiddevtoolbox.data.local.sys.SysApi
+import cn.recommender.androiddevtoolbox.ui.activity.MainActivity
+import cn.recommender.androiddevtoolbox.ui.fragment.ToolsFragment
 import cn.recommender.androiddevtoolbox.util.LogUtil
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.color.DynamicColorsOptions

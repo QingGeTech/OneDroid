@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accessibilityEventTypes="typeAllMask"
+    android:accessibilityFeedbackType="feedbackAllMask"
+    android:accessibilityFlags="flagDefault"
+    android:canRequestFilterKeyEvents="true"
+    android:canRequestTouchExplorationMode="true"
+    android:canRetrieveWindowContent="true"
+    android:canTakeScreenshot="true"
+    android:notificationTimeout="100"
+    android:description="@string/tools_accessibility_service_description"
+    android:settingsActivity="cn.recommender.androiddevtoolbox.ui.activity.MainActivity" />
+<!--    android:packageNames=""-->
+<!--    android:interactiveUiTimeout="1000"-->
+<!--    android:intro=""-->

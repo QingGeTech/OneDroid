@@ -55,7 +55,7 @@
             app:layout_constraintTop_toBottomOf="@id/rv" />
 
 
-        <cn.recommender.androiddevtoolbox.view.colorpicker.ColorPickerViewGroup
+        <cn.recommender.androiddevtoolbox.ui.view.colorpicker.ColorPickerViewGroup
             android:id="@+id/color_picker"
             android:layout_width="match_parent"
             android:layout_height="300dp"
@@ -65,13 +65,13 @@
             android:layout_marginBottom="20dp"
             android:orientation="horizontal">
 
-            <cn.recommender.androiddevtoolbox.view.colorpicker.HuePickerView
+            <cn.recommender.androiddevtoolbox.ui.view.colorpicker.HuePickerView
                 android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:clickable="true"
                 android:focusable="true" />
 
-            <cn.recommender.androiddevtoolbox.view.colorpicker.SVPickerView
+            <cn.recommender.androiddevtoolbox.ui.view.colorpicker.SVPickerView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
@@ -80,6 +80,6 @@
                 android:focusable="true" />
 
 
-        </cn.recommender.androiddevtoolbox.view.colorpicker.ColorPickerViewGroup>
+        </cn.recommender.androiddevtoolbox.ui.view.colorpicker.ColorPickerViewGroup>
     </LinearLayout>
 </LinearLayout>

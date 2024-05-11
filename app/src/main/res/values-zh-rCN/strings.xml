@@ -20,4 +20,11 @@
     <string name="theme_color">主题颜色</string>
     <string name="choose_color">选择颜色</string>
     <string name="custom_color">自定义颜色</string>
+    <string name="scroll_screenshot">滚动截图</string>
+    <string name="screen_record">屏幕录制</string>
+    <string name="color_pick_tool">屏幕取色</string>
+    <string name="text_ocr">屏幕取字</string>
+    <string name="tools_accessibility_service_description">支持Android开发工具箱的截图、录屏等功能</string>
+    <string name="permission_not_granted">未授权</string>
+    <string name="floating_button_enable">显示悬浮按钮</string>
 </resources>

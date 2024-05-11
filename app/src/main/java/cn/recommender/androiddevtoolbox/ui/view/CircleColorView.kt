@@ -1,4 +1,4 @@
-package cn.recommender.androiddevtoolbox.view
+package cn.recommender.androiddevtoolbox.ui.view
 
 import android.content.Context
 import android.graphics.Canvas

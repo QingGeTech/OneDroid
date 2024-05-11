@@ -14,7 +14,7 @@ import cn.recommender.androiddevtoolbox.data.local.sp.SpApi
 import cn.recommender.androiddevtoolbox.databinding.FragmentChooseColorBinding
 import cn.recommender.androiddevtoolbox.ui.adapter.ChooseColorRvAdapter
 import cn.recommender.androiddevtoolbox.util.LogUtil
-import cn.recommender.androiddevtoolbox.view.colorpicker.ColorPickerViewGroup
+import cn.recommender.androiddevtoolbox.ui.view.colorpicker.ColorPickerViewGroup
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
 import com.google.android.material.bottomsheet.BottomSheetDialog

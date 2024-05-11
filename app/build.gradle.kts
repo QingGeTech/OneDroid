@@ -48,6 +48,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.constraintlayout)
     implementation(libs.hilt)
+    implementation(libs.xxPermission)
     kapt(libs.hiltCompiler)
 
     testImplementation(libs.junit)

@@ -1,4 +1,4 @@
-package cn.recommender.androiddevtoolbox.view.colorpicker
+package cn.recommender.androiddevtoolbox.ui.view.colorpicker
 
 import android.content.Context
 import android.graphics.Canvas

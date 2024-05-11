@@ -1,4 +1,4 @@
-package cn.recommender.androiddevtoolbox.view.colorpicker
+package cn.recommender.androiddevtoolbox.ui.view.colorpicker
 
 import android.content.Context
 import android.graphics.Canvas
@@ -48,6 +48,7 @@ class ColorPickerViewGroup @JvmOverloads constructor(
     fun startColorPick(themeColor: Int) {
         val hsvArr = FloatArray(3)
         Color.colorToHSV(themeColor, hsvArr)
+        //TODO: 小球和色彩渐变
         huePickerView.initHue(hsvArr[0])
         svPickerView.initSV(hsvArr[1], hsvArr[2])
         svPickerView.hue = hsvArr[0]

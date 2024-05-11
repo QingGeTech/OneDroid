@@ -20,4 +20,11 @@
     <string name="dark_theme">Dark Theme</string>
     <string name="choose_color">Choose Color</string>
     <string name="custom_color">Custom Color</string>
+    <string name="scroll_screenshot">Scroll Screenshot</string>
+    <string name="screen_record">Screen Record</string>
+    <string name="color_pick_tool">Screen Color Picker</string>
+    <string name="text_ocr">Text OCR</string>
+    <string name="tools_accessibility_service_description">Supports screenshots, screen recording and other functions of Android Dev Toolbox</string>
+    <string name="permission_not_granted">Permission not granted</string>
+    <string name="floating_button_enable">Floating Button Enabled</string>
 </resources>

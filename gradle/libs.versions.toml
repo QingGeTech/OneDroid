@@ -1,16 +1,17 @@
 [versions]
-agp = "8.3.1"
-kotlin = "1.9.22"
-core-ktx = "1.12.0"
+agp = "8.3.2"
+kotlin = "1.9.23"
+core-ktx = "1.13.1"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 appcompat = "1.6.1"
-material = "1.11.0"
+material = "1.12.0"
 constraintlayout = "2.1.4"
 hilt = "2.51"
 hiltCompiler = "2.51"
-fragmentKtx = "1.6.2"
+fragmentKtx = "1.7.0"
+xxPermission = "18.63"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -23,6 +24,7 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 fragmentKtx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
 hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hiltCompiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hiltCompiler" }
+xxPermission = { group = "com.github.getActivity", name = "XXPermissions", version.ref = "xxPermission" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

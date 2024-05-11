@@ -1,9 +1,11 @@
 package cn.recommender.androiddevtoolbox.ui.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.viewModels
 import cn.recommender.androiddevtoolbox.App

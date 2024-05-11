@@ -7,14 +7,14 @@
     android:focusable="true"
     android:padding="10dp">
 
-    <cn.recommender.androiddevtoolbox.view.CircleColorPaletteView
+    <cn.recommender.androiddevtoolbox.ui.view.CircleColorPaletteView
         android:id="@+id/ccpv"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_centerInParent="true"
         android:visibility="visible" />
 
-    <cn.recommender.androiddevtoolbox.view.CircleColorView
+    <cn.recommender.androiddevtoolbox.ui.view.CircleColorView
         android:id="@+id/ccv"
         android:layout_width="60dp"
         android:layout_height="60dp"

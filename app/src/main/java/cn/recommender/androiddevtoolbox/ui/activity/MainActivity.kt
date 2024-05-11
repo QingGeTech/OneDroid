@@ -14,7 +14,7 @@ import cn.recommender.androiddevtoolbox.databinding.ActivityMainBinding
 import cn.recommender.androiddevtoolbox.ui.fragment.AppManagerFragment
 import cn.recommender.androiddevtoolbox.ui.fragment.DeviceInfoFragment
 import cn.recommender.androiddevtoolbox.ui.fragment.SettingsFragment
-import cn.recommender.androiddevtoolbox.ui.fragment.SmallToolsFragment
+import cn.recommender.androiddevtoolbox.ui.fragment.ToolsFragment
 import cn.recommender.androiddevtoolbox.util.CommonUtil
 import cn.recommender.androiddevtoolbox.util.LogUtil
 import com.google.android.material.color.DynamicColors
@@ -39,7 +39,7 @@ class MainActivity : BaseActivity() {
     lateinit var deviceInfoFragment: DeviceInfoFragment
 
     @Inject
-    lateinit var smallToolsFragment: SmallToolsFragment
+    lateinit var toolsFragment: ToolsFragment
 
     @Inject
     lateinit var settingsFragment: SettingsFragment
@@ -89,7 +89,7 @@ class MainActivity : BaseActivity() {
         when (position) {
             0 -> targetFragment = appManagerFragment
             1 -> targetFragment = deviceInfoFragment
-            2 -> targetFragment = smallToolsFragment
+            2 -> targetFragment = toolsFragment
             3 -> targetFragment = settingsFragment
         }
 
