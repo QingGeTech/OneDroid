@@ -1,6 +1,7 @@
 package cn.recommender.androiddevtoolbox.util
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import cn.recommender.androiddevtoolbox.R
 
 object ViewUtil {
@@ -19,6 +20,13 @@ object ViewUtil {
         val color = attr.getColor(0, 0)
         attr.recycle()
         return color
+    }
+
+    fun getDrawableByStyledAttr(context: Context, attrId: Int): Drawable? {
+        val attr = context.obtainStyledAttributes(intArrayOf(attrId))
+        val drawable = attr.getDrawable(0)
+        attr.recycle()
+        return drawable
     }
 
 }
