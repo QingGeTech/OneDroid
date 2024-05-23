@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="color" format="color" />
     <declare-styleable name="CircleColorView">
-        <attr name="color" format="color" />
+        <attr name="color" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundRectColorView">
+        <attr name="color" />
+        <attr name="corner" format="dimension" />
     </declare-styleable>
 
 </resources>

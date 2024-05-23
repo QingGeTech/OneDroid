@@ -49,6 +49,8 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.hilt)
     implementation(libs.xxPermission)
+    implementation(libs.glide)
+    implementation(libs.androidx.activity)
     kapt(libs.hiltCompiler)
 
     testImplementation(libs.junit)

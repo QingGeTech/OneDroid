@@ -27,4 +27,5 @@
     <string name="tools_accessibility_service_description">Supports screenshots, screen recording and other functions of Android Dev Toolbox</string>
     <string name="permission_not_granted">Permission not granted</string>
     <string name="floating_button_enable">Floating Button Enabled</string>
+    <string name="open_accessibility_service">please open accessibility service</string>
 </resources>
