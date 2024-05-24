@@ -28,4 +28,6 @@
     <string name="permission_not_granted">未授权</string>
     <string name="floating_button_enable">显示悬浮按钮</string>
     <string name="open_accessibility_service">请开启无障碍服务</string>
+    <string name="save">保存</string>
+    <string name="save_success">保存成功</string>
 </resources>

@@ -48,8 +48,10 @@ import cn.recommender.androiddevtoolbox.tool.ScreenPickText
 import cn.recommender.androiddevtoolbox.tool.ScreenRecord
 import cn.recommender.androiddevtoolbox.tool.ScrollScreenshot
 import cn.recommender.androiddevtoolbox.ui.activity.PickColorActivity
+import cn.recommender.androiddevtoolbox.ui.activity.ScreenRecordResultActivity
 import cn.recommender.androiddevtoolbox.ui.dialog.Dialogs
 import cn.recommender.androiddevtoolbox.ui.view.ToolFab
+import cn.recommender.androiddevtoolbox.ui.view.TouchTraceView
 import cn.recommender.androiddevtoolbox.util.BitmapUtil
 import cn.recommender.androiddevtoolbox.util.DeviceUtil
 import cn.recommender.androiddevtoolbox.util.IntentUtil
@@ -314,7 +316,24 @@ class ToolsFragment @Inject constructor() : BaseFragment() {
         LogUtil.d("clickFab:${ToolsFragmentViewModel.curSelectedPos.value}")
         when (ToolsFragmentViewModel.curSelectedPos.value) {
             0 -> scrollScreenshot.start()
-            1 -> screenRecord.start()
+            1 -> {
+                if (mediaProjectionService?.isRecording()!!) {
+                    val savePath = mediaProjectionService?.stopRecord()
+                    val intent = Intent(appContext, ScreenRecordResultActivity::class.java)
+                    intent.putExtra("filePath", savePath)
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    appContext.startActivity(intent)
+                    fab!!.setImageResource(R.drawable.ic_screen_record)
+
+//                    TouchTraceView.stopTouchTrace(appContext)
+                } else {
+                    mediaProjectionService?.startRecord()
+                    fab!!.setImageResource(R.drawable.ic_screen_recording)
+
+//                    TouchTraceView.startTouchTrace(appContext)
+                }
+            }
+
             2 -> {
                 fab!!.visibility = View.GONE
                 mediaProjectionService?.screenshot { _, filePath ->

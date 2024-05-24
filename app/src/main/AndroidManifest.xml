@@ -9,6 +9,12 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+
 
     <application
         android:name=".App"
@@ -18,10 +24,15 @@
         android:roundIcon="@drawable/app_logo_round"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.activity.PickColorActivity"
-            android:taskAffinity=".pickColor"
+            android:name=".ui.activity.ScreenRecordResultActivity"
+            android:exported="false"
             android:launchMode="singleInstance"
-            android:exported="false" />
+            android:taskAffinity=".screenrecord" />
+        <activity
+            android:name=".ui.activity.PickColorActivity"
+            android:exported="false"
+            android:launchMode="singleInstance"
+            android:taskAffinity=".pickColor" />
         <activity
             android:name=".ui.activity.MainActivity"
             android:exported="true"
@@ -49,6 +60,12 @@
         <service
             android:name=".service.MediaProjectionService"
             android:foregroundServiceType="mediaProjection" />
+
+        <!-- 告知 XXPermissions 当前项目已经适配了分区存储特性 -->
+        <meta-data
+            android:name="ScopedStorage"
+            android:value="true" />
     </application>
+
 
 </manifest>

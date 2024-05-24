@@ -12,6 +12,7 @@ import android.hardware.display.DisplayManager
 import android.media.Image
 import android.media.ImageReader
 import android.media.ImageReader.OnImageAvailableListener
+import android.media.MediaRecorder
 import android.media.projection.MediaProjection
 import android.media.projection.MediaProjectionManager
 import android.os.Binder
@@ -49,6 +50,9 @@ class MediaProjectionService : BaseService() {
     lateinit var windowManager: WindowManager
 
     private lateinit var mediaProjection: MediaProjection
+
+    private var mediaRecorder: MediaRecorder? = null
+    private var recordSavePath: String? = null
 
     override fun onBind(intent: Intent?): IBinder {
         super.onBind(intent)
@@ -122,7 +126,7 @@ class MediaProjectionService : BaseService() {
             bitmap.copyPixelsFromBuffer(buffer)
             image.close()
 
-            val dir = File("${externalCacheDir.toString()}/screenshot")
+            val dir = File("${externalCacheDir.toString()}/Screenshot")
             if (!dir.exists()) {
                 dir.mkdir()
             }
@@ -134,4 +138,53 @@ class MediaProjectionService : BaseService() {
         }, null)
 
     }
+
+    fun startRecord() {
+        val dir = File("${externalCacheDir.toString()}/ScreenRecord")
+        if (!dir.exists()) {
+            dir.mkdir()
+        }
+
+        recordSavePath = "$dir/${RandomUtil.uuid()}.mp4"
+        mediaRecorder = MediaRecorder().apply {
+//            setAudioSource(MediaRecorder.AudioSource.MIC)
+            setVideoSource(MediaRecorder.VideoSource.SURFACE)
+            setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
+            setOutputFile(recordSavePath)
+            setVideoSize(
+                DeviceUtil.getScreenWidth(this@MediaProjectionService),
+                DeviceUtil.getScreenHeight(this@MediaProjectionService)
+            )
+            setVideoEncoder(MediaRecorder.VideoEncoder.H264)
+//            setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
+            setVideoEncodingBitRate(5000 * 1000)
+            setVideoFrameRate(30)
+            prepare()
+        }
+        mediaProjection.createVirtualDisplay(
+            "ScreenRecord",
+            DeviceUtil.getScreenWidth(this),
+            DeviceUtil.getScreenHeight(this),
+            DeviceUtil.getScreenDensityDpi(this),
+            DisplayManager.VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR,
+            mediaRecorder!!.surface,
+            null,
+            null
+        )
+        mediaRecorder!!.start()
+    }
+
+    fun isRecording(): Boolean {
+        return mediaRecorder != null
+    }
+
+    fun stopRecord(): String {
+        mediaRecorder!!.stop()
+        mediaRecorder!!.release()
+        mediaRecorder = null
+        val ret = recordSavePath!!
+        recordSavePath = null
+        return ret
+    }
+
 }

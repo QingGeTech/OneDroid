@@ -55,7 +55,7 @@ class PickColorActivity : BaseActivity() {
         Glide.with(this).load(bitmap).into(binding.img)
         binding.img.setOnTouchListener { _, e ->
             when (e.action) {
-                MotionEvent.ACTION_DOWN or MotionEvent.ACTION_MOVE -> {
+                MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> {
                     updateColor(bitmap, e.x.toInt(), e.y.toInt())
                     updateMagnify(e.x.toInt(), e.y.toInt())
                 }

@@ -28,4 +28,6 @@
     <string name="permission_not_granted">Permission not granted</string>
     <string name="floating_button_enable">Floating Button Enabled</string>
     <string name="open_accessibility_service">please open accessibility service</string>
+    <string name="save">Save</string>
+    <string name="save_success">Save Success</string>
 </resources>
