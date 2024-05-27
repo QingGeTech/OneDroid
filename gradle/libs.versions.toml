@@ -13,7 +13,8 @@ hiltCompiler = "2.51"
 fragmentKtx = "1.7.1"
 xxPermission = "18.63"
 glide = "4.16.0"
-activity = "1.8.2"
+activity = "1.9.0"
+mlkit = "16.0.0"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -29,6 +30,7 @@ hiltCompiler = { group = "com.google.dagger", name = "hilt-android-compiler", ve
 xxPermission = { group = "com.github.getActivity", name = "XXPermissions", version.ref = "xxPermission" }
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+mlkitTextRecognitionChinese = { group = "com.google.mlkit", name = "text-recognition-chinese", version.ref = "mlkit" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

@@ -101,9 +101,9 @@ class PickColorActivity : BaseActivity() {
         binding.tvColor.setTextColor(ColorUtil.getContrastingColor(color))
     }
 
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        initViews(intent!!)
+        initViews(intent)
     }
 
 }

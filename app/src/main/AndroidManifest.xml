@@ -9,12 +9,10 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
-
 
     <application
         android:name=".App"
@@ -23,6 +21,9 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/app_logo_round"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.activity.TextRecognitionActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activity.ScreenRecordResultActivity"
             android:exported="false"
@@ -59,13 +60,10 @@
         </service>
         <service
             android:name=".service.MediaProjectionService"
-            android:foregroundServiceType="mediaProjection" />
-
-        <!-- 告知 XXPermissions 当前项目已经适配了分区存储特性 -->
+            android:foregroundServiceType="mediaProjection" /> <!-- 告知 XXPermissions 当前项目已经适配了分区存储特性 -->
         <meta-data
             android:name="ScopedStorage"
             android:value="true" />
     </application>
-
 
 </manifest>

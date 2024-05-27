@@ -12,7 +12,7 @@ android {
     defaultConfig {
         applicationId = "cn.recommender.androiddevtoolbox"
         minSdk = 21
-        targetSdk = 34
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.xxPermission)
     implementation(libs.glide)
     implementation(libs.androidx.activity)
+    implementation(libs.mlkitTextRecognitionChinese)
     kapt(libs.hiltCompiler)
 
     testImplementation(libs.junit)

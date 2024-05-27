@@ -49,6 +49,7 @@ import cn.recommender.androiddevtoolbox.tool.ScreenRecord
 import cn.recommender.androiddevtoolbox.tool.ScrollScreenshot
 import cn.recommender.androiddevtoolbox.ui.activity.PickColorActivity
 import cn.recommender.androiddevtoolbox.ui.activity.ScreenRecordResultActivity
+import cn.recommender.androiddevtoolbox.ui.activity.TextRecognitionActivity
 import cn.recommender.androiddevtoolbox.ui.dialog.Dialogs
 import cn.recommender.androiddevtoolbox.ui.view.ToolFab
 import cn.recommender.androiddevtoolbox.ui.view.TouchTraceView
@@ -345,7 +346,16 @@ class ToolsFragment @Inject constructor() : BaseFragment() {
                 }
             }
 
-            3 -> screenPickText.start()
+            3 -> {
+                fab!!.visibility = View.GONE
+                mediaProjectionService?.screenshot { _, filePath ->
+                    val intent = Intent(appContext, TextRecognitionActivity::class.java)
+                    intent.putExtra("filePath", filePath)
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    appContext.startActivity(intent)
+                    fab!!.visibility = View.VISIBLE
+                }
+            }
         }
     }
 

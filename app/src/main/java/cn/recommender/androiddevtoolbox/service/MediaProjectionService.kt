@@ -9,6 +9,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.PixelFormat
 import android.hardware.display.DisplayManager
+import android.hardware.display.VirtualDisplay
 import android.media.Image
 import android.media.ImageReader
 import android.media.ImageReader.OnImageAvailableListener
@@ -35,6 +36,10 @@ import java.io.File
 import javax.inject.Inject
 
 
+/**
+ * TODO: target34 : mediaProjection复用会抛出异常
+ * 在Android14设备,target34之前，mediaProjection复用会让用户重新授权
+ */
 @AndroidEntryPoint
 class MediaProjectionService : BaseService() {
 
@@ -104,9 +109,31 @@ class MediaProjectionService : BaseService() {
 
         val imageReader = ImageReader.newInstance(width, height, PixelFormat.RGBA_8888, 1);
         val surface = imageReader.surface
+        mediaProjection.registerCallback(object : MediaProjection.Callback() {
+            override fun onCapturedContentResize(width: Int, height: Int) {
+                super.onCapturedContentResize(width, height)
+                LogUtil.d("onCapturedContentResize:width:$width,height:$height")
+            }
+
+            override fun onCapturedContentVisibilityChanged(isVisible: Boolean) {
+                super.onCapturedContentVisibilityChanged(isVisible)
+                LogUtil.d("onCapturedContentVisibilityChanged:isVisible:$isVisible")
+            }
+
+            override fun onStop() {
+                super.onStop()
+                LogUtil.d("onStop")
+            }
+        }, null)
         val virtualDisplay = mediaProjection.createVirtualDisplay(
-            "Screenshot", width, height, density,
-            DisplayManager.VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR, surface, null, null
+            "Screenshot",
+            width,
+            height,
+            density,
+            DisplayManager.VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR,
+            surface,
+            null,
+            null
         )
         imageReader.setOnImageAvailableListener({
             val image: Image = imageReader.acquireLatestImage()
@@ -161,6 +188,22 @@ class MediaProjectionService : BaseService() {
             setVideoFrameRate(30)
             prepare()
         }
+        mediaProjection.registerCallback(object : MediaProjection.Callback() {
+            override fun onCapturedContentResize(width: Int, height: Int) {
+                super.onCapturedContentResize(width, height)
+                LogUtil.d("onCapturedContentResize:width:$width,height:$height")
+            }
+
+            override fun onCapturedContentVisibilityChanged(isVisible: Boolean) {
+                super.onCapturedContentVisibilityChanged(isVisible)
+                LogUtil.d("onCapturedContentVisibilityChanged:isVisible:$isVisible")
+            }
+
+            override fun onStop() {
+                super.onStop()
+                LogUtil.d("onStop")
+            }
+        }, null)
         mediaProjection.createVirtualDisplay(
             "ScreenRecord",
             DeviceUtil.getScreenWidth(this),
