@@ -31,6 +31,11 @@
             android:launchMode="singleInstance"
             android:taskAffinity=".screenrecord" />
         <activity
+            android:name=".ui.activity.ScrollScreenshotResultActivity"
+            android:exported="true"
+            android:launchMode="singleInstance"
+            android:taskAffinity=".scrollscreenshot" />
+        <activity
             android:name=".ui.activity.PickColorActivity"
             android:exported="false"
             android:launchMode="singleInstance"

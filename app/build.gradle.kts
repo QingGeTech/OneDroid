@@ -60,6 +60,8 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.androidx.activity)
     implementation(libs.mlkitTextRecognitionChinese)
+    implementation(libs.photoView)
+    implementation(libs.opencv)
     kapt(libs.hiltCompiler)
 
     testImplementation(libs.junit)

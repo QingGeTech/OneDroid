@@ -74,4 +74,43 @@ object MediaUtil {
         bitmap.copyPixelsFromBuffer(buffer)
         return bitmap
     }
+
+    fun saveImage(context: Context, filePath: String, onResult: (Boolean) -> Unit) {
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            XXPermissions.with(context).permission(Permission.WRITE_EXTERNAL_STORAGE)
+                .request(object : CommonPermissionCallback(context) {
+                    override fun onAllGranted() {
+                        val imageFile = File(filePath)
+                        val targetFile = File(
+                            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+                            imageFile.name
+                        )
+                        FileOutputStream(targetFile).use { out ->
+                            FileInputStream(imageFile).use { input ->
+                                input.copyTo(out)
+                                onResult(true)
+                            }
+                        }
+                    }
+                })
+        } else {
+            val imageFile = File(filePath)
+            val contentValues = ContentValues().apply {
+                put(MediaStore.Images.Media.DISPLAY_NAME, imageFile.name)
+                put(MediaStore.Images.Media.MIME_TYPE, "image/png")
+                put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES)
+            }
+            val uri = context.contentResolver.insert(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                contentValues
+            )
+            context.contentResolver.openOutputStream(uri!!)!!.use { out ->
+                FileInputStream(filePath).use { input ->
+                    input.copyTo(out)
+                    onResult(true)
+                }
+            }
+        }
+    }
 }
