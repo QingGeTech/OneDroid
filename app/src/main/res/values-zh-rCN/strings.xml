@@ -30,4 +30,10 @@
     <string name="open_accessibility_service">请开启无障碍服务</string>
     <string name="save">保存</string>
     <string name="save_success">保存成功</string>
+    <string name="start">开始</string>
+    <string name="end">结束</string>
+    <string name="foreground_service">前台服务</string>
+    <string name="foreground_service_description">展示前台服务</string>
+    <string name="floating_window_showing">悬浮窗正在展示中</string>
+    <string name="media_projection_in_process">正在进行媒体投影</string>
 </resources>

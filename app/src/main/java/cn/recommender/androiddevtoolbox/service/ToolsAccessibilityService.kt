@@ -3,7 +3,6 @@ package cn.recommender.androiddevtoolbox.service
 import android.accessibilityservice.AccessibilityService
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 import cn.recommender.androiddevtoolbox.R
 import cn.recommender.androiddevtoolbox.ui.dialog.Dialogs
@@ -26,7 +25,7 @@ class ToolsAccessibilityService : AccessibilityService() {
             Dialogs.showMessageTips(
                 context,
                 context.getString(R.string.open_accessibility_service),
-                true
+//                true
             ) { _, _ ->
                 IntentUtil.openAccessibilityServiceSetting(context)
             }

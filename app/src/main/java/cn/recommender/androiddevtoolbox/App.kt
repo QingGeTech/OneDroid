@@ -26,6 +26,7 @@ class App : Application() {
         super.onCreate()
         addActivityLifecycleObserver()
         initDarkMode()
+        setTheme(R.style.AppTheme)
     }
 
     private fun initDarkMode() {

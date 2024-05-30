@@ -3,11 +3,12 @@
     <style name="AppTheme" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/color_primary_1</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
+        <item name="fabStyle">@style/fabStyle</item>
     </style>
 
 
     <style name="ThemeOverlay.App.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
-        <item name="android:navigationBarColor" >@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 
     <style name="Widget.App.Button.TextButton.Dialog.FullWidth" parent="Widget.Material3.Button.TextButton.Dialog">
@@ -17,9 +18,20 @@
     </style>
 
     <style name="ThemeOverlay.App.MaterialAlertDialog.FullWidthButtons" parent="ThemeOverlay.Material3.MaterialAlertDialog">
-        <item name="buttonBarPositiveButtonStyle">@style/Widget.App.Button.TextButton.Dialog.FullWidth</item>
-        <item name="buttonBarNegativeButtonStyle">@style/Widget.App.Button.TextButton.Dialog.FullWidth</item>
-        <item name="buttonBarNeutralButtonStyle">@style/Widget.App.Button.TextButton.Dialog.FullWidth</item>
+        <item name="buttonBarPositiveButtonStyle">
+            @style/Widget.App.Button.TextButton.Dialog.FullWidth
+        </item>
+        <item name="buttonBarNegativeButtonStyle">
+            @style/Widget.App.Button.TextButton.Dialog.FullWidth
+        </item>
+        <item name="buttonBarNeutralButtonStyle">
+            @style/Widget.App.Button.TextButton.Dialog.FullWidth
+        </item>
+    </style>
+
+    <style name="fabStyle" parent="@style/Widget.Material3.ExtendedFloatingActionButton.Icon.Primary">
+        <item name="elevation">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
     </style>
 
 </resources>

@@ -3,15 +3,14 @@ package cn.recommender.androiddevtoolbox.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.MediaController
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import cn.recommender.androiddevtoolbox.R
 import cn.recommender.androiddevtoolbox.base.BaseActivity
 import cn.recommender.androiddevtoolbox.databinding.ActivityScreenRecordResultBinding
+import cn.recommender.androiddevtoolbox.ui.dialog.Dialogs
 import cn.recommender.androiddevtoolbox.util.LogUtil
 import cn.recommender.androiddevtoolbox.util.MediaUtil
 
@@ -62,11 +61,10 @@ class ScreenRecordResultActivity : BaseActivity() {
                     R.id.save -> {
                         MediaUtil.saveVideo(this@ScreenRecordResultActivity, filePath!!) {
                             if (it) {
-                                Toast.makeText(
+                                Dialogs.showMessageTips(
                                     this@ScreenRecordResultActivity,
-                                    getString(R.string.save_success),
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                    getString(R.string.save_success)
+                                )
                             }
                         }
                     }

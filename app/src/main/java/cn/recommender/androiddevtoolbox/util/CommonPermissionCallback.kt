@@ -6,6 +6,20 @@ import cn.recommender.androiddevtoolbox.ui.dialog.Dialogs
 import com.hjq.permissions.OnPermissionCallback
 
 abstract class CommonPermissionCallback(val context: Context) : OnPermissionCallback {
+
+    abstract fun onAllGranted()
+
+    override fun onGranted(permissions: MutableList<String>, allGranted: Boolean) {
+        if (allGranted) {
+            onAllGranted()
+        } else {
+            Dialogs.showMessageTips(
+                context,
+                context.getString(R.string.permission_not_granted)
+            )
+        }
+    }
+
     override fun onDenied(permissions: MutableList<String>, doNotAskAgain: Boolean) {
         Dialogs.showMessageTips(
             context,

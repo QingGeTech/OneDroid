@@ -18,6 +18,7 @@ import cn.recommender.androiddevtoolbox.ui.fragment.ToolsFragment
 import cn.recommender.androiddevtoolbox.util.CommonUtil
 import cn.recommender.androiddevtoolbox.util.LogUtil
 import com.google.android.material.color.DynamicColors
+import com.google.android.material.color.DynamicColors.*
 import com.google.android.material.color.DynamicColorsOptions
 import com.google.android.material.color.HarmonizedColors
 import com.google.android.material.color.HarmonizedColorsOptions
@@ -68,7 +69,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initThemeColor() {
-        DynamicColors.applyToActivityIfAvailable(this,
+        applyToActivityIfAvailable(this,
             DynamicColorsOptions.Builder()
                 .setPrecondition { _, _ -> true }
                 .setContentBasedSource(spApi.getThemeColor())

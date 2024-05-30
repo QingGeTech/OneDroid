@@ -1,23 +1,18 @@
 package cn.recommender.androiddevtoolbox.ui.fragment
 
-import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.viewModels
-import cn.recommender.androiddevtoolbox.App
-import cn.recommender.androiddevtoolbox.R
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import cn.recommender.androiddevtoolbox.Constants
 import cn.recommender.androiddevtoolbox.base.BaseFragment
-import cn.recommender.androiddevtoolbox.databinding.FragmentDeviceInfoBinding
 import cn.recommender.androiddevtoolbox.databinding.FragmentSettingsBinding
-import cn.recommender.androiddevtoolbox.viewmodel.AppManagerViewModel
 import cn.recommender.androiddevtoolbox.viewmodel.SettingsFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
-import javax.inject.Singleton
 
 @AndroidEntryPoint
 class SettingsFragment @Inject constructor() : BaseFragment() {
@@ -40,6 +35,11 @@ class SettingsFragment @Inject constructor() : BaseFragment() {
         return binding.root
     }
 
+    private fun sendThemeChangeBroadcast() {
+        val intent = Intent(Constants.LOCAL_BROADCAST_ACTION_THEME_CHANGE)
+        LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
+    }
+
     private fun initAppearanceSetting() {
         viewModel.themeColor.observe(viewLifecycleOwner) {
             binding.ccv.setColor(it)
@@ -56,15 +56,18 @@ class SettingsFragment @Inject constructor() : BaseFragment() {
             chooseColorDialogFragment.callback = object : ChooseColorDialogFragment.Callback{
                 override fun onChooseColor(color: Int) {
                     viewModel.onThemeColorChange(color)
+                    sendThemeChangeBroadcast()
                     requireActivity().recreate()
                 }
             }
         }
         binding.rlDarkTheme.setOnClickListener {
             viewModel.onDarkThemeChange(!binding.msDarkTheme.isChecked)
+            sendThemeChangeBroadcast()
         }
         binding.msDarkTheme.setOnCheckedChangeListener { _, isChecked ->
             viewModel.onDarkThemeChange(isChecked)
+            sendThemeChangeBroadcast()
         }
 
     }

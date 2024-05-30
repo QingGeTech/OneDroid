@@ -30,4 +30,10 @@
     <string name="open_accessibility_service">please open accessibility service</string>
     <string name="save">Save</string>
     <string name="save_success">Save Success</string>
+    <string name="start">Start</string>
+    <string name="end">End</string>
+    <string name="foreground_service">ForegroundService</string>
+    <string name="foreground_service_description">Show Foreground Service</string>
+    <string name="floating_window_showing">Floating Window is Showing</string>
+    <string name="media_projection_in_process">Media projection in progress</string>
 </resources>

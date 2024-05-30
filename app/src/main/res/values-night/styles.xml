@@ -1,6 +1,7 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="fabStyle">@style/fabStyle</item>
     </style>
 
 

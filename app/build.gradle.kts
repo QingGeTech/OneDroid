@@ -3,6 +3,14 @@ plugins {
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.hiltAndroid)
     alias(libs.plugins.kotlinKapt)
+    idea
+}
+
+idea{
+    module{
+        isDownloadJavadoc = true
+        isDownloadSources = true
+    }
 }
 
 android {
@@ -12,7 +20,7 @@ android {
     defaultConfig {
         applicationId = "cn.recommender.androiddevtoolbox"
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 

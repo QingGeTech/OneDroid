@@ -2,6 +2,8 @@ package cn.recommender.androiddevtoolbox.util
 
 import android.content.ContentValues
 import android.content.Context
+import android.graphics.Bitmap
+import android.media.Image
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
@@ -21,7 +23,7 @@ object MediaUtil {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
             XXPermissions.with(context).permission(Permission.WRITE_EXTERNAL_STORAGE)
                 .request(object : CommonPermissionCallback(context) {
-                    override fun onGranted(p0: MutableList<String>, p1: Boolean) {
+                    override fun onAllGranted() {
                         val videoFile = File(filePath)
                         val targetFile = File(
                             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES),
@@ -57,4 +59,19 @@ object MediaUtil {
 
     }
 
+    fun imageToBitmap(image: Image): Bitmap {
+        val planes = image.planes;
+        val buffer = planes[0].buffer;
+        val pixelStride = planes[0].pixelStride;
+        val rowStride = planes[0].rowStride;
+        val rowPadding = rowStride - pixelStride * image.width;
+
+        val bitmap = Bitmap.createBitmap(
+            image.width + rowPadding / pixelStride,
+            image.height,
+            Bitmap.Config.ARGB_8888
+        );
+        bitmap.copyPixelsFromBuffer(buffer)
+        return bitmap
+    }
 }
