@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="color" format="color" />
-    <attr name="fabStyle" format="reference"/>
     <declare-styleable name="CircleColorView">
         <attr name="color" />
     </declare-styleable>

@@ -1,11 +1,13 @@
 package cn.recommender.androiddevtoolbox.data.local.sp
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.content.res.ResourcesCompat.ThemeCompat
+import cn.recommender.androiddevtoolbox.Constants
 import cn.recommender.androiddevtoolbox.R
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -17,6 +19,7 @@ class SpApiImpl @Inject constructor(private val appContext: Application) : SpApi
         private const val THEME_COLOR_KEY = "themeColor"
         private const val DARK_THEME_KEY = "isDarkTheme"
         private const val LAST_BOTTOM_ITEM_ID = "lastBottomItemId"
+        private const val APP_FILTER_TYPE = "appFilterType"
     }
 
     override fun setThemeColor(themeColor: Int) {
@@ -50,6 +53,15 @@ class SpApiImpl @Inject constructor(private val appContext: Application) : SpApi
 
     override fun getLastBottomItemId(): Int {
         return getSp().getInt(LAST_BOTTOM_ITEM_ID, R.id.app_manager)
+    }
+
+    @SuppressLint("ApplySharedPref")
+    override fun setAppFilterType(type: Int) {
+        getSp().edit().putInt(APP_FILTER_TYPE, type).commit()
+    }
+
+    override fun getAppFilterType(): Int {
+        return getSp().getInt(APP_FILTER_TYPE, Constants.APP_FILTER_TYPE_USER)
     }
 
 }

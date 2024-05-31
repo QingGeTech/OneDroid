@@ -1,7 +1,9 @@
 package cn.recommender.androiddevtoolbox.data.local.sys
 
-import cn.recommender.androiddevtoolbox.data.entity.AppData
+import android.content.pm.PackageInfo
 
 interface SysApi {
-    fun getAppList(): List<AppData>
+    //    fun getAllApps(): List<AppData>
+    fun getPkgInfoList(): List<PackageInfo>
+
 }

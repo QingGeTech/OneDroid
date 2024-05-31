@@ -3,7 +3,6 @@
     <style name="AppTheme" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/color_primary_1</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
-        <item name="fabStyle">@style/fabStyle</item>
     </style>
 
 
@@ -29,9 +28,5 @@
         </item>
     </style>
 
-    <style name="fabStyle" parent="@style/Widget.Material3.ExtendedFloatingActionButton.Icon.Primary">
-        <item name="elevation">0dp</item>
-        <item name="android:stateListAnimator">@null</item>
-    </style>
 
 </resources>

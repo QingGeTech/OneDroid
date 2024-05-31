@@ -9,7 +9,7 @@ import androidx.viewbinding.ViewBinding
  * ViewBinding+RecyclerViewAdapter封装
  */
 class SimpleRvAdapter<D : Any, B : ViewBinding>(
-    private var items: List<D>,
+    var items: List<D>,
     private val holderCreator: (LayoutInflater) -> B,
     private val itemBinder: (binding: B, item: D, index: Int) -> Unit
 ) :

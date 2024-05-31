@@ -1,5 +1,8 @@
 package cn.recommender.androiddevtoolbox.ui.fragment
 
+import android.annotation.SuppressLint
+import android.app.Application
+import android.content.pm.PackageInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,12 +19,17 @@ import androidx.transition.Transition
 import androidx.transition.TransitionManager
 import cn.recommender.androiddevtoolbox.R
 import cn.recommender.androiddevtoolbox.base.BaseFragment
+import cn.recommender.androiddevtoolbox.base.SimpleRvAdapter
 import cn.recommender.androiddevtoolbox.data.local.sp.SpApi
 import cn.recommender.androiddevtoolbox.databinding.FragmentAppManagerBinding
-import cn.recommender.androiddevtoolbox.ui.adapter.AppListRvAdapter
+import cn.recommender.androiddevtoolbox.databinding.ItemAppListBinding
+import cn.recommender.androiddevtoolbox.util.LogUtil
+import cn.recommender.androiddevtoolbox.util.PackageManagerUtil
+import cn.recommender.androiddevtoolbox.util.SoftKeyboardUtil
 import cn.recommender.androiddevtoolbox.viewmodel.AppManagerViewModel
 import com.google.android.material.transition.MaterialSharedAxis
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -33,7 +41,6 @@ class AppManagerFragment @Inject constructor() : BaseFragment() {
 
     @Inject
     lateinit var appFilterDialogFragment: AppFilterDialogFragment
-
     private lateinit var binding: FragmentAppManagerBinding
 
     private lateinit var openSearchViewTransition: Transition
@@ -41,35 +48,64 @@ class AppManagerFragment @Inject constructor() : BaseFragment() {
 
     private val viewModel: AppManagerViewModel by viewModels()
 
+    private lateinit var adapter: SimpleRvAdapter<PackageInfo, ItemAppListBinding>
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentAppManagerBinding.inflate(layoutInflater, container, false)
 
-        initTransition()
         initSearchView()
 
+        initToolbar()
+
+        initRv()
+
+        initObserver()
+
+        viewModel.initAppList()
+
+        return binding.root
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun initObserver() {
+        viewModel.appList.observe(viewLifecycleOwner) {
+            adapter.items = it
+            adapter.notifyDataSetChanged()
+        }
+    }
+
+    private fun initRv() {
+        adapter =
+            SimpleRvAdapter(emptyList(), ItemAppListBinding::inflate) { itemBinding, item, _ ->
+                itemBinding.ivLogo.setImageDrawable(
+                    PackageManagerUtil.getAppIcon(
+                        item,
+                        requireContext()
+                    )
+                )
+                itemBinding.tvAppName.text =
+                    PackageManagerUtil.getAppName(item, requireContext())
+//            tvVersion.text = "${appData[position].versionName}(${appData[position].versionCode})"
+                itemBinding.tvPkgName.text = item.packageName
+            }
+
+        binding.rv.adapter = adapter
+
+    }
+
+    private fun initToolbar() {
         binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.search -> openSearchView()
+                R.id.search -> {
+                    openSearchView()
+                    viewModel.startSearch()
+                }
                 R.id.filter -> openFilterSheet()
             }
             true
         }
-
-        binding.rv.apply {
-            adapter = AppListRvAdapter(emptyList())
-            layoutManager = LinearLayoutManager(requireContext())
-        }
-
-        viewModel.appList.observe(viewLifecycleOwner) {
-            (binding.rv.adapter as AppListRvAdapter).appData = it
-            (binding.rv.adapter as AppListRvAdapter).notifyDataSetChanged()
-        }
-
-        viewModel.loadAppData()
-
-        return binding.root
     }
 
     private fun initTransition() {
@@ -78,17 +114,30 @@ class AppManagerFragment @Inject constructor() : BaseFragment() {
     }
 
     private fun initSearchView() {
+        initTransition()
         binding.sv.setOnClickListener {
             closeSearchView()
+            viewModel.stopSearch()
         }
         binding.sv.setOnQueryTextListener(object : OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?) = false
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                LogUtil.d("onQueryTextSubmit: $query")
+                return true
+            }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-//                TODO("filter apps")
+            override fun onQueryTextChange(keyword: String?): Boolean {
+                LogUtil.d("onQueryTextChange:$keyword")
+                viewModel.filterAppList(keyword!!)
                 return true
             }
         })
+        binding.sv.setOnQueryTextFocusChangeListener { _, hasFocus ->
+            LogUtil.d("onQueryTextFocusChange:$hasFocus")
+            if (hasFocus) {
+                SoftKeyboardUtil.showSoftInput(requireContext(), binding.sv.findViewById<View>(R.id.search_src_text))
+            }
+        }
+
     }
 
     private fun closeSearchView() {
@@ -100,6 +149,9 @@ class AppManagerFragment @Inject constructor() : BaseFragment() {
 
     private fun openFilterSheet() {
         appFilterDialogFragment.show(childFragmentManager, "filterAppFragment")
+        appFilterDialogFragment.onFilter = {
+            viewModel.initAppList()
+        }
     }
 
     private fun openSearchView() {
