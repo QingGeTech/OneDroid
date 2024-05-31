@@ -48,6 +48,9 @@ class AppManagerViewModel @Inject constructor(
     }
 
     fun filterAppList(keyword: String) {
+        if (searchAppList == null){
+            return
+        }
         if (TextUtils.isEmpty(keyword)) {
             _appList.value = searchAppList!!
             return

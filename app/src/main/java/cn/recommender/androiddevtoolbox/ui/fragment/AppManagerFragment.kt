@@ -134,7 +134,10 @@ class AppManagerFragment @Inject constructor() : BaseFragment() {
         binding.sv.setOnQueryTextFocusChangeListener { _, hasFocus ->
             LogUtil.d("onQueryTextFocusChange:$hasFocus")
             if (hasFocus) {
-                SoftKeyboardUtil.showSoftInput(requireContext(), binding.sv.findViewById<View>(R.id.search_src_text))
+                SoftKeyboardUtil.showSoftInput(
+                    requireContext(),
+                    binding.sv.findViewById<View>(R.id.search_src_text)
+                )
             }
         }
 
