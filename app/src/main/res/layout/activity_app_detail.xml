@@ -9,7 +9,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:navigationIcon="@drawable/ic_close" />
+        app:navigationIcon="@drawable/ic_arrow_back_black_24dp" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"

@@ -1,41 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/menu_app_manager"
-        app:title="@string/app_manager" />
+        android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/sv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:iconifiedByDefault="false"
-        app:layout_constraintBottom_toBottomOf="@id/toolbar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:queryHint="@string/app_manager_search_hint"
-        app:searchIcon="@drawable/ic_arrow_back_black_24dp" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu="@menu/menu_app_manager"
+            app:title="@string/app_manager" />
 
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/sv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:iconifiedByDefault="false"
+            app:queryHint="@string/app_manager_search_hint"
+            app:searchIcon="@drawable/ic_arrow_back_black_24dp" />
+
+    </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="1"
         app:fastScrollEnabled="true"
         app:fastScrollHorizontalThumbDrawable="@drawable/scroll_thumb"
         app:fastScrollHorizontalTrackDrawable="@drawable/scroll_track"
         app:fastScrollVerticalThumbDrawable="@drawable/scroll_thumb"
         app:fastScrollVerticalTrackDrawable="@drawable/scroll_track"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

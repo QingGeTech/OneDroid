@@ -14,23 +14,10 @@ import cn.recommender.androiddevtoolbox.ui.dialog.Dialogs
 import cn.recommender.androiddevtoolbox.util.LogUtil
 import cn.recommender.androiddevtoolbox.util.MediaUtil
 
-class ScreenRecordResultActivity : BaseActivity() {
-
-    private lateinit var binding: ActivityScreenRecordResultBinding
+class ScreenRecordResultActivity : BaseActivity<ActivityScreenRecordResultBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        binding = ActivityScreenRecordResultBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
-            val statusBarInsets = insets.getInsets(WindowInsetsCompat.Type.statusBars())
-            val navigationBarInsets = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
-            v.updatePadding(
-                v.paddingLeft, statusBarInsets.top, v.paddingRight, navigationBarInsets.bottom
-            )
-            WindowInsetsCompat.CONSUMED
-        }
 
         initViews(intent)
 

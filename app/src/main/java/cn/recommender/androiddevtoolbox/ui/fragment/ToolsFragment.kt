@@ -25,7 +25,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ToolsFragment @Inject constructor() : BaseFragment() {
+class ToolsFragment @Inject constructor() : BaseFragment<FragmentToolsBinding>() {
 
     data class ToolItem(
         @DrawableRes var imgResId: Int,
@@ -36,16 +36,11 @@ class ToolsFragment @Inject constructor() : BaseFragment() {
     private lateinit var toolItems: List<ToolItem>
     private lateinit var adapter: SimpleRvAdapter<ToolItem, ItemSmallToolsBinding>
 
-    private lateinit var binding: FragmentToolsBinding
 
     private var floatingWindowService: FloatingWindowService? = null
     private var serviceConnection: ServiceConnection? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        super.onCreateView(inflater, container, savedInstanceState)
-        binding = FragmentToolsBinding.inflate(layoutInflater, container, false)
+    override fun initViews() {
         initToolItems()
         if (ServiceUtil.isServiceRunning(
                 requireContext(),
@@ -54,8 +49,6 @@ class ToolsFragment @Inject constructor() : BaseFragment() {
         ) {
             initFloatingWindowService()
         }
-
-        return binding.root
     }
 
     private fun initFloatingWindowService() {

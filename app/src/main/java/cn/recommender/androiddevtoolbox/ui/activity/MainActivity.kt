@@ -15,8 +15,10 @@ import cn.recommender.androiddevtoolbox.ui.fragment.AppManagerFragment
 import cn.recommender.androiddevtoolbox.ui.fragment.DeviceInfoFragment
 import cn.recommender.androiddevtoolbox.ui.fragment.SettingsFragment
 import cn.recommender.androiddevtoolbox.ui.fragment.ToolsFragment
+import cn.recommender.androiddevtoolbox.util.ColorUtil
 import cn.recommender.androiddevtoolbox.util.CommonUtil
 import cn.recommender.androiddevtoolbox.util.LogUtil
+import cn.recommender.androiddevtoolbox.util.ViewUtil
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.color.DynamicColors.*
 import com.google.android.material.color.DynamicColorsOptions
@@ -26,12 +28,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     @Inject
     lateinit var spApi: SpApi
 
-    private lateinit var binding: ActivityMainBinding
+//    private lateinit var binding: ActivityMainBinding
 
     @Inject
     lateinit var appManagerFragment: AppManagerFragment
@@ -48,39 +50,17 @@ class MainActivity : BaseActivity() {
     private val fragmentTags = listOf("AppManager", "DeviceInfo", "SmallTools", "Settings")
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-        initThemeColor()
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
         binding.bnv.setOnItemSelectedListener {
             switchFragmentByBottomNav(it.itemId)
             true
         }
         binding.bnv.selectedItemId = spApi.getLastBottomItemId()
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.container) { v, insets ->
-            val statusBarInsets = insets.getInsets(WindowInsetsCompat.Type.statusBars())
-            LogUtil.d("statusBarInsets:$statusBarInsets")
-            v.updatePadding(v.paddingLeft, statusBarInsets.top, v.paddingRight, v.paddingBottom)
-            WindowInsetsCompat.CONSUMED
-        }
+        window.navigationBarColor = ViewUtil.getColorByStyledAttr(this, R.attr.colorSurfaceContainer)
 
     }
 
-    private fun initThemeColor() {
-        applyToActivityIfAvailable(this,
-            DynamicColorsOptions.Builder()
-                .setPrecondition { _, _ -> true }
-                .setContentBasedSource(spApi.getThemeColor())
-                .setOnAppliedCallback { activity: Activity ->
-                    LogUtil.d("onApplied:$activity")
-                    HarmonizedColors.applyToContextIfAvailable(
-                        activity, HarmonizedColorsOptions.createMaterialDefaults()
-                    )
-                }
-                .build())
-    }
 
     private fun switchFragmentByBottomNav(itemId: Int) {
 
@@ -98,11 +78,6 @@ class MainActivity : BaseActivity() {
         spApi.setLastBottomItemId(itemId)
     }
 
-//    private fun setThemeBySp() {
-//        if (spApi.getTheme() != -1) {
-//            setTheme(spApi.getTheme())
-//        }
-//    }
 
     private fun switchFragment(fragment: Fragment, tag: String) {
         val transaction = supportFragmentManager.beginTransaction()

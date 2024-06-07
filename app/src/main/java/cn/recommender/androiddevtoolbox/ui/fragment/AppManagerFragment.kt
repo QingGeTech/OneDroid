@@ -2,6 +2,7 @@ package cn.recommender.androiddevtoolbox.ui.fragment
 
 import android.annotation.SuppressLint
 import android.app.Application
+import android.content.Intent
 import android.content.pm.PackageInfo
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -23,6 +24,7 @@ import cn.recommender.androiddevtoolbox.base.SimpleRvAdapter
 import cn.recommender.androiddevtoolbox.data.local.sp.SpApi
 import cn.recommender.androiddevtoolbox.databinding.FragmentAppManagerBinding
 import cn.recommender.androiddevtoolbox.databinding.ItemAppListBinding
+import cn.recommender.androiddevtoolbox.ui.activity.AppDetailActivity
 import cn.recommender.androiddevtoolbox.util.LogUtil
 import cn.recommender.androiddevtoolbox.util.PackageManagerUtil
 import cn.recommender.androiddevtoolbox.util.SoftKeyboardUtil
@@ -34,14 +36,13 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @AndroidEntryPoint
-class AppManagerFragment @Inject constructor() : BaseFragment() {
+class AppManagerFragment @Inject constructor() : BaseFragment<FragmentAppManagerBinding>() {
 
     @Inject
     lateinit var spApi: SpApi
 
     @Inject
     lateinit var appFilterDialogFragment: AppFilterDialogFragment
-    private lateinit var binding: FragmentAppManagerBinding
 
     private lateinit var openSearchViewTransition: Transition
     private lateinit var closeSearchViewTransition: Transition
@@ -50,11 +51,7 @@ class AppManagerFragment @Inject constructor() : BaseFragment() {
 
     private lateinit var adapter: SimpleRvAdapter<PackageInfo, ItemAppListBinding>
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentAppManagerBinding.inflate(layoutInflater, container, false)
-
+    override fun initViews() {
         initSearchView()
 
         initToolbar()
@@ -64,8 +61,6 @@ class AppManagerFragment @Inject constructor() : BaseFragment() {
         initObserver()
 
         viewModel.initAppList()
-
-        return binding.root
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -78,7 +73,10 @@ class AppManagerFragment @Inject constructor() : BaseFragment() {
 
     private fun initRv() {
         adapter =
-            SimpleRvAdapter(emptyList(), ItemAppListBinding::inflate) { itemBinding, item, _ ->
+            SimpleRvAdapter(
+                emptyList(),
+                ItemAppListBinding::inflate
+            ) { itemBinding, item, _ ->
                 itemBinding.ivLogo.setImageDrawable(
                     PackageManagerUtil.getAppIcon(
                         item,
@@ -87,8 +85,12 @@ class AppManagerFragment @Inject constructor() : BaseFragment() {
                 )
                 itemBinding.tvAppName.text =
                     PackageManagerUtil.getAppName(item, requireContext())
-//            tvVersion.text = "${appData[position].versionName}(${appData[position].versionCode})"
                 itemBinding.tvPkgName.text = item.packageName
+                itemBinding.root.setOnClickListener {
+                    val intent = Intent(requireContext(), AppDetailActivity::class.java)
+                    intent.putExtra("packageName", item.packageName)
+                    requireContext().startActivity(intent)
+                }
             }
 
         binding.rv.adapter = adapter
@@ -102,6 +104,7 @@ class AppManagerFragment @Inject constructor() : BaseFragment() {
                     openSearchView()
                     viewModel.startSearch()
                 }
+
                 R.id.filter -> openFilterSheet()
             }
             true

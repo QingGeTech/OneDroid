@@ -15,13 +15,9 @@ import javax.inject.Singleton
 
 
 @AndroidEntryPoint
-class SysInfoFragment @Inject constructor() : BaseFragment() {
+class SysInfoFragment @Inject constructor() : BaseFragment<FragmentSysInfoBinding>() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        val binding = FragmentSysInfoBinding.inflate(layoutInflater, container, false)
-        return binding.root
+    override fun initViews() {
     }
 
 }

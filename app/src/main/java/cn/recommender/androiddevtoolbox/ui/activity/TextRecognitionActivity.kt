@@ -17,23 +17,11 @@ import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.chinese.ChineseTextRecognizerOptions
 
-class TextRecognitionActivity : BaseActivity() {
+class TextRecognitionActivity : BaseActivity<ActivityTextRecognitionBinding>() {
 
-    private lateinit var binding: ActivityTextRecognitionBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        binding = ActivityTextRecognitionBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
-            val statusBarInsets = insets.getInsets(WindowInsetsCompat.Type.statusBars())
-            val navigationBarInsets = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
-            v.updatePadding(
-                v.paddingLeft, statusBarInsets.top, v.paddingRight, navigationBarInsets.bottom
-            )
-            WindowInsetsCompat.CONSUMED
-        }
 
         initViews(intent)
 

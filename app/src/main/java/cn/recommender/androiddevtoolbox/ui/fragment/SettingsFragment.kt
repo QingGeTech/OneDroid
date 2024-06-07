@@ -15,24 +15,18 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SettingsFragment @Inject constructor() : BaseFragment() {
+class SettingsFragment @Inject constructor() : BaseFragment<FragmentSettingsBinding>() {
 
-    private lateinit var binding: FragmentSettingsBinding
 
     private val viewModel: SettingsFragmentViewModel by viewModels()
 
     @Inject
     lateinit var chooseColorDialogFragment: ChooseColorDialogFragment
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentSettingsBinding.inflate(layoutInflater, container, false)
-
+    override fun initViews() {
         initAppearanceSetting()
 
         viewModel.loadSettings()
-        return binding.root
     }
 
     private fun sendThemeChangeBroadcast() {

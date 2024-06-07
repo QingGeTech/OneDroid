@@ -8,6 +8,7 @@ import android.os.Bundle
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import cn.recommender.androiddevtoolbox.Constants
 import cn.recommender.androiddevtoolbox.base.BaseActivity
@@ -18,7 +19,7 @@ import javax.inject.Inject
  * MediaProjectionService使用，申请权限
  */
 @AndroidEntryPoint
-class MediaProjectionPermissionActivity : BaseActivity() {
+class MediaProjectionPermissionActivity : AppCompatActivity() {
 
     @Inject
     lateinit var mediaProjectionManager: MediaProjectionManager

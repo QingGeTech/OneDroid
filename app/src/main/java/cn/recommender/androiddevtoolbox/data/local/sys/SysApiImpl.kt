@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager.GET_ACTIVITIES
 import android.content.pm.PackageManager.GET_CONFIGURATIONS
+import android.content.pm.PackageManager.GET_GIDS
 import android.content.pm.PackageManager.GET_INTENT_FILTERS
 import android.content.pm.PackageManager.GET_META_DATA
 import android.content.pm.PackageManager.GET_PERMISSIONS
@@ -53,6 +54,15 @@ class SysApiImpl @Inject constructor(private val appContext: Application) : SysA
 //    }
 
     override fun getPkgInfoList(): List<PackageInfo> {
+        val installedPackages = appContext.packageManager.getInstalledPackages(commonFlags())
+        return installedPackages
+    }
+
+    override fun getPackageInfo(packageName: String): PackageInfo {
+        return appContext.packageManager.getPackageInfo(packageName, commonFlags())
+    }
+
+    private fun commonFlags(): Int {
         var flags = GET_ACTIVITIES or
                 GET_SERVICES or
                 GET_CONFIGURATIONS or
@@ -60,15 +70,14 @@ class SysApiImpl @Inject constructor(private val appContext: Application) : SysA
                 GET_PERMISSIONS or
                 GET_PROVIDERS or
                 GET_RECEIVERS or
-                GET_SHARED_LIBRARY_FILES
+                GET_SHARED_LIBRARY_FILES or
+                GET_GIDS
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            flags = flags or GET_SIGNING_CERTIFICATES
+        flags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            flags or GET_SIGNING_CERTIFICATES
         } else {
-            flags = flags or GET_SIGNATURES
+            flags or GET_SIGNATURES
         }
-
-        val installedPackages = appContext.packageManager.getInstalledPackages(flags)
-        return installedPackages
+        return flags
     }
 }

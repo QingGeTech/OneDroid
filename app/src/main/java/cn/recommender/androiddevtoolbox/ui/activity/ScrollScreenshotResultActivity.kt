@@ -27,24 +27,11 @@ import org.opencv.imgproc.Imgproc
 import java.io.File
 
 
-class ScrollScreenshotResultActivity : BaseActivity() {
-
-    private lateinit var binding: ActivityScrollScreenshotResultBinding
+class ScrollScreenshotResultActivity : BaseActivity<ActivityScrollScreenshotResultBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         OpenCVLoader.initLocal()
-        enableEdgeToEdge()
-        binding = ActivityScrollScreenshotResultBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
-            val statusBarInsets = insets.getInsets(WindowInsetsCompat.Type.statusBars())
-            val navigationBarInsets = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
-            v.updatePadding(
-                v.paddingLeft, statusBarInsets.top, v.paddingRight, navigationBarInsets.bottom
-            )
-            WindowInsetsCompat.CONSUMED
-        }
 
         initViews(intent)
 

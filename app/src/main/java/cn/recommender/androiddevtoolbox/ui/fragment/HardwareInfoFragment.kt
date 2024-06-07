@@ -16,15 +16,7 @@ import javax.inject.Singleton
 
 
 @AndroidEntryPoint
-class HardwareInfoFragment @Inject constructor(): BaseFragment() {
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val binding = FragmentHardwareInfoBinding.inflate(layoutInflater, container, false)
-        return binding.root
+class HardwareInfoFragment @Inject constructor(): BaseFragment<FragmentHardwareInfoBinding>() {
+    override fun initViews() {
     }
-
 }

@@ -23,25 +23,13 @@ import com.bumptech.glide.request.RequestOptions
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class PickColorActivity : BaseActivity() {
+class PickColorActivity : BaseActivity<ActivityPickColorBinding>() {
 
-    private lateinit var binding: ActivityPickColorBinding
+//    private lateinit var binding: ActivityPickColorBinding
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        binding = ActivityPickColorBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
-            val statusBarInsets = insets.getInsets(WindowInsetsCompat.Type.statusBars())
-            val navigationBarInsets = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
-            v.updatePadding(
-                v.paddingLeft, statusBarInsets.top, v.paddingRight, navigationBarInsets.bottom
-            )
-            WindowInsetsCompat.CONSUMED
-        }
 
         initViews(intent)
     }

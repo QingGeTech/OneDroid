@@ -10,7 +10,7 @@ import androidx.viewbinding.ViewBinding
  */
 class SimpleRvAdapter<D : Any, B : ViewBinding>(
     var items: List<D>,
-    private val holderCreator: (LayoutInflater) -> B,
+    private val holderCreator: (LayoutInflater, ViewGroup, Boolean) -> B,
     private val itemBinder: (binding: B, item: D, index: Int) -> Unit
 ) :
     RecyclerView.Adapter<SimpleRvAdapter.VH<B>>() {
@@ -18,7 +18,7 @@ class SimpleRvAdapter<D : Any, B : ViewBinding>(
     class VH<B : ViewBinding>(val binding: B) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH<B> {
-        return VH(holderCreator(LayoutInflater.from(parent.context)))
+        return VH(holderCreator(LayoutInflater.from(parent.context), parent, false))
     }
 
 

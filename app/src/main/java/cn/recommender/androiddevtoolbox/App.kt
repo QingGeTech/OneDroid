@@ -29,6 +29,20 @@ class App : Application() {
         setTheme(R.style.AppTheme)
     }
 
+    private fun initThemeColor(activity: Activity) {
+        DynamicColors.applyToActivityIfAvailable(activity,
+            DynamicColorsOptions.Builder()
+                .setPrecondition { _, _ -> true }
+                .setContentBasedSource(spApi.getThemeColor())
+                .setOnAppliedCallback { _ ->
+                    LogUtil.d("onApplied:$activity")
+                    HarmonizedColors.applyToContextIfAvailable(
+                        activity, HarmonizedColorsOptions.createMaterialDefaults()
+                    )
+                }
+                .build())
+    }
+
     private fun initDarkMode() {
         if (spApi.isDarkTheme()) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -39,6 +53,12 @@ class App : Application() {
 
     private fun addActivityLifecycleObserver() {
         registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
+
+            override fun onActivityPreCreated(activity: Activity, savedInstanceState: Bundle?) {
+                LogUtil.d("activity:${activity.javaClass.name} : onPreCreated")
+                initThemeColor(activity)
+            }
+
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
                 LogUtil.d("activity:${activity.javaClass.name} : onCreate")
             }
