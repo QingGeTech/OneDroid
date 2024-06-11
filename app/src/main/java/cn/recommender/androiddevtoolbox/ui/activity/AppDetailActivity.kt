@@ -16,6 +16,7 @@ import cn.recommender.androiddevtoolbox.data.local.sys.SysApi
 import cn.recommender.androiddevtoolbox.databinding.ActivityAppDetailBinding
 import cn.recommender.androiddevtoolbox.ui.adapter.SimpleFragmentVpAdapter
 import cn.recommender.androiddevtoolbox.ui.fragment.AppDetailBasicInfoFragment
+import cn.recommender.androiddevtoolbox.ui.fragment.AppDetailSignInfoFragment
 import cn.recommender.androiddevtoolbox.util.PackageManagerUtil
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,8 +36,12 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding>() {
     @Inject
     lateinit var basicInfoFragment: AppDetailBasicInfoFragment
 
+    @Inject
+    lateinit var signInfoFragment: AppDetailSignInfoFragment
+
     private val titles = listOf(
         R.string.basic_info,
+        R.string.sign_info,
         R.string.activity_info,
         R.string.service_info,
         R.string.permission_info
@@ -56,6 +61,7 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding>() {
         val bundle = Bundle()
         bundle.putParcelable("packageInfo", packageInfo)
         basicInfoFragment.arguments = bundle
+        signInfoFragment.arguments = bundle
     }
 
 
@@ -74,7 +80,7 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding>() {
 
     private fun initViewPager() {
         vpAdapter = SimpleFragmentVpAdapter(
-            listOf(basicInfoFragment), supportFragmentManager, lifecycle
+            listOf(basicInfoFragment, signInfoFragment), supportFragmentManager, lifecycle
         )
         binding.vp.adapter = vpAdapter
         TabLayoutMediator(binding.tabLayout, binding.vp) { tab, position ->

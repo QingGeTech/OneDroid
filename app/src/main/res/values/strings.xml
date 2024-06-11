@@ -64,4 +64,21 @@
     <string name="key_app_name">app name</string>
     <string name="dir_info">dir info</string>
     <string name="other_info">other info</string>
+    <string name="sign_info">signature</string>
+    <string name="signature">signature</string>
+    <string name="type">type</string>
+    <string name="version">version</string>
+    <string name="serial_number">serial number</string>
+    <string name="subject_dn">subject dn</string>
+    <string name="valid_from">valid from</string>
+    <string name="valid_until">valid until</string>
+    <string name="sign_alg_name">signature algorithm</string>
+    <string name="sign_alg_oid">signature algorithm OID</string>
+    <string name="sign_alg_params">signature algorithm params</string>
+    <string name="cert_sign">cert signature</string>
+    <string name="apk_sign_md5">Md5 signature</string>
+    <string name="apk_sign_sha1">SHA-1 signature</string>
+    <string name="apk_sign_sha256">SHA-256 signature</string>
+    <string name="cert_sign_sha256" >SHA-256 cert signature</string>
+
 </resources>

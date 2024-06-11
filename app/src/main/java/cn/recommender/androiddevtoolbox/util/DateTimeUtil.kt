@@ -8,8 +8,14 @@ import java.util.Locale
 
 object DateTimeUtil {
     @SuppressLint("ConstantLocale")
-    private val formatter: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+    private val formatter: SimpleDateFormat =
+        SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+
     fun getFormattedDateTime(timestamp: Long): String {
-        return formatter.format(Date(timestamp))
+        return getFormattedDateTime(Date(timestamp))
+    }
+
+    fun getFormattedDateTime(date: Date): String {
+        return formatter.format(date)
     }
 }

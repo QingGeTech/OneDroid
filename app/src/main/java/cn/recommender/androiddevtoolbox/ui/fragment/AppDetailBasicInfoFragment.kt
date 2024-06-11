@@ -13,6 +13,7 @@ import androidx.core.os.BundleCompat
 import cn.recommender.androiddevtoolbox.R
 import cn.recommender.androiddevtoolbox.base.BaseFragment
 import cn.recommender.androiddevtoolbox.base.SimpleRvAdapter
+import cn.recommender.androiddevtoolbox.data.entity.CardData
 import cn.recommender.androiddevtoolbox.databinding.FragmentAppDetailBasicInfoBinding
 import cn.recommender.androiddevtoolbox.databinding.FragmentSettingsBinding
 import cn.recommender.androiddevtoolbox.databinding.FragmentSysInfoBinding
@@ -31,8 +32,6 @@ import javax.inject.Singleton
 @AndroidEntryPoint
 class AppDetailBasicInfoFragment @Inject constructor() :
     BaseFragment<FragmentAppDetailBasicInfoBinding>() {
-
-    data class CardData(val title: String, val pairs: List<Pair<String, String>>)
 
     private lateinit var cardDataList: List<CardData>
 
@@ -109,6 +108,7 @@ class AppDetailBasicInfoFragment @Inject constructor() :
             Pair(getString(R.string.process_name), packageInfo.applicationInfo.processName),
 
             Pair(getString(R.string.uid), packageInfo.applicationInfo.uid.toString()),
+            Pair(getString(R.string.shared_user_id), packageInfo.sharedUserId)
         )
         cardDataList = listOf(
             CardData(getString(R.string.basic_info), basicInfoList),

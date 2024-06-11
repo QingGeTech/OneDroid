@@ -64,4 +64,20 @@
     <string name="key_app_name">应用名称</string>
     <string name="dir_info">目录信息</string>
     <string name="other_info">其他信息</string>
+    <string name="sign_info">签名信息</string>
+    <string name="signature">签名</string>
+    <string name="type">类型</string>
+    <string name="version">版本</string>
+    <string name="serial_number">序列号</string>
+    <string name="subject_dn">主题</string>
+    <string name="valid_from">有效期始</string>
+    <string name="valid_until">有效期至</string>
+    <string name="sign_alg_name">签名算法名称</string>
+    <string name="sign_alg_oid">签名算法OID</string>
+    <string name="sign_alg_params">签名算法参数</string>
+    <string name="cert_sign">证书签名</string>
+    <string name="apk_sign_md5">Md5签名</string>
+    <string name="apk_sign_sha1">SHA-1签名</string>
+    <string name="apk_sign_sha256">SHA-256签名</string>
+    <string name="cert_sign_sha256">SHA-256证书签名</string>
 </resources>

@@ -72,26 +72,22 @@ class AppManagerFragment @Inject constructor() : BaseFragment<FragmentAppManager
     }
 
     private fun initRv() {
-        adapter =
-            SimpleRvAdapter(
-                emptyList(),
-                ItemAppListBinding::inflate
-            ) { itemBinding, item, _ ->
-                itemBinding.ivLogo.setImageDrawable(
-                    PackageManagerUtil.getAppIcon(
-                        item,
-                        requireContext()
-                    )
+        adapter = SimpleRvAdapter(
+            emptyList(), ItemAppListBinding::inflate
+        ) { itemBinding, item, _ ->
+            itemBinding.ivLogo.setImageDrawable(
+                PackageManagerUtil.getAppIcon(
+                    item, requireContext()
                 )
-                itemBinding.tvAppName.text =
-                    PackageManagerUtil.getAppName(item, requireContext())
-                itemBinding.tvPkgName.text = item.packageName
-                itemBinding.root.setOnClickListener {
-                    val intent = Intent(requireContext(), AppDetailActivity::class.java)
-                    intent.putExtra("packageName", item.packageName)
-                    requireContext().startActivity(intent)
-                }
+            )
+            itemBinding.tvAppName.text = PackageManagerUtil.getAppName(item, requireContext())
+            itemBinding.tvPkgName.text = item.packageName
+            itemBinding.root.setOnClickListener {
+                val intent = Intent(requireContext(), AppDetailActivity::class.java)
+                intent.putExtra("packageName", item.packageName)
+                requireContext().startActivity(intent)
             }
+        }
 
         binding.rv.adapter = adapter
 
@@ -125,6 +121,9 @@ class AppManagerFragment @Inject constructor() : BaseFragment<FragmentAppManager
         binding.sv.setOnQueryTextListener(object : OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 LogUtil.d("onQueryTextSubmit: $query")
+                SoftKeyboardUtil.hideSoftInput(
+                    requireContext(), binding.sv.findViewById(R.id.search_src_text)
+                )
                 return true
             }
 
@@ -138,8 +137,7 @@ class AppManagerFragment @Inject constructor() : BaseFragment<FragmentAppManager
             LogUtil.d("onQueryTextFocusChange:$hasFocus")
             if (hasFocus) {
                 SoftKeyboardUtil.showSoftInput(
-                    requireContext(),
-                    binding.sv.findViewById<View>(R.id.search_src_text)
+                    requireContext(), binding.sv.findViewById(R.id.search_src_text)
                 )
             }
         }
