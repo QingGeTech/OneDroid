@@ -80,4 +80,20 @@
     <string name="apk_sign_sha1">SHA-1签名</string>
     <string name="apk_sign_sha256">SHA-256签名</string>
     <string name="cert_sign_sha256">SHA-256证书签名</string>
+    <string name="class_name">类名</string>
+    <string name="target_activity">跳转Activity</string>
+    <string name="flags">flags</string>
+    <string name="launch_mode">启动模式</string>
+    <string name="parent_activity_name">父类名</string>
+    <string name="max_recents">最大展示数量</string>
+    <string name="permission">权限</string>
+    <string name="persistable_mode">可持久化模式</string>
+    <string name="screen_orientation">屏幕方向</string>
+    <string name="soft_input_mode">软键盘模式</string>
+    <string name="task_affinity">任务相关性</string>
+    <string name="ui_options">ui配置</string>
+    <string name="exported">是否导出</string>
+    <string name="config_changes">配置更变</string>
+    <string name="receiver">Receiver</string>
+    <string name="provider">Provider</string>
 </resources>

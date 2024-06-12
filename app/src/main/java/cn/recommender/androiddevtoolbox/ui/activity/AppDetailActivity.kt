@@ -15,7 +15,10 @@ import cn.recommender.androiddevtoolbox.data.local.sp.SpApi
 import cn.recommender.androiddevtoolbox.data.local.sys.SysApi
 import cn.recommender.androiddevtoolbox.databinding.ActivityAppDetailBinding
 import cn.recommender.androiddevtoolbox.ui.adapter.SimpleFragmentVpAdapter
+import cn.recommender.androiddevtoolbox.ui.fragment.AppDetailActivityInfoFragment
 import cn.recommender.androiddevtoolbox.ui.fragment.AppDetailBasicInfoFragment
+import cn.recommender.androiddevtoolbox.ui.fragment.AppDetailPermissionInfoFragment
+import cn.recommender.androiddevtoolbox.ui.fragment.AppDetailServiceInfoFragment
 import cn.recommender.androiddevtoolbox.ui.fragment.AppDetailSignInfoFragment
 import cn.recommender.androiddevtoolbox.util.PackageManagerUtil
 import com.google.android.material.tabs.TabLayoutMediator
@@ -39,12 +42,23 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding>() {
     @Inject
     lateinit var signInfoFragment: AppDetailSignInfoFragment
 
+    @Inject
+    lateinit var activityInfoFragment: AppDetailActivityInfoFragment
+
+    @Inject
+    lateinit var serviceInfoFragment: AppDetailServiceInfoFragment
+
+    @Inject
+    lateinit var permissionInfoFragment: AppDetailPermissionInfoFragment
+
     private val titles = listOf(
         R.string.basic_info,
         R.string.sign_info,
         R.string.activity_info,
         R.string.service_info,
-        R.string.permission_info
+        R.string.permission_info,
+        R.string.receiver,
+        R.string.provider,
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +76,9 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding>() {
         bundle.putParcelable("packageInfo", packageInfo)
         basicInfoFragment.arguments = bundle
         signInfoFragment.arguments = bundle
+        activityInfoFragment.arguments = bundle
+        serviceInfoFragment.arguments = bundle
+        permissionInfoFragment.arguments = bundle
     }
 
 
@@ -80,7 +97,15 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding>() {
 
     private fun initViewPager() {
         vpAdapter = SimpleFragmentVpAdapter(
-            listOf(basicInfoFragment, signInfoFragment), supportFragmentManager, lifecycle
+            listOf(
+                basicInfoFragment,
+                signInfoFragment,
+                activityInfoFragment,
+                serviceInfoFragment,
+                permissionInfoFragment
+            ),
+            supportFragmentManager,
+            lifecycle
         )
         binding.vp.adapter = vpAdapter
         TabLayoutMediator(binding.tabLayout, binding.vp) { tab, position ->

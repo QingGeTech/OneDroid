@@ -79,6 +79,22 @@
     <string name="apk_sign_md5">Md5 signature</string>
     <string name="apk_sign_sha1">SHA-1 signature</string>
     <string name="apk_sign_sha256">SHA-256 signature</string>
-    <string name="cert_sign_sha256" >SHA-256 cert signature</string>
+    <string name="cert_sign_sha256">SHA-256 cert signature</string>
+    <string name="class_name">class name</string>
+    <string name="target_activity">target activity</string>
+    <string name="flags">flags</string>
+    <string name="launch_mode">launch mode</string>
+    <string name="parent_activity_name">parent activity name</string>
+    <string name="max_recents">max recents</string>
+    <string name="permission">permission</string>
+    <string name="persistable_mode">persistable mode</string>
+    <string name="screen_orientation">screen orientation</string>
+    <string name="soft_input_mode">soft input mode</string>
+    <string name="task_affinity">task affinity</string>
+    <string name="ui_options">ui options</string>
+    <string name="exported">exported</string>
+    <string name="config_changes">config changes</string>
+    <string name="receiver">Receiver</string>
+    <string name="provider">Provider</string>
 
 </resources>

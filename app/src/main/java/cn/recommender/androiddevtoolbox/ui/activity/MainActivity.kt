@@ -25,6 +25,7 @@ import com.google.android.material.color.DynamicColorsOptions
 import com.google.android.material.color.HarmonizedColors
 import com.google.android.material.color.HarmonizedColorsOptions
 import dagger.hilt.android.AndroidEntryPoint
+import dalvik.system.DexClassLoader
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -32,8 +33,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     @Inject
     lateinit var spApi: SpApi
-
-//    private lateinit var binding: ActivityMainBinding
 
     @Inject
     lateinit var appManagerFragment: AppManagerFragment
