@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
@@ -22,23 +22,28 @@
         android:icon="@drawable/app_logo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/app_logo_round"
-        android:theme="@style/AppTheme"
-        android:supportsRtl="false">
+        android:supportsRtl="false"
+        android:theme="@style/AppTheme">
         <activity
             android:name=".ui.activity.TextRecognitionActivity"
-            android:exported="false" />
+            android:autoRemoveFromRecents="true"
+            android:exported="false"
+            android:launchMode="singleInstance" />
         <activity
             android:name=".ui.activity.ScreenRecordResultActivity"
+            android:autoRemoveFromRecents="true"
             android:exported="false"
             android:launchMode="singleInstance"
             android:taskAffinity=".screenrecord" />
         <activity
             android:name=".ui.activity.ScrollScreenshotResultActivity"
+            android:autoRemoveFromRecents="true"
             android:exported="true"
             android:launchMode="singleInstance"
             android:taskAffinity=".scrollscreenshot" />
         <activity
             android:name=".ui.activity.PickColorActivity"
+            android:autoRemoveFromRecents="true"
             android:exported="false"
             android:launchMode="singleInstance"
             android:taskAffinity=".pickColor" />
@@ -87,6 +92,17 @@
         <meta-data
             android:name="ScopedStorage"
             android:value="true" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
     </application>
 
 </manifest>

@@ -20,4 +20,31 @@ object IntentUtil {
         context.startActivity(intent)
     }
 
+    @Suppress("DEPRECATION")
+    fun getPrintableBundle(bundle: Bundle?): String {
+        if (bundle == null || bundle.keySet().isEmpty()) {
+            return ""
+        }
+        val sb = StringBuilder()
+        bundle.keySet().forEachIndexed { index, key ->
+            sb.append("$key:${bundle[key]}")
+            if (index != bundle.keySet().size - 1) {
+                sb.append("\n")
+            }
+        }
+        return sb.toString()
+    }
+
+
+    fun parseFlag(flag: Int, flags: Map<Int, String>): String {
+        val sb = StringBuilder()
+        flags.forEach {
+            if (flag and it.key != 0) {
+                sb.append(it.value)
+                sb.append(" | ")
+            }
+        }
+        return sb.toString().dropLast(3)
+    }
+
 }

@@ -8,8 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.StringRes
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.pm.PackageInfoCompat
 import androidx.core.os.BundleCompat
+import androidx.core.widget.PopupMenuCompat
+import androidx.core.widget.PopupWindowCompat
 import cn.recommender.androiddevtoolbox.R
 import cn.recommender.androiddevtoolbox.base.BaseFragment
 import cn.recommender.androiddevtoolbox.base.SimpleRvAdapter
@@ -20,6 +23,7 @@ import cn.recommender.androiddevtoolbox.databinding.FragmentSysInfoBinding
 import cn.recommender.androiddevtoolbox.databinding.ItemAppBasicInfoBinding
 import cn.recommender.androiddevtoolbox.databinding.ItemAppBasicInfoCardBinding
 import cn.recommender.androiddevtoolbox.databinding.ItemAppListBinding
+import cn.recommender.androiddevtoolbox.util.ClipboardUtil
 import cn.recommender.androiddevtoolbox.util.DateTimeUtil
 import cn.recommender.androiddevtoolbox.util.LogUtil
 import cn.recommender.androiddevtoolbox.util.PackageManagerUtil
@@ -140,6 +144,19 @@ class AppDetailBasicInfoFragment @Inject constructor() :
                 ) { itemBindingInner, pair, _ ->
                     itemBindingInner.tvKey.text = pair.first
                     itemBindingInner.tvValue.text = pair.second
+                    itemBindingInner.root.setOnLongClickListener {
+                        val popupMenu = PopupMenu(requireContext(), itemBindingInner.tvValue)
+                        popupMenu.inflate(R.menu.popup_menu_app_detail)
+                        popupMenu.setOnMenuItemClickListener {
+                            ClipboardUtil.copyToClipboard(
+                                requireContext(),
+                                itemBindingInner.tvValue.text.toString()
+                            )
+                            true
+                        }
+                        popupMenu.show()
+                        return@setOnLongClickListener true
+                    }
                 }
             }
 

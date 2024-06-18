@@ -4,6 +4,7 @@ import android.content.pm.PackageInfo
 import android.text.SpannableString
 import android.util.Base64
 import android.widget.TextView
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.pm.PackageInfoCompat
 import androidx.core.os.BundleCompat
 import androidx.core.widget.PopupWindowCompat
@@ -14,6 +15,7 @@ import cn.recommender.androiddevtoolbox.data.entity.CardData
 import cn.recommender.androiddevtoolbox.databinding.FragmentAppDetailSignInfoBinding
 import cn.recommender.androiddevtoolbox.databinding.ItemAppBasicInfoBinding
 import cn.recommender.androiddevtoolbox.databinding.ItemAppBasicInfoCardBinding
+import cn.recommender.androiddevtoolbox.util.ClipboardUtil
 import cn.recommender.androiddevtoolbox.util.DateTimeUtil
 import cn.recommender.androiddevtoolbox.util.LogUtil
 import cn.recommender.androiddevtoolbox.util.base64
@@ -66,6 +68,19 @@ class AppDetailSignInfoFragment @Inject constructor() :
                     }
                     itemBindingInner.tvKey.text = pair.first
                     itemBindingInner.tvValue.text = pair.second
+                    itemBindingInner.root.setOnLongClickListener {
+                        val popupMenu = PopupMenu(requireContext(), itemBindingInner.tvValue)
+                        popupMenu.inflate(R.menu.popup_menu_app_detail)
+                        popupMenu.setOnMenuItemClickListener {
+                            ClipboardUtil.copyToClipboard(
+                                requireContext(),
+                                itemBindingInner.tvValue.text.toString()
+                            )
+                            true
+                        }
+                        popupMenu.show()
+                        return@setOnLongClickListener true
+                    }
                 }
             }
     }

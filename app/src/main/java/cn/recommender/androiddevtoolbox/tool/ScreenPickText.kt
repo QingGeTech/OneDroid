@@ -87,7 +87,7 @@ class ScreenPickText @Inject constructor(val appContext: Application) : BaseMedi
 
             val intent = Intent(appContext, TextRecognitionActivity::class.java)
             intent.putExtra("filePath", filePath)
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY)
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             appContext.startActivity(intent)
         }, 200)
     }

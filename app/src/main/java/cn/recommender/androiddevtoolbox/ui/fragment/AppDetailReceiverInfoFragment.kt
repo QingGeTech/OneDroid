@@ -44,8 +44,9 @@ import java.security.cert.CertificateFactory
 import java.security.cert.X509Certificate
 import kotlin.math.sign
 
+//copy from activity
 @AndroidEntryPoint
-open class AppDetailActivityInfoFragment @Inject constructor() :
+open class AppDetailReceiverInfoFragment @Inject constructor() :
     BaseFragment<FragmentAppDetailActivityInfoBinding>() {
 
     private lateinit var packageInfo: PackageInfo
@@ -189,12 +190,12 @@ open class AppDetailActivityInfoFragment @Inject constructor() :
 
     @SuppressLint("SetTextI18n")
     private fun initRv() {
-        if (packageInfo.activities == null){
+        if (packageInfo.receivers == null) {
             return
         }
 
         binding.rv.adapter = SimpleRvAdapter<ActivityInfo, ItemActivityListBinding>(
-            packageInfo.activities.asList()
+            packageInfo.receivers.asList()
                 .sortedBy { it.name.substring(it.name.lastIndexOf(".") + 1) },
             ItemActivityListBinding::inflate
         ) { itemBinding, activityInfo, index ->
@@ -208,17 +209,17 @@ open class AppDetailActivityInfoFragment @Inject constructor() :
             } else {
                 itemBinding.tvActivityFullName.text = activityInfo.name
             }
-            if (activityInfo.exported) {
-                itemBinding.ivOpen.visibility = View.VISIBLE
-                itemBinding.ivOpen.setOnClickListener {
-                    val intent = Intent()
-                    intent.setClassName(activityInfo.packageName, activityInfo.name)
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    requireContext().startActivity(intent)
-                }
-            } else {
-                itemBinding.ivOpen.visibility = View.GONE
-            }
+//            if (activityInfo.exported) {
+//                itemBinding.ivOpen.visibility = View.VISIBLE
+//                itemBinding.ivOpen.setOnClickListener {
+//                    val intent = Intent()
+//                    intent.setClassName(activityInfo.packageName, activityInfo.name)
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//                    requireContext().startActivity(intent)
+//                }
+//            } else {
+            itemBinding.ivOpen.visibility = View.GONE
+//            }
             itemBinding.root.setOnClickListener {
                 val kvListDialogFragment = KvListDialogFragment()
                 val kvList: MutableList<Pair<String, String?>> = mutableListOf(
