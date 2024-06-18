@@ -193,10 +193,7 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding>() {
         val intent = Intent(Intent.ACTION_DELETE)
         intent.data = Uri.parse("package:${packageInfo.packageName}")
         startActivity(intent)
-        lifecycleScope.launch(Dispatchers.Main){
-            delay(1000)
-            finish()
-        }
+        finish()
     }
 
     private fun openAppSettings() {
