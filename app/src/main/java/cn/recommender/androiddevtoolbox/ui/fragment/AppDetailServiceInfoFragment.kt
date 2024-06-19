@@ -18,6 +18,7 @@ import cn.recommender.androiddevtoolbox.R
 import cn.recommender.androiddevtoolbox.base.BaseFragment
 import cn.recommender.androiddevtoolbox.base.SimpleRvAdapter
 import cn.recommender.androiddevtoolbox.data.entity.CardData
+import cn.recommender.androiddevtoolbox.data.local.sys.SysApi
 import cn.recommender.androiddevtoolbox.databinding.FragmentAppDetailActivityInfoBinding
 import cn.recommender.androiddevtoolbox.databinding.FragmentAppDetailServiceInfoBinding
 import cn.recommender.androiddevtoolbox.databinding.FragmentAppDetailSignInfoBinding
@@ -55,9 +56,15 @@ class AppDetailServiceInfoFragment @Inject constructor() :
     private lateinit var flagsMap: Map<Int, String>
     private lateinit var foregroundServiceTypeMap: Map<Int, String>
 
+    @Inject
+    lateinit var sysApi: SysApi
+
     override fun initViews() {
-        packageInfo =
-            BundleCompat.getParcelable(requireArguments(), "packageInfo", PackageInfo::class.java)!!
+//        packageInfo =
+//            BundleCompat.getParcelable(requireArguments(), "packageInfo", PackageInfo::class.java)!!
+
+        val packageName = requireArguments().getString("packageName")
+        packageInfo = sysApi.getPackageInfo(packageName!!)
 
         flagsMap = mapOf(
             *(if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) arrayOf(

@@ -18,6 +18,7 @@ import cn.recommender.androiddevtoolbox.R
 import cn.recommender.androiddevtoolbox.base.BaseFragment
 import cn.recommender.androiddevtoolbox.base.SimpleRvAdapter
 import cn.recommender.androiddevtoolbox.data.entity.CardData
+import cn.recommender.androiddevtoolbox.data.local.sys.SysApi
 import cn.recommender.androiddevtoolbox.databinding.FragmentAppDetailActivityInfoBinding
 import cn.recommender.androiddevtoolbox.databinding.FragmentAppDetailSignInfoBinding
 import cn.recommender.androiddevtoolbox.databinding.ItemActivityListBinding
@@ -60,9 +61,15 @@ open class AppDetailReceiverInfoFragment @Inject constructor() :
     private lateinit var uiOptionsMap: Map<Int, String>
     private lateinit var colorModeMap: Map<Int, String>
 
+    @Inject
+    lateinit var sysApi: SysApi
+
     override fun initViews() {
-        packageInfo =
-            BundleCompat.getParcelable(requireArguments(), "packageInfo", PackageInfo::class.java)!!
+//        packageInfo =
+//            BundleCompat.getParcelable(requireArguments(), "packageInfo", PackageInfo::class.java)!!
+
+        val packageName = requireArguments().getString("packageName")
+        packageInfo = sysApi.getPackageInfo(packageName!!)
 
         configChangesMap = mapOf(
             ActivityInfo.CONFIG_MCC to getString(R.string.mcc),

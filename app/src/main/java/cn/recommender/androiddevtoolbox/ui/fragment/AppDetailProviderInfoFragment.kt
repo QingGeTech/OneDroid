@@ -19,6 +19,7 @@ import cn.recommender.androiddevtoolbox.R
 import cn.recommender.androiddevtoolbox.base.BaseFragment
 import cn.recommender.androiddevtoolbox.base.SimpleRvAdapter
 import cn.recommender.androiddevtoolbox.data.entity.CardData
+import cn.recommender.androiddevtoolbox.data.local.sys.SysApi
 import cn.recommender.androiddevtoolbox.databinding.FragmentAppDetailActivityInfoBinding
 import cn.recommender.androiddevtoolbox.databinding.FragmentAppDetailPermissionInfoBinding
 import cn.recommender.androiddevtoolbox.databinding.FragmentAppDetailProviderInfoBinding
@@ -58,9 +59,15 @@ class AppDetailProviderInfoFragment @Inject constructor() :
     private lateinit var packageInfo: PackageInfo
 
 
+    @Inject
+    lateinit var sysApi: SysApi
+
     override fun initViews() {
-        packageInfo =
-            BundleCompat.getParcelable(requireArguments(), "packageInfo", PackageInfo::class.java)!!
+//        packageInfo =
+//            BundleCompat.getParcelable(requireArguments(), "packageInfo", PackageInfo::class.java)!!
+
+        val packageName = requireArguments().getString("packageName")
+        packageInfo = sysApi.getPackageInfo(packageName!!)
 
         initRv()
     }

@@ -126,7 +126,8 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding>() {
 
     private fun initFragment() {
         val bundle = Bundle()
-        bundle.putParcelable("packageInfo", packageInfo)
+//        bundle.putParcelable("packageInfo", packageInfo)
+        bundle.putString("packageName", packageInfo.packageName)
         basicInfoFragment.arguments = bundle
         signInfoFragment.arguments = bundle
         activityInfoFragment.arguments = bundle
