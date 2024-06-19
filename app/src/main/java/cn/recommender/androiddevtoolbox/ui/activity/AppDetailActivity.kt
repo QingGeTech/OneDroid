@@ -2,24 +2,30 @@ package cn.recommender.androiddevtoolbox.ui.activity
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.PendingIntent
 import android.content.Intent
-import android.content.IntentSender
 import android.content.pm.PackageInfo
-import android.content.pm.PackageInstaller
 import android.net.Uri
 import android.os.Bundle
-import android.provider.OpenableColumns
 import android.provider.Settings
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.FileProvider
 import androidx.core.content.pm.PackageInfoCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
+import androidx.drawerlayout.widget.DrawerLayout.SimpleDrawerListener
 import androidx.lifecycle.lifecycleScope
 import cn.recommender.androiddevtoolbox.R
 import cn.recommender.androiddevtoolbox.base.BaseActivity
 import cn.recommender.androiddevtoolbox.data.local.sys.SysApi
 import cn.recommender.androiddevtoolbox.databinding.ActivityAppDetailBinding
+import cn.recommender.androiddevtoolbox.databinding.NavigationDrawerHeaderAppDetailBinding
 import cn.recommender.androiddevtoolbox.ui.adapter.SimpleFragmentVpAdapter
 import cn.recommender.androiddevtoolbox.ui.dialog.Dialogs
 import cn.recommender.androiddevtoolbox.ui.fragment.AppDetailActivityInfoFragment
@@ -31,16 +37,14 @@ import cn.recommender.androiddevtoolbox.ui.fragment.AppDetailServiceInfoFragment
 import cn.recommender.androiddevtoolbox.ui.fragment.AppDetailSignInfoFragment
 import cn.recommender.androiddevtoolbox.util.LogUtil
 import cn.recommender.androiddevtoolbox.util.PackageManagerUtil
+import cn.recommender.androiddevtoolbox.util.ViewUtil
+import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.File
-import java.io.FileInputStream
 import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
 
 @AndroidEntryPoint
@@ -76,6 +80,12 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding>() {
     lateinit var providerInfoFragment: AppDetailProviderInfoFragment
 
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
+
+    private val drawerOnBackPressedCallback = object : OnBackPressedCallback(false) {
+        override fun handleOnBackPressed() {
+            binding.drawerLayout.closeDrawers()
+        }
+    }
 
     private val titles = listOf(
         R.string.basic_info,
@@ -124,6 +134,10 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding>() {
             }
     }
 
+    override fun getNeedPaddingView(): View {
+        return binding.ll
+    }
+
     private fun initFragment() {
         val bundle = Bundle()
 //        bundle.putParcelable("packageInfo", packageInfo)
@@ -145,10 +159,51 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding>() {
 
     private fun initViews() {
 
+        initNavigationDrawer()
+
         initToolbar()
 
         initViewPager()
 
+    }
+
+    private fun initNavigationDrawer() {
+        val headerBinding = NavigationDrawerHeaderAppDetailBinding.inflate(layoutInflater)
+        binding.navigationView.addHeaderView(headerBinding.root)
+        Glide.with(this)
+            .load(packageInfo.applicationInfo.loadIcon(packageManager))
+            .into(headerBinding.ivIcon)
+        headerBinding.tvAppName.text = PackageManagerUtil.getAppName(packageInfo, this)
+//        headerBinding.tvPackageName.text = packageInfo.packageName
+
+        binding.navigationView.setNavigationItemSelectedListener {
+            return@setNavigationItemSelectedListener onClickMenuItem(it)
+        }
+
+
+        binding.drawerLayout.addDrawerListener(object : SimpleDrawerListener() {
+            override fun onDrawerOpened(drawerView: View) {
+                drawerOnBackPressedCallback.isEnabled = true
+            }
+
+            override fun onDrawerClosed(drawerView: View) {
+                drawerOnBackPressedCallback.isEnabled = false
+            }
+        })
+
+
+        onBackPressedDispatcher.addCallback(this, drawerOnBackPressedCallback)
+    }
+
+    private fun onClickMenuItem(menuItem: MenuItem): Boolean {
+        when (menuItem.itemId) {
+            R.id.launch -> launchApp()
+            R.id.share -> shareApp()
+            R.id.save -> saveApp()
+            R.id.open_in_settings -> openAppSettings()
+            R.id.uninstall -> uninstallApp()
+        }
+        return true
     }
 
     private fun initViewPager() {
@@ -175,17 +230,13 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding>() {
 //        binding.toolbar.logo = PackageManagerUtil.getAppIcon(packageInfo, this)
         binding.toolbar.title = PackageManagerUtil.getAppName(packageInfo, this)
 //        binding.toolbar.subtitle = packageInfo.packageName
-        binding.toolbar.setNavigationOnClickListener { finish() }
-
+        binding.toolbar.setNavigationOnClickListener {
+            binding.drawerLayout.openDrawer(binding.navigationView)
+        }
         binding.toolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.launch -> launchApp()
-                R.id.share -> shareApp()
-                R.id.save -> saveApp()
-                R.id.open_in_settings -> openAppSettings()
-                R.id.uninstall -> uninstallApp()
-            }
-            return@setOnMenuItemClickListener true
+            return@setOnMenuItemClickListener onClickMenuItem(
+                it
+            )
         }
 
     }

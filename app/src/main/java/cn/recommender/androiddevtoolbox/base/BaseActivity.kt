@@ -2,6 +2,7 @@ package cn.recommender.androiddevtoolbox.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -21,8 +22,12 @@ open class BaseActivity<B> : AppCompatActivity() where B : ViewBinding {
         updatePadding()
     }
 
+    open fun getNeedPaddingView(): View {
+        return binding.root
+    }
+
     private fun updatePadding() {
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(getNeedPaddingView()) { v, insets ->
             val statusBarInsets = insets.getInsets(WindowInsetsCompat.Type.statusBars())
             val navigationBarInsets = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
             v.updatePadding(

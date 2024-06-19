@@ -28,7 +28,7 @@
     <string name="permission_not_granted">Permission not granted</string>
     <string name="floating_button_enable">Floating Button Enabled</string>
     <string name="open_accessibility_service">please open accessibility service</string>
-    <string name="save">save</string>
+    <string name="save">save to file system</string>
     <string name="save_success">Save Success</string>
     <string name="start">Start</string>
     <string name="end">End</string>
@@ -96,8 +96,8 @@
     <string name="config_changes">config changes</string>
     <string name="receiver">Receiver</string>
     <string name="provider">Provider</string>
-    <string name="launch">launch</string>
-    <string name="open_in_settings">settings</string>
+    <string name="launch">launch app</string>
+    <string name="open_in_settings">open in settings</string>
     <string name="share">share</string>
     <string name="uninstall">uninstall</string>
     <string name="launch_fail">launch fail</string>
@@ -216,5 +216,9 @@
     <string name="write_permission">write permission</string>
     <string name="path_permissions">path permissions</string>
     <string name="uri_permission_patterns">uri permission patterns</string>
+    <string name="edit_sp">edit shared preference</string>
+    <string name="edit_db">edit database</string>
+    <string name="explore_internal_files">explore internal files</string>
+    <string name="explore_external_files">explore external files</string>
 
 </resources>

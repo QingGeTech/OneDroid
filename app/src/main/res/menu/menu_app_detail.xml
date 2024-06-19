@@ -1,40 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/launch"
-        android:enabled="true"
-        android:icon="@drawable/ic_launch"
-        android:title="@string/launch"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/share"
-        android:enabled="true"
-        android:icon="@drawable/ic_share"
-        android:title="@string/share"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/save"
-        android:enabled="true"
-        android:icon="@drawable/ic_save"
-        android:title="@string/save"
-        app:showAsAction="never" />
-
 
     <item
         android:id="@+id/open_in_settings"
         android:enabled="true"
         android:icon="@drawable/ic_settings"
         android:title="@string/open_in_settings"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/uninstall"
-        android:enabled="true"
-        android:icon="@drawable/ic_uninstall"
-        android:title="@string/uninstall"
         app:showAsAction="never" />
 
 </menu>

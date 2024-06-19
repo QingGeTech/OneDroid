@@ -28,7 +28,7 @@
     <string name="permission_not_granted">未授权</string>
     <string name="floating_button_enable">显示悬浮按钮</string>
     <string name="open_accessibility_service">请开启无障碍服务</string>
-    <string name="save">保存</string>
+    <string name="save">保存到文件</string>
     <string name="save_success">保存成功</string>
     <string name="start">开始</string>
     <string name="end">结束</string>
@@ -96,8 +96,8 @@
     <string name="config_changes">配置更变</string>
     <string name="receiver">Receiver</string>
     <string name="provider">Provider</string>
-    <string name="launch">启动</string>
-    <string name="open_in_settings">设置</string>
+    <string name="launch">启动应用</string>
+    <string name="open_in_settings">在系统设置中打开</string>
     <string name="share">分享</string>
     <string name="uninstall">卸载</string>
     <string name="launch_fail">启动失败</string>
@@ -216,4 +216,8 @@
     <string name="write_permission">write permission</string>
     <string name="path_permissions">path permissions</string>
     <string name="uri_permission_patterns">uri permission patterns</string>
+    <string name="edit_sp">修改 shared preference</string>
+    <string name="edit_db">修改数据库</string>
+    <string name="explore_internal_files">浏览内部目录</string>
+    <string name="explore_external_files">浏览外部目录</string>
 </resources>
