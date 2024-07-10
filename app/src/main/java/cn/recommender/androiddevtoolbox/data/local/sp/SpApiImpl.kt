@@ -5,11 +5,8 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
-import androidx.core.content.res.ResourcesCompat.ThemeCompat
 import cn.recommender.androiddevtoolbox.Constants
 import cn.recommender.androiddevtoolbox.R
-import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class SpApiImpl @Inject constructor(private val appContext: Application) : SpApi {

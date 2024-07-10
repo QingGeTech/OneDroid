@@ -34,3 +34,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "AndroidDevToolbox"
 include(":app")
+//include(":dbinspector")
+include(":TextEditor")

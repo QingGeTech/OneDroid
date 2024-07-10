@@ -6,8 +6,8 @@ plugins {
     idea
 }
 
-idea{
-    module{
+idea {
+    module {
         isDownloadJavadoc = true
         isDownloadSources = true
     }
@@ -31,19 +31,19 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
     compileOptions {
+//        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    viewBinding{
+    viewBinding {
         enable = true
     }
 }
@@ -62,6 +62,15 @@ dependencies {
     implementation(libs.mlkitTextRecognitionChinese)
     implementation(libs.photoView)
     implementation(libs.opencv)
+    implementation(libs.libsu.core)
+    implementation(libs.libsu.nio)
+    implementation(libs.libsu.service)
+//    implementation(libs.kodeEditor)
+//    implementation(libs.kodeHighlighter)
+//    implementation(libs.kodeHighlighterCore)
+//    coreLibraryDesugaring(libs.desugar.jdk.libs)
+    implementation(libs.dbinspector)
+    implementation(project(":TextEditor"))
     kapt(libs.hiltCompiler)
 
     testImplementation(libs.junit)

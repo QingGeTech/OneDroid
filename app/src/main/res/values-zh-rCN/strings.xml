@@ -216,8 +216,9 @@
     <string name="write_permission">write permission</string>
     <string name="path_permissions">path permissions</string>
     <string name="uri_permission_patterns">uri permission patterns</string>
-    <string name="edit_sp">修改 shared preference</string>
+    <string name="edit_sp">修改SP</string>
     <string name="edit_db">修改数据库</string>
     <string name="explore_internal_files">浏览内部目录</string>
     <string name="explore_external_files">浏览外部目录</string>
+    <string name="lack_root_permission">缺少root权限</string>
 </resources>

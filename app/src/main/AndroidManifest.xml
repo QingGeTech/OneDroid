@@ -15,7 +15,7 @@
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
-    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES"/>
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
 
     <application
         android:name=".App"
@@ -68,6 +68,8 @@
             android:name=".ui.activity.MediaProjectionPermissionActivity"
             android:launchMode="singleInstance"
             android:taskAffinity=".mediaProjectionPermission" />
+
+        <activity android:name=".ui.activity.SimpleTextEditorActivity" />
 
         <service
             android:name=".service.ToolsAccessibilityService"

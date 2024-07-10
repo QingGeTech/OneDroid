@@ -28,5 +28,13 @@
         </item>
     </style>
 
+    <style name="FastScrollRecyclerViewStyle">
+        <item name="fastScrollEnabled">true</item>
+        <item name="fastScrollHorizontalThumbDrawable">@drawable/scroll_thumb</item>
+        <item name="fastScrollHorizontalTrackDrawable">@drawable/scroll_track</item>
+        <item name="fastScrollVerticalThumbDrawable">@drawable/scroll_thumb</item>
+        <item name="fastScrollVerticalTrackDrawable">@drawable/scroll_track</item>
+    </style>
+
 
 </resources>

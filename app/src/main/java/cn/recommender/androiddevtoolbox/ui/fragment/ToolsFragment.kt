@@ -3,11 +3,7 @@ package cn.recommender.androiddevtoolbox.ui.fragment
 import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
-import android.os.Bundle
 import android.os.IBinder
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.DrawableRes
 import cn.recommender.androiddevtoolbox.R
 import cn.recommender.androiddevtoolbox.base.BaseFragment
@@ -104,6 +100,7 @@ class ToolsFragment @Inject constructor() : BaseFragment<FragmentToolsBinding>()
                 getString(R.string.text_ocr),
                 false
             )
+            //TODO: 二维码扫描
         )
         adapter =
             SimpleRvAdapter(toolItems, ItemSmallToolsBinding::inflate) { bind, item, position ->

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="define_kodehighlighter"></string>
+    <!-- Author section -->
+    <string name="library_kodehighlighter_author">Markus Ressel</string>
+    <string name="library_kodehighlighter_authorWebsite">http://markusressel.de</string>
+    <!-- Library section -->
+    <string name="library_kodehighlighter_libraryName">KodeHighlighter</string>
+    <string name="library_kodehighlighter_libraryDescription">Simple, extendable code highlighting for Spannables on Android.</string>
+    <string name="library_kodehighlighter_libraryWebsite">@string/library_kodehighlighter_repositoryLink</string>
+    <string name="library_kodehighlighter_libraryVersion">1.2.2</string>
+    <!-- OpenSource section -->
+    <string name="library_kodehighlighter_isOpenSource">true</string>
+    <string name="library_kodehighlighter_repositoryLink">https://github.com/markusressel/KodeHighlighter</string>
+    <!-- ClassPath for autoDetect section -->
+    <string name="library_kodehighlighter_classPath">de.markusressel.kodehighlighter</string>
+    <!-- License section -->
+    <string name="library_kodehighlighter_licenseId">mit</string>
+    <!-- Custom variables section -->
+</resources>

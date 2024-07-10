@@ -9,16 +9,11 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.FileProvider
 import androidx.core.content.pm.PackageInfoCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updatePadding
 import androidx.drawerlayout.widget.DrawerLayout.SimpleDrawerListener
 import androidx.lifecycle.lifecycleScope
 import cn.recommender.androiddevtoolbox.R
@@ -35,9 +30,9 @@ import cn.recommender.androiddevtoolbox.ui.fragment.AppDetailProviderInfoFragmen
 import cn.recommender.androiddevtoolbox.ui.fragment.AppDetailReceiverInfoFragment
 import cn.recommender.androiddevtoolbox.ui.fragment.AppDetailServiceInfoFragment
 import cn.recommender.androiddevtoolbox.ui.fragment.AppDetailSignInfoFragment
+import cn.recommender.androiddevtoolbox.ui.fragment.FileExplorerDialogFragment
 import cn.recommender.androiddevtoolbox.util.LogUtil
 import cn.recommender.androiddevtoolbox.util.PackageManagerUtil
-import cn.recommender.androiddevtoolbox.util.ViewUtil
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -202,8 +197,21 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding>() {
             R.id.save -> saveApp()
             R.id.open_in_settings -> openAppSettings()
             R.id.uninstall -> uninstallApp()
+            R.id.edit_sp -> showFileExplorerDialogFragment("/data/data/${packageInfo.packageName}/shared_prefs")
+            R.id.edit_db -> showFileExplorerDialogFragment("/data/data/${packageInfo.packageName}/databases")
+            R.id.explore_internal_files -> showFileExplorerDialogFragment("/data/data/${packageInfo.packageName}")
+            R.id.explore_external_files -> showFileExplorerDialogFragment("/sdcard/Android/data/${packageInfo.packageName}")
         }
+        binding.drawerLayout.closeDrawers()
         return true
+    }
+
+    private fun showFileExplorerDialogFragment(path: String) {
+        val fragment = FileExplorerDialogFragment()
+        val bundle = Bundle()
+        bundle.putString("path", path)
+        fragment.arguments = bundle
+        fragment.show(supportFragmentManager, "FileExplorerDialogFragment")
     }
 
     private fun initViewPager() {

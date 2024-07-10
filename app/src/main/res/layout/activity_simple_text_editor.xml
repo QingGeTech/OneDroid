@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.ScreenRecordResultActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/menu_text_editor"
+        app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
+        tools:title="xxx.xml" />
+
+<!--    <com.google.android.material.textfield.TextInputEditText-->
+<!--        android:id="@+id/et"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"/>-->
+
+    <de.markusressel.kodeeditor.library.view.CodeEditorLayout
+        android:id="@+id/codeEditorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadeScrollbars="true"
+        android:scrollbars="vertical|horizontal"
+        app:ke_divider_color="?android:attr/textColorPrimary"
+        app:ke_divider_enabled="true"
+        app:ke_editor_backgroundColor="?android:attr/windowBackground"
+        app:ke_editor_followCursor="true"
+        app:ke_editor_maxZoom="10.0"
+        app:ke_lineNumbers_backgroundColor="#ccc"
+        app:ke_lineNumbers_textColor="#000"
+        app:ke_minimap_borderColor="#000"
+        app:ke_minimap_enabled="true"
+        app:ke_minimap_indicatorColor="#f00"
+        app:ke_minimap_maxDimension="200dp" />
+
+
+</LinearLayout>
