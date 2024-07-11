@@ -221,5 +221,9 @@
     <string name="explore_internal_files">explore internal files</string>
     <string name="explore_external_files">explore external files</string>
     <string name="lack_root_permission">lack of root permission</string>
+    <string name="sqlite_inspector_activity">sqlite inspector</string>
+    <string name="text_editor_activity">text editor</string>
+    <string name="open_database_fail">open database fail</string>
+    <string name="file_too_large">file too large, continue to open?</string>
 
 </resources>

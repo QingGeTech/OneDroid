@@ -69,7 +69,28 @@
             android:launchMode="singleInstance"
             android:taskAffinity=".mediaProjectionPermission" />
 
-        <activity android:name=".ui.activity.SimpleTextEditorActivity" />
+        <activity
+            android:label="@string/text_editor_activity"
+            android:name=".ui.activity.SimpleTextEditorActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="${applicationId}.ACTION_VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.activity.SqliteInspectorActivity"
+            android:exported="true"
+            android:label="@string/sqlite_inspector_activity">
+            <intent-filter>
+                <action android:name="${applicationId}.ACTION_VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.activity.SqliteTableDetailActivity" />
+
 
         <service
             android:name=".service.ToolsAccessibilityService"

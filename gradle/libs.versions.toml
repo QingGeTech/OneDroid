@@ -22,7 +22,7 @@ libsu = "5.3.0"
 #kodeEditor = "4.0.1"
 ##kodeHighlighter = "4.0.3"
 #kodeHighlighter = "v3.0.0"
-dbinspector = "5.4.9"
+#dbinspector = "5.4.9"
 coroutines = "1.8.1"
 compose = "1.6.8"
 zoomlayout = "1.9.0"
@@ -52,7 +52,7 @@ libsu-nio = { group = "com.github.topjohnwu.libsu", name = "nio", version.ref = 
 #kodeEditor = { group = "com.github.markusressel", name = "KodeEditor", version.ref = "kodeEditor" }
 #kodeHighlighter = { group = "com.github.markusressel.KodeHighlighter", name = "markdown", version.ref = "kodeHighlighter" }
 #kodeHighlighterCore = { group = "com.github.markusressel.KodeHighlighter", name = "core", version.ref = "kodeHighlighter" }
-dbinspector = { module = "com.infinum.dbinspector:dbinspector", version.ref = "dbinspector" }
+#dbinspector = { module = "com.infinum.dbinspector:dbinspector", version.ref = "dbinspector" }
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "compose" }

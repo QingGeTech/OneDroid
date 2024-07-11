@@ -69,7 +69,7 @@ dependencies {
 //    implementation(libs.kodeHighlighter)
 //    implementation(libs.kodeHighlighterCore)
 //    coreLibraryDesugaring(libs.desugar.jdk.libs)
-    implementation(libs.dbinspector)
+//    implementation(libs.dbinspector)
     implementation(project(":TextEditor"))
     kapt(libs.hiltCompiler)
 

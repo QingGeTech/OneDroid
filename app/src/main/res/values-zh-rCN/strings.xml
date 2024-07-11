@@ -221,4 +221,8 @@
     <string name="explore_internal_files">浏览内部目录</string>
     <string name="explore_external_files">浏览外部目录</string>
     <string name="lack_root_permission">缺少root权限</string>
+    <string name="sqlite_inspector_activity">数据库查看</string>
+    <string name="text_editor_activity">文本编辑</string>
+    <string name="open_database_fail">打开数据库失败</string>
+    <string name="file_too_large">文件太大, 继续打开吗? </string>
 </resources>

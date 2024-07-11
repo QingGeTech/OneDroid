@@ -15,6 +15,7 @@ import cn.recommender.androiddevtoolbox.databinding.FragmentFileExplorerBinding
 import cn.recommender.androiddevtoolbox.databinding.ItemFileBinding
 import cn.recommender.androiddevtoolbox.databinding.ItemPathBinding
 import cn.recommender.androiddevtoolbox.ui.activity.SimpleTextEditorActivity
+import cn.recommender.androiddevtoolbox.ui.activity.SqliteInspectorActivity
 import cn.recommender.androiddevtoolbox.util.RootUtil
 import cn.recommender.androiddevtoolbox.util.ViewUtil
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -22,7 +23,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.topjohnwu.superuser.nio.ExtendedFile
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.File
 import javax.inject.Inject
 
 //TODO: 下滑后，pathRv固定在顶部
@@ -83,34 +83,25 @@ class FileExplorerDialogFragment @Inject constructor() : BottomSheetDialogFragme
                     } else {
                         itemBinding.ivFileType.setImageResource(R.drawable.ic_regular_file)
                         itemBinding.root.setOnClickListener {
-                            //open file editor
                             if (isTextFile(extendedFile)) {
                                 val intent =
                                     Intent(requireContext(), SimpleTextEditorActivity::class.java)
                                 intent.putExtra("filePath", extendedFile.absolutePath)
                                 requireContext().startActivity(intent)
-                            } else if (extendedFile.name.endsWith("db")) {
-//                                DbInspector.show()
-                                val tempFile =
-                                    File(requireContext().cacheDir.absolutePath + "/" + extendedFile.name)
-                                tempFile.delete()
-                                tempFile.createNewFile()
-                                extendedFile.newInputStream().copyTo(tempFile.outputStream())
-
-                                val intent = Intent(
-                                    context,
-                                    Class.forName("com.infinum.dbinspector.ui.schema.SchemaActivity")
-                                )
-                                    .apply {
+                            } else if ("db".equals(extendedFile.name.takeLast(2), true)) {
+                                val intent =
+                                    Intent(context, SqliteInspectorActivity::class.java).apply {
                                         putExtra(
-                                            "KEY_DATABASE_PATH",
-                                            tempFile.absolutePath
-                                        )
-                                        putExtra(
-                                            "KEY_DATABASE_NAME",
-                                            "Test"
+                                            "filePath",
+                                            extendedFile.absolutePath
                                         )
                                     }
+                                requireContext().startActivity(intent)
+                            } else {
+                                val intent = Intent().apply {
+                                    action = requireContext().packageName + ".ACTION_VIEW"
+                                    putExtra("filePath", extendedFile.absolutePath)
+                                }
                                 requireContext().startActivity(intent)
                             }
                         }

@@ -56,8 +56,19 @@ class SimpleTextEditorActivity : BaseActivity<ActivitySimpleTextEditorBinding>()
             minimapGravity = Gravity.BOTTOM or Gravity.END
         }
         RootUtil.getRemoteFs(this) { remoteFs ->
-            binding.codeEditorLayout.text =
-                remoteFs.getFile(filePath).newInputStream().readBytes().decodeToString()
+            val extendedFile = remoteFs.getFile(filePath)
+            val bytes = extendedFile.newInputStream().readBytes()
+            if (bytes.size > 20 * 1024) {
+                Dialogs.showTwoButtonTips(
+                    this@SimpleTextEditorActivity,
+                    getString(R.string.file_too_large),
+                    false
+                ) { _, _ ->
+                    binding.codeEditorLayout.text = bytes.decodeToString()
+                }
+            } else {
+                binding.codeEditorLayout.text = bytes.decodeToString()
+            }
 
         }
     }
