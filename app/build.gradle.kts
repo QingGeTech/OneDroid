@@ -14,13 +14,13 @@ idea {
 }
 
 android {
-    namespace = "cn.recommender.androiddevtoolbox"
-    compileSdk = 34
+    namespace = "tech.qingge.androiddevtoolbox"
+    compileSdk = 35
 
     defaultConfig {
-        applicationId = "cn.recommender.androiddevtoolbox"
+        applicationId = "tech.qingge.androiddevtoolbox"
         minSdk = 21
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -73,7 +73,7 @@ dependencies {
     implementation(project(":TextEditor"))
     kapt(libs.hiltCompiler)
 
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+//    testImplementation(libs.junit)
+//    androidTestImplementation(libs.androidx.test.ext.junit)
+//    androidTestImplementation(libs.espresso.core)
 }

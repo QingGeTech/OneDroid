@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <cn.recommender.androiddevtoolbox.ui.view.CircleColorView
+    <tech.qingge.androiddevtoolbox.ui.view.CircleColorView
         android:id="@+id/ccv"
         android:layout_width="60dp"
         android:layout_height="60dp"

@@ -6,6 +6,7 @@
     android:id="@+id/rv"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    style="@style/FastScrollRecyclerViewStyle"
     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />

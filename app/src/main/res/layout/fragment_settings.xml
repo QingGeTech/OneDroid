@@ -53,7 +53,7 @@
                     android:text="@string/theme_color"
                     android:textAppearance="?textAppearanceBodyLarge" />
 
-                <cn.recommender.androiddevtoolbox.ui.view.CircleColorView
+                <tech.qingge.androiddevtoolbox.ui.view.CircleColorView
                     android:id="@+id/ccv"
                     android:layout_width="35dp"
                     android:layout_height="35dp"

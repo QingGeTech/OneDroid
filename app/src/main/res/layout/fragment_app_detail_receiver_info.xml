@@ -6,9 +6,5 @@
     android:id="@+id/rv"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:fastScrollEnabled="true"
-    app:fastScrollHorizontalThumbDrawable="@drawable/scroll_thumb"
-    app:fastScrollHorizontalTrackDrawable="@drawable/scroll_track"
-    app:fastScrollVerticalThumbDrawable="@drawable/scroll_thumb"
-    app:fastScrollVerticalTrackDrawable="@drawable/scroll_track"
+    style="@style/FastScrollRecyclerViewStyle"
     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
