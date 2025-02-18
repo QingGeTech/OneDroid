@@ -49,7 +49,7 @@ class DeviceInfoNetworkFragment @Inject constructor() : DeviceInfoBaseFragment()
     }
 
     @SuppressLint("NewApi")
-    private fun getSimSubInfo(sub: SubscriptionInfo): List<Pair<String, String>> {
+    private fun getSimSubInfo(sub: SubscriptionInfo): MutableList<Pair<String, String>> {
         val infos = mutableListOf<Pair<String, String>>(
             Pair(getString(R.string.sim_subcription_id), sub.subscriptionId.toString()),
             Pair(getString(R.string.sim_card_id), sub.cardId.toString()),
@@ -66,7 +66,7 @@ class DeviceInfoNetworkFragment @Inject constructor() : DeviceInfoBaseFragment()
     }
 
     @SuppressLint("MissingPermission")
-    private fun getSimInfo(): List<Pair<String, String>> {
+    private fun getSimInfo(): MutableList<Pair<String, String>> {
 
 
         val telephonyManager =
@@ -127,7 +127,7 @@ class DeviceInfoNetworkFragment @Inject constructor() : DeviceInfoBaseFragment()
 
     }
 
-    private fun getIpInfo(): List<Pair<String, String>> {
+    private fun getIpInfo(): MutableList<Pair<String, String>> {
         val infos = mutableListOf<Pair<String, String>>(
             Pair(getString(R.string.ip_v4), getV4Ip()),
             Pair(getString(R.string.ip_v6), getV6Ip()),
@@ -153,7 +153,7 @@ class DeviceInfoNetworkFragment @Inject constructor() : DeviceInfoBaseFragment()
         )
     }
 
-    private fun getWifiInfo(): List<Pair<String, String>> {
+    private fun getWifiInfo(): MutableList<Pair<String, String>> {
 
         val wifiManager =
             requireContext().applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager

@@ -20,8 +20,8 @@ class DeviceInfoPropFragment @Inject constructor() : DeviceInfoBaseFragment() {
     }
 
 
-    private fun getPropInfo(): List<Pair<String, String>> {
-        return getAllProperties().entries.map { entry -> Pair(entry.key, entry.value) }.toList()
+    private fun getPropInfo(): MutableList<Pair<String, String>> {
+        return getAllProperties().entries.map { entry -> Pair(entry.key, entry.value) }.toMutableList()
     }
 
     fun getAllProperties(): Map<String, String> {

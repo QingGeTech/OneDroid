@@ -25,7 +25,7 @@ class DeviceInfoSensorFragment @Inject constructor() : DeviceInfoBaseFragment() 
         }
     }
 
-    private fun getSensorDetails(sensor: Sensor): List<Pair<String, String>> {
+    private fun getSensorDetails(sensor: Sensor): MutableList<Pair<String, String>> {
         return mutableListOf(
             Pair(getString(R.string.sensor_name), sensor.name),
             Pair(getString(R.string.sensor_vendor), sensor.vendor),

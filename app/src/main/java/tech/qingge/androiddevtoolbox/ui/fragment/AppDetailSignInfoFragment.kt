@@ -4,6 +4,7 @@ import android.content.pm.PackageInfo
 import android.widget.TextView
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.pm.PackageInfoCompat
+import dagger.hilt.android.AndroidEntryPoint
 import tech.qingge.androiddevtoolbox.R
 import tech.qingge.androiddevtoolbox.base.BaseFragment
 import tech.qingge.androiddevtoolbox.base.SimpleRvAdapter
@@ -18,12 +19,10 @@ import tech.qingge.androiddevtoolbox.util.hex
 import tech.qingge.androiddevtoolbox.util.md5
 import tech.qingge.androiddevtoolbox.util.sha1
 import tech.qingge.androiddevtoolbox.util.sha256
-import javax.inject.Inject;
-
-import dagger.hilt.android.AndroidEntryPoint;
 import java.io.ByteArrayInputStream
 import java.security.cert.CertificateFactory
 import java.security.cert.X509Certificate
+import javax.inject.Inject
 
 // TODO: 长按复制
 @AndroidEntryPoint
@@ -101,7 +100,7 @@ class AppDetailSignInfoFragment @Inject constructor() :
             val cf = CertificateFactory.getInstance("X.509")
             val cert = cf.generateCertificate(ByteArrayInputStream(signBytes)) as X509Certificate
 
-            val pairs = listOf(
+            val pairs = mutableListOf(
                 Pair(getString(R.string.apk_sign_md5), signBytes.md5()),
                 Pair(getString(R.string.apk_sign_sha1), signBytes.sha1()),
                 Pair(getString(R.string.apk_sign_sha256), signBytes.sha256()),

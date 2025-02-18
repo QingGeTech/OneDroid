@@ -384,5 +384,32 @@
     <string name="battery_plugged_wireless">wireless</string>
     <string name="battery_plugged_type">battery plugged type</string>
     <string name="battery_power">battery power</string>
+    <string name="cpu_info">cpu info</string>
+    <string name="gpu_info">gpu info</string>
+    <string name="gpu_vendor">vendor</string>
+    <string name="gpu_version">version</string>
+    <string name="gpu_extensions">extensions</string>
+    <string name="gpu_egl_configurations">egl configurations</string>
+    <string name="gpu_renderer">renderer</string>
+    <string name="location_info">location info</string>
+    <string name="location_latitude">latitude</string>
+    <string name="location_longitude">longitude</string>
+    <string name="satellite_info">satellite info</string>
+    <string name="location_time">time</string>
+    <string name="location_extras">extras</string>
+    <string name="location_accuracy">accuracy</string>
+    <string name="location_bearing">bearing</string>
+    <string name="location_altitude">altitude</string>
+    <string name="location_speed">speed</string>
+    <string name="satellite_count">satellite count</string>
+    <string name="satellite_detail">detail</string>
+    <string name="satellite_index">index</string>
+    <string name="satellite_cn0_dbhz">Cn0DbHz</string>
+    <string name="satellite_svid">svid</string>
+    <string name="satellite_azimuth_degrees">azimuth degrees</string>
+    <string name="satellite_elevation_degrees">elevation degrees</string>
+    <string name="satellite_baseband_cn0_dbhz">baseband cn0 dbhz</string>
+    <string name="satellite_carrier_frequency_hz">carrier frequency hz</string>
+    <string name="satellite_constellation_type">constellation type</string>
 
 </resources>

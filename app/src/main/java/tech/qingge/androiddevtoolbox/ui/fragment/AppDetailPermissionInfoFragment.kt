@@ -63,18 +63,18 @@ class AppDetailPermissionInfoFragment @Inject constructor() :
     }
 
     private fun initCardData() {
-        cardDataList = listOf(
+        cardDataList = mutableListOf(
             CardData(
                 getString(R.string.custom_permission),
-                if (packageInfo.permissions == null) emptyList() else packageInfo.permissions!!.map {
+                if (packageInfo.permissions == null) mutableListOf() else packageInfo.permissions!!.map {
                     Pair(
                         it.name,
                         ""
                     )
-                }.sortedBy { it.first }),
+                }.sortedBy { it.first }.toMutableList()),
             CardData(
                 getString(R.string.uses_permission),
-                if (packageInfo.requestedPermissions == null) emptyList() else
+                if (packageInfo.requestedPermissions == null) mutableListOf() else
                     packageInfo.requestedPermissions!!.mapIndexed { index, s ->
                         Pair(
                             s,
@@ -83,7 +83,7 @@ class AppDetailPermissionInfoFragment @Inject constructor() :
                                 requestedPermissionsMap
                             )
                         )
-                    }.sortedBy { it.first })
+                    }.sortedBy { it.first }.toMutableList())
         )
     }
 

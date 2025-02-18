@@ -21,7 +21,7 @@ class DeviceInfoStorageFragment @Inject constructor() : DeviceInfoBaseFragment()
         )
     }
 
-    private fun getDiskInfo(): List<Pair<String, String>> {
+    private fun getDiskInfo(): MutableList<Pair<String, String>> {
 
         val internalStat = StatFs(Environment.getDataDirectory().absolutePath)
         val externalStat = StatFs(Environment.getExternalStorageDirectory().absolutePath)
@@ -51,7 +51,7 @@ class DeviceInfoStorageFragment @Inject constructor() : DeviceInfoBaseFragment()
 
     }
 
-    private fun getMemInfo(): List<Pair<String, String>> {
+    private fun getMemInfo(): MutableList<Pair<String, String>> {
         val activityManager =
             requireContext().getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val memoryInfo = ActivityManager.MemoryInfo()

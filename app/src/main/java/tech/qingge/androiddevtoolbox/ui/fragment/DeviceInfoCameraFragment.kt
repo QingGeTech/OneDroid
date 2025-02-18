@@ -30,8 +30,8 @@ class DeviceInfoCameraFragment @Inject constructor() : DeviceInfoBaseFragment() 
 
     }
 
-    private fun getCameraInfo(cc: CameraCharacteristics): List<Pair<String, String>> {
-        return cc.keys.map { k -> Pair(k.name, cc.get(k).toString()) }.toList()
+    private fun getCameraInfo(cc: CameraCharacteristics): MutableList<Pair<String, String>> {
+        return cc.keys.map { k -> Pair(k.name, cc.get(k).toString()) }.toMutableList()
     }
 
 }

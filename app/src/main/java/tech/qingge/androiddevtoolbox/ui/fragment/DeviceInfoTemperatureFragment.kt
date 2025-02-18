@@ -11,7 +11,7 @@ import javax.inject.Inject
 class DeviceInfoTemperatureFragment @Inject constructor() : DeviceInfoBaseFragment() {
 
 
-    private fun getTemperatureInfo(): List<Pair<String, String>> {
+    private fun getTemperatureInfo(): MutableList<Pair<String, String>> {
 
         // 这种需要POWER权限，只有系统应用可以获取到
 //        var cpuTemperature = getString(R.string.temperature_unknown)
@@ -55,6 +55,7 @@ class DeviceInfoTemperatureFragment @Inject constructor() : DeviceInfoBaseFragme
             .filter { dir -> dir.name.startsWith("thermal_zone") }
             .map { zoneDir -> getTemp(zoneDir) }
             .filter { p -> p.first.isNotEmpty() }
+            .toMutableList()
 
     }
 

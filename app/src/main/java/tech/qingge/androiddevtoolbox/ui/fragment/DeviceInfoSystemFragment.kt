@@ -23,7 +23,7 @@ class DeviceInfoSystemFragment @Inject constructor() : DeviceInfoBaseFragment() 
     }
 
 
-    private fun getOtherInfo(): List<Pair<String, String>> {
+    private fun getOtherInfo(): MutableList<Pair<String, String>> {
         val infos = mutableListOf(
             Pair(getString(R.string.language), Locale.getDefault().language),
             Pair(getString(R.string.timezone), TimeZone.getDefault().id),
@@ -34,7 +34,7 @@ class DeviceInfoSystemFragment @Inject constructor() : DeviceInfoBaseFragment() 
         return infos
     }
 
-    private fun getVersionInfo(): List<Pair<String, String>> {
+    private fun getVersionInfo(): MutableList<Pair<String, String>> {
         val infos = mutableListOf(
             Pair(getString(R.string.version_sdk_int), Build.VERSION.SDK_INT.toString()),
             Pair(getString(R.string.version_release), Build.VERSION.RELEASE),

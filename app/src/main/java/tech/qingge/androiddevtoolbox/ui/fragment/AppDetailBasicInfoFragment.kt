@@ -43,7 +43,7 @@ class AppDetailBasicInfoFragment @Inject constructor() :
     }
 
     private fun initData() {
-        val basicInfoList = listOf(
+        val basicInfoList = mutableListOf(
             Pair(
                 getString(R.string.key_app_name),
                 PackageManagerUtil.getAppName(packageInfo, requireContext())
@@ -78,7 +78,7 @@ class AppDetailBasicInfoFragment @Inject constructor() :
 
         )
 
-        val dirList = listOf(
+        val dirList = mutableListOf(
             Pair(getString(R.string.source_dir), packageInfo.applicationInfo!!.sourceDir),
             Pair(getString(R.string.data_dir), packageInfo.applicationInfo!!.dataDir),
             Pair(
@@ -92,7 +92,7 @@ class AppDetailBasicInfoFragment @Inject constructor() :
 
         val metaDataList = metaDataToPairs(packageInfo.applicationInfo!!.metaData)
 
-        val otherList = listOf(
+        val otherList = mutableListOf(
             Pair(
                 getString(R.string.revision_code),
                 PackageManagerUtil.getRevisionCode(packageInfo, requireContext())
@@ -115,11 +115,11 @@ class AppDetailBasicInfoFragment @Inject constructor() :
 
     }
 
-    private fun metaDataToPairs(metaData: Bundle?): List<Pair<String, String>> {
+    private fun metaDataToPairs(metaData: Bundle?): MutableList<Pair<String, String>> {
         if (metaData == null || metaData.isEmpty) {
-            return emptyList()
+            return mutableListOf()
         }
-        return metaData.keySet().map { key -> Pair(key, metaData.get(key).toString()) }
+        return metaData.keySet().map { key -> Pair(key, metaData.get(key).toString()) }.toMutableList()
     }
 
 

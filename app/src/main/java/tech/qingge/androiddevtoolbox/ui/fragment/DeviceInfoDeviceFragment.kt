@@ -20,7 +20,7 @@ class DeviceInfoDeviceFragment @Inject constructor() : DeviceInfoBaseFragment() 
         )
     }
 
-    private fun getBuildInfo(): List<Pair<String, String>> {
+    private fun getBuildInfo(): MutableList<Pair<String, String>> {
         val infos = mutableListOf(
             Pair(getString(R.string.device_device), Build.DEVICE),
             Pair(getString(R.string.device_manufacturer), Build.MANUFACTURER),

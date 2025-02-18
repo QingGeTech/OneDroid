@@ -23,7 +23,7 @@ class DeviceInfoScreenFragment @Inject constructor() : DeviceInfoBaseFragment() 
     }
 
     @SuppressLint("DefaultLocale")
-    private fun getScreenInfo(): List<Pair<String, String>> {
+    private fun getScreenInfo(): MutableList<Pair<String, String>> {
 
         val displayMetrics = DisplayMetrics()
         val windowManager =

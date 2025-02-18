@@ -20,7 +20,7 @@ import tech.qingge.androiddevtoolbox.util.CommonPermissionCallback
 
 abstract class DeviceInfoBaseFragment : BaseFragment<FragmentDeviceInfoBaseBinding>() {
 
-    private lateinit var cardDataList: List<CardData>
+    protected lateinit var cardDataList: List<CardData>
 
     override fun initViews() {
 
