@@ -17,6 +17,8 @@ class SpApiImpl @Inject constructor(private val appContext: Application) : SpApi
         private const val DARK_THEME_KEY = "isDarkTheme"
         private const val LAST_BOTTOM_ITEM_ID = "lastBottomItemId"
         private const val APP_FILTER_TYPE = "appFilterType"
+        private const val APP_SORT_TYPE = "appSortType"
+        private const val App_SORT_DESC = "isAppSortDesc"
     }
 
     override fun setThemeColor(themeColor: Int) {
@@ -59,6 +61,22 @@ class SpApiImpl @Inject constructor(private val appContext: Application) : SpApi
 
     override fun getAppFilterType(): Int {
         return getSp().getInt(APP_FILTER_TYPE, Constants.APP_FILTER_TYPE_USER)
+    }
+
+    override fun setAppSortType(type: String) {
+        getSp().edit().putString(APP_SORT_TYPE, type).apply()
+    }
+
+    override fun getAppSortType(): String {
+        return getSp().getString(APP_SORT_TYPE, Constants.APP_SORT_TYPE_APP_NAME)!!
+    }
+
+    override fun setAppSortDesc(isDesc: Boolean) {
+        getSp().edit().putBoolean(App_SORT_DESC, isDesc).apply()
+    }
+
+    override fun isAppSortDesc(): Boolean {
+        return getSp().getBoolean(App_SORT_DESC, false)
     }
 
 }

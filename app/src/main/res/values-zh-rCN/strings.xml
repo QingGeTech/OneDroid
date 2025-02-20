@@ -9,8 +9,8 @@
     <string name="app_order">排序</string>
     <string name="app_order_type">排序类型</string>
     <string name="all">全部</string>
-    <string name="system">系统</string>
-    <string name="user">用户</string>
+    <string name="system">系统应用</string>
+    <string name="user">用户应用</string>
     <string name="small_tools">工具</string>
     <string name="settings">设置</string>
     <string name="device">设备</string>
@@ -409,5 +409,11 @@
     <string name="satellite_baseband_cn0_dbhz">baseband cn0 dbhz</string>
     <string name="satellite_carrier_frequency_hz">carrier frequency hz</string>
     <string name="satellite_constellation_type">constellation type</string>
+    <string name="wifi_password">wifi密码</string>
+    <string name="sort_type">排序类型</string>
+    <string name="sort_type_app_name">名称</string>
+    <string name="sort_type_install_time">安装时间</string>
+    <string name="sort">排序</string>
+    <string name="app_filter">过滤</string>
 
 </resources>

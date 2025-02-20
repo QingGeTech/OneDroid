@@ -12,4 +12,7 @@ object Constants {
     const val APP_FILTER_TYPE_ALL = 0
     const val APP_FILTER_TYPE_SYSTEM = 1
     const val APP_FILTER_TYPE_USER = 2
+
+    const val APP_SORT_TYPE_APP_NAME = "appName"
+    const val APP_SORT_TYPE_INSTALL_TIME = "installTime"
 }

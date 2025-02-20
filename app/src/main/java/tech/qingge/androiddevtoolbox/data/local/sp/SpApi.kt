@@ -19,4 +19,10 @@ interface SpApi {
      */
     fun setAppFilterType(type: Int)
     fun getAppFilterType(): Int
+
+    fun setAppSortType(type: String)
+    fun getAppSortType(): String
+
+    fun setAppSortDesc(isDesc: Boolean)
+    fun isAppSortDesc(): Boolean
 }

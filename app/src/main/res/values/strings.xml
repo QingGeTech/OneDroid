@@ -9,7 +9,7 @@
     <string name="app_order">Order</string>
     <string name="app_order_type">Order Type</string>
     <string name="all">All</string>
-    <string name="system">System</string>
+    <string name="system">System app</string>
     <string name="user">User</string>
     <string name="small_tools">Tools</string>
     <string name="settings">Settings</string>
@@ -411,5 +411,11 @@
     <string name="satellite_baseband_cn0_dbhz">baseband cn0 dbhz</string>
     <string name="satellite_carrier_frequency_hz">carrier frequency hz</string>
     <string name="satellite_constellation_type">constellation type</string>
+    <string name="wifi_password">wifi password</string>
+    <string name="sort_type">sort type</string>
+    <string name="sort_type_app_name">app name</string>
+    <string name="sort_type_install_time">install time</string>
+    <string name="sort">sort</string>
+    <string name="app_filter">filter</string>
 
 </resources>

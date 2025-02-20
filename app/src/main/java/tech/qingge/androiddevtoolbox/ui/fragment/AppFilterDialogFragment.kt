@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.drawable.DrawableCompat
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
 import tech.qingge.androiddevtoolbox.Constants
 import tech.qingge.androiddevtoolbox.R
 import tech.qingge.androiddevtoolbox.data.local.sp.SpApi
 import tech.qingge.androiddevtoolbox.databinding.FragmentFilterAppBinding
 import tech.qingge.androiddevtoolbox.util.LogUtil
+import tech.qingge.androiddevtoolbox.util.ViewUtil
 import tech.qingge.androiddevtoolbox.util.reverse
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -25,7 +29,6 @@ class AppFilterDialogFragment @Inject constructor() : BottomSheetDialogFragment(
     var onFilter: (() -> Unit)? = null
 
 
-    //TODO:use bimap
     private val idTypeMap = hashMapOf(
         R.id.btnAll to Constants.APP_FILTER_TYPE_ALL,
         R.id.btnSystem to Constants.APP_FILTER_TYPE_SYSTEM,
@@ -33,6 +36,13 @@ class AppFilterDialogFragment @Inject constructor() : BottomSheetDialogFragment(
     )
 
     private val typeIdMap = idTypeMap.reverse()
+
+    private val sortIdTypeMap = hashMapOf(
+        R.id.btnSortTypeAppName to Constants.APP_SORT_TYPE_APP_NAME,
+        R.id.btnSortTypeInstallTime to Constants.APP_SORT_TYPE_INSTALL_TIME
+    )
+
+    private val sortTypeIdMap = sortIdTypeMap.reverse()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,7 +60,54 @@ class AppFilterDialogFragment @Inject constructor() : BottomSheetDialogFragment(
                 onFilter?.invoke()
             }
         }
+
+
+
+        binding.btnGroupSortType.check(sortTypeIdMap[spApi.getAppSortType()]!!)
+        updateArrowDrawable(sortTypeIdMap[spApi.getAppSortType()]!!, spApi.isAppSortDesc())
+
+//        binding.btnGroupSortType.addOnButtonCheckedListener { group, checkedId, isChecked ->
+//            LogUtil.d("listener:$group, $checkedId, $isChecked")
+//
+//        }
+
+        binding.btnSortTypeAppName.setOnClickListener {
+            if (spApi.getAppSortType() == Constants.APP_SORT_TYPE_APP_NAME) {
+                updateArrowDrawable(R.id.btnSortTypeAppName, spApi.isAppSortDesc().not())
+                spApi.setAppSortDesc(spApi.isAppSortDesc().not())
+            } else {
+                updateArrowDrawable(R.id.btnSortTypeAppName, spApi.isAppSortDesc())
+                binding.btnSortTypeInstallTime.setCompoundDrawables(null, null, null, null)
+                spApi.setAppSortType(Constants.APP_SORT_TYPE_APP_NAME)
+            }
+            onFilter?.invoke()
+        }
+
+        binding.btnSortTypeInstallTime.setOnClickListener {
+            if (spApi.getAppSortType() == Constants.APP_SORT_TYPE_INSTALL_TIME) {
+                updateArrowDrawable(R.id.btnSortTypeInstallTime, spApi.isAppSortDesc().not())
+                spApi.setAppSortDesc(spApi.isAppSortDesc().not())
+            } else {
+                updateArrowDrawable(R.id.btnSortTypeInstallTime, spApi.isAppSortDesc())
+                binding.btnSortTypeAppName.setCompoundDrawables(null, null, null, null)
+                spApi.setAppSortType(Constants.APP_SORT_TYPE_INSTALL_TIME)
+            }
+            onFilter?.invoke()
+        }
+
         return binding.root
+    }
+
+    private fun updateArrowDrawable(id: Int, isDesc: Boolean) {
+        val btn = binding.btnGroupSortType.findViewById<Button>(id)
+        val arrow =
+            if (isDesc) ResourcesCompat.getDrawable(resources, R.drawable.ic_arrow_down, null) else
+                ResourcesCompat.getDrawable(resources, R.drawable.ic_arrow_up, null)
+        DrawableCompat.setTint(
+            arrow!!,
+            ViewUtil.getColorByStyledAttr(requireContext(), R.attr.colorOnSurface)
+        )
+        btn.setCompoundDrawablesWithIntrinsicBounds(null, null, arrow, null)
     }
 
 }

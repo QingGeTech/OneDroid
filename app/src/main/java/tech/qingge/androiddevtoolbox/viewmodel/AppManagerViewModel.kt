@@ -39,6 +39,21 @@ class AppManagerViewModel @Inject constructor(
                 allPkgs =
                     allPkgs.filter { packageInfo -> packageInfo.applicationInfo!!.flags and ApplicationInfo.FLAG_SYSTEM == 0 }
         }
+        when (spApi.getAppSortType()) {
+            Constants.APP_SORT_TYPE_APP_NAME ->
+                allPkgs = allPkgs.sortedBy { packageInfo ->
+                    PackageManagerUtil.getAppName(
+                        packageInfo,
+                        appContext
+                    )
+                }
+
+            Constants.APP_SORT_TYPE_INSTALL_TIME ->
+                allPkgs = allPkgs.sortedBy { packageInfo -> packageInfo.lastUpdateTime }
+        }
+        if (spApi.isAppSortDesc()) {
+            allPkgs = allPkgs.reversed()
+        }
         _appList.value = allPkgs
     }
 
@@ -47,7 +62,7 @@ class AppManagerViewModel @Inject constructor(
     }
 
     fun filterAppList(keyword: String) {
-        if (searchAppList == null){
+        if (searchAppList == null) {
             return
         }
         if (TextUtils.isEmpty(keyword)) {
