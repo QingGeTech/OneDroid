@@ -27,7 +27,7 @@
     <string name="permission_not_granted">Permission not granted, go to settings</string>
     <string name="floating_button_enable">Floating Button Enabled</string>
     <string name="open_accessibility_service">please open accessibility service</string>
-    <string name="save">save to file system</string>
+    <string name="save">save apk</string>
     <string name="save_success">Save Success</string>
     <string name="start">Start</string>
     <string name="end">End</string>
@@ -97,7 +97,7 @@
     <string name="provider">Provider</string>
     <string name="launch">launch app</string>
     <string name="open_in_settings">open in settings</string>
-    <string name="share">share</string>
+    <string name="share">share apk</string>
     <string name="uninstall">uninstall</string>
     <string name="launch_fail">launch fail</string>
     <string name="copy">copy</string>
@@ -417,5 +417,12 @@
     <string name="sort_type_install_time">install time</string>
     <string name="sort">sort</string>
     <string name="app_filter">filter</string>
+    <string name="open_drawer">open drawer</string>
+    <string name="decompile">decompile</string>
+    <string name="execute_sql">execute sql</string>
+    <string name="input_sql">input sql</string>
+    <string name="execute">execute</string>
+    <string name="execute_success">execute success</string>
+    <string name="execute_fail">execute fail</string>
 
 </resources>

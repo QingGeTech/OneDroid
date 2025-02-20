@@ -198,8 +198,8 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding>() {
             R.id.uninstall -> uninstallApp()
             R.id.edit_sp -> showFileExplorerDialogFragment("/data/data/${packageInfo.packageName}/shared_prefs")
             R.id.edit_db -> showFileExplorerDialogFragment("/data/data/${packageInfo.packageName}/databases")
-            R.id.explore_internal_files -> showFileExplorerDialogFragment("/data/data/${packageInfo.packageName}")
-            R.id.explore_external_files -> showFileExplorerDialogFragment("/sdcard/Android/data/${packageInfo.packageName}")
+//            R.id.explore_internal_files -> showFileExplorerDialogFragment("/data/data/${packageInfo.packageName}")
+//            R.id.explore_external_files -> showFileExplorerDialogFragment("/sdcard/Android/data/${packageInfo.packageName}")
         }
         binding.drawerLayout.closeDrawers()
         return true
@@ -238,12 +238,15 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding>() {
         binding.toolbar.title = PackageManagerUtil.getAppName(packageInfo, this)
 //        binding.toolbar.subtitle = packageInfo.packageName
         binding.toolbar.setNavigationOnClickListener {
-            binding.drawerLayout.openDrawer(binding.navigationView)
+//            binding.drawerLayout.openDrawer(binding.navigationView)
+            finish()
         }
         binding.toolbar.setOnMenuItemClickListener {
-            return@setOnMenuItemClickListener onClickMenuItem(
-                it
-            )
+            binding.drawerLayout.openDrawer(binding.navigationView)
+            return@setOnMenuItemClickListener true
+//            return@setOnMenuItemClickListener onClickMenuItem(
+//                it
+//            )
         }
 
     }

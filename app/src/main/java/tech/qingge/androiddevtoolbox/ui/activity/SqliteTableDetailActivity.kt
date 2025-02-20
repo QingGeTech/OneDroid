@@ -17,14 +17,20 @@ import tech.qingge.androiddevtoolbox.base.BaseActivity
 import tech.qingge.androiddevtoolbox.base.SimpleRvAdapter
 import tech.qingge.androiddevtoolbox.databinding.ActivitySqliteTableDetailBinding
 import tech.qingge.androiddevtoolbox.databinding.ItemDbCellBinding
+import tech.qingge.androiddevtoolbox.ui.dialog.Dialogs
 import tech.qingge.androiddevtoolbox.util.ClipboardUtil
+import tech.qingge.androiddevtoolbox.util.LogUtil
+import tech.qingge.androiddevtoolbox.util.RootUtil
+import java.io.File
 
 
 //TODO：添加更多数据库操作
 @AndroidEntryPoint
 class SqliteTableDetailActivity : BaseActivity<ActivitySqliteTableDetailBinding>() {
 
-    private lateinit var filePath: String
+    private lateinit var tempFilePath: String
+    private lateinit var originalFilePath: String
+
     private lateinit var tableName: String
 
     //    private lateinit var adapter: TableDetailRvAdapter
@@ -44,7 +50,8 @@ class SqliteTableDetailActivity : BaseActivity<ActivitySqliteTableDetailBinding>
 
 
     private fun initData() {
-        filePath = intent.getStringExtra("filePath")!!
+        tempFilePath = intent.getStringExtra("tempFilePath")!!
+        originalFilePath = intent.getStringExtra("originalFilePath")!!
         tableName = intent.getStringExtra("tableName")!!
     }
 
@@ -59,7 +66,7 @@ class SqliteTableDetailActivity : BaseActivity<ActivitySqliteTableDetailBinding>
     private fun initRv() {
         val columnNames: MutableList<String> = mutableListOf()
         val rows: MutableList<MutableList<String>> = mutableListOf()
-        SQLiteDatabase.openDatabase(filePath, null, SQLiteDatabase.OPEN_READWRITE).use { db ->
+        SQLiteDatabase.openDatabase(tempFilePath, null, SQLiteDatabase.OPEN_READWRITE).use { db ->
             db.rawQuery("PRAGMA table_info($tableName)", null).use { cursor ->
                 if (cursor.moveToFirst()) {
                     do {
@@ -148,6 +155,40 @@ class SqliteTableDetailActivity : BaseActivity<ActivitySqliteTableDetailBinding>
 //        binding.toolbar.title = filePath.substring(filePath.lastIndexOf("/") + 1)
         binding.toolbar.title = tableName
         binding.toolbar.setNavigationOnClickListener { finish() }
+
+        binding.toolbar.setOnMenuItemClickListener {
+            Dialogs.showInputDialog(
+                this,
+                getString(R.string.execute_sql),
+                getString(R.string.input_sql),
+                getString(R.string.execute)
+            ) { sql ->
+                SQLiteDatabase.openDatabase(tempFilePath, null, SQLiteDatabase.OPEN_READWRITE)
+                    .use { db ->
+                        try {
+                            db.execSQL(sql)
+                            Dialogs.showMessageTips(this, getString(R.string.execute_success))
+
+                            RootUtil.getRemoteFs(this) { remoteFS ->
+                                val extendedFile = remoteFS.getFile(originalFilePath)
+                                val tempFile = File(tempFilePath)
+                                tempFile.inputStream().copyTo(extendedFile.newOutputStream())
+                            }
+
+                            initRv()
+
+                        } catch (e: Exception) {
+                            LogUtil.e("execute fail", e)
+                            Dialogs.showMessageTips(
+                                this,
+                                getString(R.string.execute_fail) + "\n" + e.message
+                            )
+                        }
+                    }
+            }
+            true
+        }
+
     }
 
 

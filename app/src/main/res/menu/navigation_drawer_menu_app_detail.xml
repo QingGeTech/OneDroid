@@ -22,53 +22,72 @@
             android:enabled="true"
             android:icon="@drawable/ic_launch"
             android:title="@string/launch"
-            app:showAsAction="ifRoom" />
+            app:showAsAction="always"
+            />
 
         <item
             android:id="@+id/save"
             android:enabled="true"
             android:icon="@drawable/ic_save"
             android:title="@string/save"
-            app:showAsAction="ifRoom" />
+            app:showAsAction="always" />
 
         <item
             android:id="@+id/share"
             android:enabled="true"
             android:icon="@drawable/ic_share"
             android:title="@string/share"
-            app:showAsAction="ifRoom" />
+            app:showAsAction="always" />
 
         <item
             android:id="@+id/uninstall"
             android:enabled="true"
             android:icon="@drawable/ic_uninstall"
             android:title="@string/uninstall"
-            app:showAsAction="ifRoom" />
+            app:showAsAction="always" />
+
+        <item
+            android:id="@+id/open_in_settings"
+            android:enabled="true"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/open_in_settings"
+            app:showAsAction="always" />
+
     </group>
-    <group
-        android:id="@+id/file_manage">
+    <group android:id="@+id/file_manage">
         <item
             android:id="@+id/edit_sp"
             android:enabled="true"
             android:title="@string/edit_sp"
-            app:showAsAction="ifRoom" />
+            app:showAsAction="always"
+            android:icon="@drawable/ic_sp"/>
 
         <item
             android:id="@+id/edit_db"
             android:enabled="true"
             android:title="@string/edit_db"
-            app:showAsAction="ifRoom" />
+            app:showAsAction="always"
+            android:icon="@drawable/ic_database"/>
 
-        <item
-            android:id="@+id/explore_internal_files"
-            android:enabled="true"
-            android:title="@string/explore_internal_files"
-            app:showAsAction="ifRoom" />
+        <!--        <item-->
+        <!--            android:id="@+id/explore_internal_files"-->
+        <!--            android:enabled="true"-->
+        <!--            android:title="@string/explore_internal_files"-->
+        <!--            app:showAsAction="ifRoom" />-->
 
+        <!--        <item-->
+        <!--            android:id="@+id/explore_external_files"-->
+        <!--            android:enabled="true"-->
+        <!--            android:title="@string/explore_external_files"-->
+        <!--            app:showAsAction="ifRoom" />-->
+    </group>
+
+    <group android:id="@+id/decompile_group">
         <item
-            android:id="@+id/explore_external_files"
+            android:id="@+id/decompile"
             android:enabled="true"
-            android:title="@string/explore_external_files"
-            app:showAsAction="ifRoom" />
+            android:title="@string/decompile"
+            app:showAsAction="always"
+            android:icon="@drawable/ic_decompile"/>
     </group>
 </menu>

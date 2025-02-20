@@ -16,7 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:navigationIcon="@drawable/ic_drawer_menu_24px"
+            app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
             app:menu="@menu/menu_app_detail"/>
 
         <com.google.android.material.tabs.TabLayout
@@ -42,7 +42,7 @@
         android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
+        android:layout_gravity="end"
         app:itemTextAppearanceActiveBoldEnabled="true"
         app:menu="@menu/navigation_drawer_menu_app_detail" />
 </androidx.drawerlayout.widget.DrawerLayout>

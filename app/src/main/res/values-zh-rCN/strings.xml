@@ -27,7 +27,7 @@
     <string name="permission_not_granted">未授权,在设置中授权</string>
     <string name="floating_button_enable">显示悬浮按钮</string>
     <string name="open_accessibility_service">请开启无障碍服务</string>
-    <string name="save">保存到文件</string>
+    <string name="save">保存Apk</string>
     <string name="save_success">保存成功</string>
     <string name="start">开始</string>
     <string name="end">结束</string>
@@ -97,7 +97,7 @@
     <string name="provider">Provider</string>
     <string name="launch">启动应用</string>
     <string name="open_in_settings">在系统设置中打开</string>
-    <string name="share">分享</string>
+    <string name="share">分享Apk</string>
     <string name="uninstall">卸载</string>
     <string name="launch_fail">启动失败</string>
     <string name="copy">复制</string>
@@ -415,5 +415,12 @@
     <string name="sort_type_install_time">安装时间</string>
     <string name="sort">排序</string>
     <string name="app_filter">过滤</string>
+    <string name="open_drawer">open drawer</string>
+    <string name="decompile">反编译</string>
+    <string name="execute_sql">执行 sql</string>
+    <string name="input_sql">输入 sql</string>
+    <string name="execute">执行</string>
+    <string name="execute_success">执行成功</string>
+    <string name="execute_fail">执行失败</string>
 
 </resources>
