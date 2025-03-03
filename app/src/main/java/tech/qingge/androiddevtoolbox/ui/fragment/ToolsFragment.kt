@@ -7,6 +7,7 @@ import android.os.IBinder
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.DrawableRes
+import androidx.lifecycle.lifecycleScope
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
 import dagger.hilt.android.AndroidEntryPoint
@@ -168,7 +169,7 @@ class ToolsFragment @Inject constructor() : BaseFragment<FragmentToolsBinding>()
 
     private fun onClickTool(position: Int) {
         when (position) {
-            4 -> WifiPasswordViewer.run(requireActivity())
+            4 -> WifiPasswordViewer.run(requireActivity(), lifecycleScope, childFragmentManager)
             5 -> chooseFile()
         }
     }

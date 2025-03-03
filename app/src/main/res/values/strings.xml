@@ -433,5 +433,6 @@
     <string name="choose_apk_file">choose apk file</string>
     <string name="tips">tips</string>
     <string name="apk_path">apk path</string>
+    <string name="fail">fail</string>
 
 </resources>

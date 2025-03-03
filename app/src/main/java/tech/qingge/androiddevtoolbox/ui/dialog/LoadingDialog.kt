@@ -4,6 +4,11 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.WindowManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import tech.qingge.androiddevtoolbox.R
 
 class LoadingDialog(context: Context) : Dialog(context) {
@@ -44,6 +49,35 @@ class LoadingDialog(context: Context) : Dialog(context) {
             }
 
             return dialog!!
+        }
+
+        fun <T> showWithTask(
+            context: Context,
+            scope: CoroutineScope,
+            task: () -> T,
+            cancelable: Boolean? = false,
+            onCancel: (() -> Unit)? = null,
+            onSuccess: ((T) -> Unit)? = null,
+            onFail: (() -> Unit)? = null
+        ) {
+            scope.launch {
+                show(context, cancelable){
+                    cancel()
+                    onCancel?.invoke()
+                }
+                runCatching {
+                    withContext(context = Dispatchers.IO) {
+                        task()
+                    }
+                }.onSuccess {
+                    dismiss()
+                    onSuccess?.invoke(it)
+                }.onFailure {
+                    dismiss()
+                    onFail?.invoke()
+                }
+
+            }
         }
 
         fun dismiss() {
