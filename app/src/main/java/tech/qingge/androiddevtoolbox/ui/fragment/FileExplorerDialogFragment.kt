@@ -8,6 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.topjohnwu.superuser.nio.ExtendedFile
+import dagger.hilt.android.AndroidEntryPoint
 import tech.qingge.androiddevtoolbox.R
 import tech.qingge.androiddevtoolbox.base.SimpleRvAdapter
 import tech.qingge.androiddevtoolbox.data.local.sp.SpApi
@@ -16,13 +21,9 @@ import tech.qingge.androiddevtoolbox.databinding.ItemFileBinding
 import tech.qingge.androiddevtoolbox.databinding.ItemPathBinding
 import tech.qingge.androiddevtoolbox.ui.activity.SimpleTextEditorActivity
 import tech.qingge.androiddevtoolbox.ui.activity.SqliteInspectorActivity
+import tech.qingge.androiddevtoolbox.util.FileUtil
 import tech.qingge.androiddevtoolbox.util.RootUtil
 import tech.qingge.androiddevtoolbox.util.ViewUtil
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.topjohnwu.superuser.nio.ExtendedFile
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 //TODO: 下滑后，pathRv固定在顶部
@@ -83,7 +84,7 @@ class FileExplorerDialogFragment @Inject constructor() : BottomSheetDialogFragme
                     } else {
                         itemBinding.ivFileType.setImageResource(R.drawable.ic_regular_file)
                         itemBinding.root.setOnClickListener {
-                            if (isTextFile(extendedFile)) {
+                            if (FileUtil.isTextFile(extendedFile.path)) {
                                 val intent =
                                     Intent(requireContext(), SimpleTextEditorActivity::class.java)
                                 intent.putExtra("filePath", extendedFile.absolutePath)
@@ -121,38 +122,7 @@ class FileExplorerDialogFragment @Inject constructor() : BottomSheetDialogFragme
         }
     }
 
-    private fun isTextFile(extendedFile: ExtendedFile): Boolean {
-        val ext = extendedFile.name.substring(extendedFile.name.lastIndexOf(".") + 1)
-        val extList = setOf(
-            "txt",
-            "java",
-            "kt",
-            "kts",
-            "xml",
-            "js",
-            "json",
-            "md",
-            "gradle",
-            "properties",
-            "yml",
-            "yaml",
-            "sh",
-            "c",
-            "cpp",
-            "h",
-            "hpp",
-            "go",
-            "ts",
-            "css",
-            "html",
-            "kt",
-            "kts",
-            "py",
-            "sh",
-            "c",
-        )
-        return extList.contains(ext)
-    }
+
 
     private fun getCurrentFullPath(): String {
         if (pathList.size == 1) {
@@ -171,7 +141,7 @@ class FileExplorerDialogFragment @Inject constructor() : BottomSheetDialogFragme
                 itemBinding.root.setOnClickListener {
                     val removeCount = pathList.size - index - 1
                     for (i in 1..removeCount) {
-                        pathList.removeLast()
+                        pathList.removeAt(pathList.lastIndex)
                     }
                     updatePathRv()
                     updateFileRv()

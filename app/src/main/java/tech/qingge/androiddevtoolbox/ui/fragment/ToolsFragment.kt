@@ -4,20 +4,27 @@ import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.DrawableRes
+import com.hjq.permissions.Permission
+import com.hjq.permissions.XXPermissions
+import dagger.hilt.android.AndroidEntryPoint
 import tech.qingge.androiddevtoolbox.R
 import tech.qingge.androiddevtoolbox.base.BaseFragment
 import tech.qingge.androiddevtoolbox.base.SimpleRvAdapter
 import tech.qingge.androiddevtoolbox.databinding.FragmentToolsBinding
 import tech.qingge.androiddevtoolbox.databinding.ItemSmallToolsBinding
 import tech.qingge.androiddevtoolbox.service.FloatingWindowService
+import tech.qingge.androiddevtoolbox.tool.WifiPasswordViewer
+import tech.qingge.androiddevtoolbox.ui.activity.DecompileActivity
+import tech.qingge.androiddevtoolbox.ui.dialog.Dialogs
 import tech.qingge.androiddevtoolbox.util.CommonPermissionCallback
+import tech.qingge.androiddevtoolbox.util.FileUtil
 import tech.qingge.androiddevtoolbox.util.LogUtil
 import tech.qingge.androiddevtoolbox.util.ServiceUtil
 import tech.qingge.androiddevtoolbox.util.ViewUtil
-import com.hjq.permissions.Permission
-import com.hjq.permissions.XXPermissions
-import dagger.hilt.android.AndroidEntryPoint
+import java.io.File
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -32,9 +39,26 @@ class ToolsFragment @Inject constructor() : BaseFragment<FragmentToolsBinding>()
     private lateinit var toolItems: List<ToolItem>
     private lateinit var adapter: SimpleRvAdapter<ToolItem, ItemSmallToolsBinding>
 
-
     private var floatingWindowService: FloatingWindowService? = null
     private var serviceConnection: ServiceConnection? = null
+
+    private val filePickerLauncher =
+        registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+            uri?.let {
+                val fileName = FileUtil.getFileNameFromUri(requireContext(), it) ?: "tmp.apk"
+                val tmpPath = File(requireContext().cacheDir, fileName).absolutePath
+                FileUtil.copyUri(
+                    requireContext(),
+                    it,
+                    tmpPath
+                )
+                val intent = Intent(requireContext(), DecompileActivity::class.java)
+                intent.putExtra("apkPath", tmpPath)
+                startActivity(intent)
+            } ?: run {
+                Dialogs.showMessageTips(requireContext(), getString(R.string.not_select_file))
+            }
+        }
 
     override fun initViews() {
         initToolItems()
@@ -99,8 +123,17 @@ class ToolsFragment @Inject constructor() : BaseFragment<FragmentToolsBinding>()
                 R.drawable.ic_text_ocr,
                 getString(R.string.text_ocr),
                 false
+            ),
+            ToolItem(
+                R.drawable.ic_wifi_password,
+                getString(R.string.wifi_password),
+                false
+            ),
+            ToolItem(
+                R.drawable.ic_decompile,
+                getString(R.string.decompile),
+                false
             )
-            //TODO: 二维码扫描
         )
         adapter =
             SimpleRvAdapter(toolItems, ItemSmallToolsBinding::inflate) { bind, item, position ->
@@ -114,19 +147,35 @@ class ToolsFragment @Inject constructor() : BaseFragment<FragmentToolsBinding>()
                     )
                 }
                 bind.root.setOnClickListener { _ ->
-                    if (item.enabled) {
-                        onDisableItem(item, position)
-                    } else {
-                        if (floatingWindowService != null) {
-                            val enabledPosition = floatingWindowService!!.position
-                            onDisableItem(toolItems[enabledPosition], enabledPosition)
+                    if (position <= 3) {
+                        if (item.enabled) {
+                            onDisableItem(item, position)
+                        } else {
+                            if (floatingWindowService != null) {
+                                val enabledPosition = floatingWindowService!!.position
+                                onDisableItem(toolItems[enabledPosition], enabledPosition)
+                            }
+                            onEnableItem(item, position)
                         }
-                        onEnableItem(item, position)
+                    } else {
+                        onClickTool(position)
                     }
                 }
             }
 
         binding.rv.adapter = adapter
+    }
+
+    private fun onClickTool(position: Int) {
+        when (position) {
+            4 -> WifiPasswordViewer.run(requireActivity())
+            5 -> chooseFile()
+        }
+    }
+
+    private fun chooseFile() {
+        Toast.makeText(requireContext(), R.string.choose_apk_file, Toast.LENGTH_LONG).show()
+        filePickerLauncher.launch(arrayOf("application/vnd.android.package-archive"))
     }
 
     private fun onEnableItem(item: ToolItem, position: Int) {

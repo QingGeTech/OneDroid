@@ -200,9 +200,16 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding>() {
             R.id.edit_db -> showFileExplorerDialogFragment("/data/data/${packageInfo.packageName}/databases")
 //            R.id.explore_internal_files -> showFileExplorerDialogFragment("/data/data/${packageInfo.packageName}")
 //            R.id.explore_external_files -> showFileExplorerDialogFragment("/sdcard/Android/data/${packageInfo.packageName}")
+            R.id.decompile -> openDecompileActivity()
         }
         binding.drawerLayout.closeDrawers()
         return true
+    }
+
+    private fun openDecompileActivity() {
+        val intent = Intent(this, DecompileActivity::class.java)
+        intent.putExtra("apkPath", packageInfo.applicationInfo!!.sourceDir)
+        startActivity(intent)
     }
 
     private fun showFileExplorerDialogFragment(path: String) {

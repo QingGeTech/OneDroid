@@ -424,5 +424,14 @@
     <string name="execute">execute</string>
     <string name="execute_success">execute success</string>
     <string name="execute_fail">execute fail</string>
+    <string name="close">close</string>
+    <string name="failed_to_show">failed to show</string>
+    <string name="save_fail">save fail</string>
+    <string name="save_to_file">save</string>
+    <string name="not_select_file">not select file</string>
+    <string name="choose_file">choose file</string>
+    <string name="choose_apk_file">choose apk file</string>
+    <string name="tips">tips</string>
+    <string name="apk_path">apk path</string>
 
 </resources>

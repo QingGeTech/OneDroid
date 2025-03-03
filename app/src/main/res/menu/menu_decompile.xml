@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/tip"
+        android:enabled="true"
+        android:icon="@drawable/ic_tips"
+        android:title="@string/tips"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/close"
+        android:enabled="true"
+        android:icon="@drawable/ic_close"
+        android:title="@string/close"
+        app:showAsAction="always" />
+
+
+</menu>

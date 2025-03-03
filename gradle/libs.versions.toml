@@ -27,6 +27,8 @@ coroutines = "1.8.1"
 compose = "1.6.8"
 zoomlayout = "1.9.0"
 flowBinding = "1.2.0"
+guava = "33.0.0-jre"
+smali = "2.5.2"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -61,6 +63,9 @@ compose-foundation = { group = "androidx.compose.foundation", name = "foundation
 compose-material = { group = "androidx.compose.material", name = "material", version.ref = "compose" }
 zoomlayout = {group = "com.otaliastudios", name = "zoomlayout", version.ref = "zoomlayout"}
 flowBinding = { group = "io.github.reactivecircus.flowbinding", name = "flowbinding-android", version.ref = "flowBinding" }
+guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
+baksmali = {group = "org.smali", name = "baksmali", version.ref = "smali"}
+dexlib2 = {group = "org.smali", name = "dexlib2", version.ref = "smali"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

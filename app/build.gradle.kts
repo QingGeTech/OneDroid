@@ -71,7 +71,11 @@ dependencies {
 //    coreLibraryDesugaring(libs.desugar.jdk.libs)
 //    implementation(libs.dbinspector)
     implementation(project(":TextEditor"))
+    implementation(project(":axml"))
     kapt(libs.hiltCompiler)
+
+    implementation(libs.baksmali)
+    implementation(libs.dexlib2)
 
 //    testImplementation(libs.junit)
 //    androidTestImplementation(libs.androidx.test.ext.junit)

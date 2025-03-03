@@ -422,5 +422,14 @@
     <string name="execute">执行</string>
     <string name="execute_success">执行成功</string>
     <string name="execute_fail">执行失败</string>
+    <string name="close">关闭</string>
+    <string name="failed_to_show">显示失败</string>
+    <string name="save_fail">保存失败</string>
+    <string name="save_to_file">保存</string>
+    <string name="not_select_file">未选择文件</string>
+    <string name="choose_file">选择文件</string>
+    <string name="choose_apk_file">选择apk文件</string>
+    <string name="tips">提示</string>
+    <string name="apk_path">apk路径</string>
 
 </resources>
