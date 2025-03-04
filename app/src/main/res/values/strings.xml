@@ -434,5 +434,8 @@
     <string name="tips">tips</string>
     <string name="apk_path">apk path</string>
     <string name="fail">fail</string>
+    <string name="layout_inspect">layout inspect</string>
+    <string name="terminal">terminal</string>
+    <string name="logcat">logcat</string>
 
 </resources>

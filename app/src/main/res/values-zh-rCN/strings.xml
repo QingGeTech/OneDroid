@@ -432,5 +432,8 @@
     <string name="tips">提示</string>
     <string name="apk_path">apk路径</string>
     <string name="fail">失败</string>
+    <string name="layout_inspect">界面分析</string>
+    <string name="terminal">终端</string>
+    <string name="logcat">logcat</string>
 
 </resources>

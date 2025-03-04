@@ -134,7 +134,22 @@ class ToolsFragment @Inject constructor() : BaseFragment<FragmentToolsBinding>()
                 R.drawable.ic_decompile,
                 getString(R.string.decompile),
                 false
-            )
+            ),
+//            ToolItem(
+//                R.drawable.ic_layout_inspect,
+//                getString(R.string.layout_inspect),
+//                false
+//            ),
+//            ToolItem(
+//                R.drawable.ic_logcat,
+//                getString(R.string.logcat),
+//                false
+//            ),
+//            ToolItem(
+//                R.drawable.ic_terminal,
+//                getString(R.string.terminal),
+//                false
+//            )
         )
         adapter =
             SimpleRvAdapter(toolItems, ItemSmallToolsBinding::inflate) { bind, item, position ->
@@ -171,6 +186,9 @@ class ToolsFragment @Inject constructor() : BaseFragment<FragmentToolsBinding>()
         when (position) {
             4 -> WifiPasswordViewer.run(requireActivity(), lifecycleScope, childFragmentManager)
             5 -> chooseFile()
+            6 -> {}
+            7 -> {}
+            8 -> {}
         }
     }
 
