@@ -8,6 +8,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -46,8 +47,15 @@ object AppModule {
             level = HttpLoggingInterceptor.Level.BODY
         }
 
+        // 获取服务器公钥sha256base64
+        // openssl x509 -in cert.pem -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
+        val certificatePinner = CertificatePinner.Builder()
+            .add("api.qingge.tech", "sha256/TrOw79a2NOG6kFuw4+7XX0Xity0o6IN12tGE83+Adxw=")
+            .build()
+
         return OkHttpClient.Builder().addInterceptor(loggingInterceptor)
             .connectTimeout(10, TimeUnit.SECONDS).readTimeout(10, TimeUnit.SECONDS)
+            .certificatePinner(certificatePinner)
             .writeTimeout(10, TimeUnit.SECONDS).callTimeout(10, TimeUnit.SECONDS).build()
     }
 
