@@ -1,30 +1,29 @@
 [versions]
-agp = "8.4.2"
+agp = "8.9.0"
 #desugar_jdk_libs = "2.0.4"
-kotlin = "1.9.23"
-core-ktx = "1.13.1"
+kotlin = "2.1.10"
+core-ktx = "1.15.0"
 junit = "4.13.2"
-androidx-test-ext-junit = "1.2.0"
-espresso-core = "3.6.0"
+androidx-test-ext-junit = "1.2.1"
+espresso-core = "3.6.1"
 appcompat = "1.7.0"
-material = "1.13.0-alpha03"
-constraintlayout = "2.1.4"
-hilt = "2.51"
-hiltCompiler = "2.51"
-fragmentKtx = "1.8.0"
-xxPermission = "18.63"
+material = "1.13.0-alpha11"
+constraintlayout = "2.2.1"
+hilt = "2.55"
+fragmentKtx = "1.8.6"
+xxPermission = "20.0"
 glide = "4.16.0"
-activity = "1.9.0"
-mlkit = "16.0.0"
+activity = "1.10.1"
+mlkit = "16.0.1"
 photoView = "2.3.0"
-opencv = "4.9.0"
-libsu = "5.3.0"
+opencv = "4.11.0"
+libsu = "6.0.0"
 #kodeEditor = "4.0.1"
 ##kodeHighlighter = "4.0.3"
 #kodeHighlighter = "v3.0.0"
 #dbinspector = "5.4.9"
-coroutines = "1.8.1"
-compose = "1.6.8"
+coroutines = "1.10.1"
+compose = "1.7.8"
 zoomlayout = "1.9.0"
 flowBinding = "1.2.0"
 guava = "33.0.0-jre"
@@ -41,7 +40,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 fragmentKtx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
 hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
-hiltCompiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hiltCompiler" }
+hiltCompiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 xxPermission = { group = "com.github.getActivity", name = "XXPermissions", version.ref = "xxPermission" }
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
