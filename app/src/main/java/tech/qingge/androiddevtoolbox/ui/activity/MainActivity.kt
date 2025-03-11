@@ -1,14 +1,20 @@
 package tech.qingge.androiddevtoolbox.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import tech.qingge.androiddevtoolbox.BuildConfig
 import tech.qingge.androiddevtoolbox.R
 import tech.qingge.androiddevtoolbox.base.BaseActivity
 import tech.qingge.androiddevtoolbox.data.local.sp.SpApi
+import tech.qingge.androiddevtoolbox.data.net.ApiService
+import tech.qingge.androiddevtoolbox.data.net.CheckUpdate
 import tech.qingge.androiddevtoolbox.databinding.ActivityMainBinding
 import tech.qingge.androiddevtoolbox.ui.fragment.AppManagerFragment
 import tech.qingge.androiddevtoolbox.ui.fragment.DeviceInfoFragment
@@ -36,6 +42,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     @Inject
     lateinit var settingsFragment: SettingsFragment
 
+    @Inject
+    lateinit var apiService: ApiService
+
     private val fragmentTags = listOf("AppManager", "DeviceInfo", "SmallTools", "Settings")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +55,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
         binding.bnv.selectedItemId = spApi.getLastBottomItemId()
         onBackPressedDispatcher.addCallback(DoublePressBackExit(this))
+
+        checkUpdate()
+
+    }
+
+    private fun checkUpdate() {
+        //TODO: 放在Service
+        lifecycleScope.launch {
+            Log.d("Thread", "Thread: ${Thread.currentThread().name}")
+            val commonResp =
+                apiService.checkUpdate(CheckUpdate.Body(BuildConfig.VERSION_NAME))
+        }
     }
 
     override fun updatePadding() {

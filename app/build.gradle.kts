@@ -27,6 +27,10 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -76,6 +80,11 @@ dependencies {
 
     implementation(libs.baksmali)
     implementation(libs.dexlib2)
+
+    implementation(libs.okhttp)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 
 //    testImplementation(libs.junit)
 //    androidTestImplementation(libs.androidx.test.ext.junit)

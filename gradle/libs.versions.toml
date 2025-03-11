@@ -28,6 +28,8 @@ zoomlayout = "1.9.0"
 flowBinding = "1.2.0"
 guava = "33.0.0-jre"
 smali = "2.5.2"
+okhttp = "4.12.0"
+retrofit = "2.11.0"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -60,11 +62,15 @@ compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "compos
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "compose" }
 compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "compose" }
 compose-material = { group = "androidx.compose.material", name = "material", version.ref = "compose" }
-zoomlayout = {group = "com.otaliastudios", name = "zoomlayout", version.ref = "zoomlayout"}
+zoomlayout = { group = "com.otaliastudios", name = "zoomlayout", version.ref = "zoomlayout" }
 flowBinding = { group = "io.github.reactivecircus.flowbinding", name = "flowbinding-android", version.ref = "flowBinding" }
 guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
-baksmali = {group = "org.smali", name = "baksmali", version.ref = "smali"}
-dexlib2 = {group = "org.smali", name = "dexlib2", version.ref = "smali"}
+baksmali = { group = "org.smali", name = "baksmali", version.ref = "smali" }
+dexlib2 = { group = "org.smali", name = "dexlib2", version.ref = "smali" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
