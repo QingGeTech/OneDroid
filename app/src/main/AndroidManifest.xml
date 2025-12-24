@@ -43,6 +43,11 @@
             android:exported="false"
             android:launchMode="singleInstance" />
         <activity
+            android:name=".ui.activity.LayoutInspectActivity"
+            android:autoRemoveFromRecents="true"
+            android:exported="false"
+            android:launchMode="singleInstance" />
+        <activity
             android:name=".ui.activity.ScreenRecordResultActivity"
             android:autoRemoveFromRecents="true"
             android:exported="false"

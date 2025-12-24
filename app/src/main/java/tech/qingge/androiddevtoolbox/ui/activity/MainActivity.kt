@@ -56,7 +56,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         binding.bnv.selectedItemId = spApi.getLastBottomItemId()
         onBackPressedDispatcher.addCallback(DoublePressBackExit(this))
 
-        checkUpdate()
+//        checkUpdate()
 
     }
 

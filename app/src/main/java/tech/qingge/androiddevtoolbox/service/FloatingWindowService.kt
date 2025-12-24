@@ -26,6 +26,7 @@ import tech.qingge.androiddevtoolbox.util.DeviceUtil
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.color.DynamicColorsOptions
 import dagger.hilt.android.AndroidEntryPoint
+import tech.qingge.androiddevtoolbox.tool.LayoutInspect
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -34,8 +35,11 @@ class FloatingWindowService : BaseForegroundService() {
     @Inject
     lateinit var windowManager: WindowManager
 
+//    @Inject
+//    lateinit var scrollScreenshot: ScrollScreenshot
+
     @Inject
-    lateinit var scrollScreenshot: ScrollScreenshot
+    lateinit var layoutInspect: LayoutInspect
 
     @Inject
     lateinit var screenRecord: ScreenRecord
@@ -87,7 +91,8 @@ class FloatingWindowService : BaseForegroundService() {
     override fun onCreate() {
         super.onCreate()
         tools = hashMapOf(
-            0 to scrollScreenshot,
+//            0 to scrollScreenshot,
+            0 to layoutInspect,
             1 to screenRecord,
             2 to screenPickColor,
             3 to screenPickText

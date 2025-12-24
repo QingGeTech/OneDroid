@@ -8,6 +8,8 @@ import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.fragment.app.viewModels
 import androidx.transition.Transition
 import androidx.transition.TransitionManager
+import com.google.android.material.transition.MaterialSharedAxis
+import dagger.hilt.android.AndroidEntryPoint
 import tech.qingge.androiddevtoolbox.R
 import tech.qingge.androiddevtoolbox.base.BaseFragment
 import tech.qingge.androiddevtoolbox.base.SimpleRvAdapter
@@ -19,8 +21,6 @@ import tech.qingge.androiddevtoolbox.util.LogUtil
 import tech.qingge.androiddevtoolbox.util.PackageManagerUtil
 import tech.qingge.androiddevtoolbox.util.SoftKeyboardUtil
 import tech.qingge.androiddevtoolbox.viewmodel.AppManagerViewModel
-import com.google.android.material.transition.MaterialSharedAxis
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -110,7 +110,7 @@ class AppManagerFragment @Inject constructor() : BaseFragment<FragmentAppManager
             override fun onQueryTextSubmit(query: String?): Boolean {
                 LogUtil.d("onQueryTextSubmit: $query")
                 SoftKeyboardUtil.hideSoftInput(
-                    requireContext(), binding.sv.findViewById(R.id.search_src_text)
+                    requireContext(), binding.sv.findViewById(R.id.search_src_text)!!
                 )
                 return true
             }
@@ -125,7 +125,7 @@ class AppManagerFragment @Inject constructor() : BaseFragment<FragmentAppManager
             LogUtil.d("onQueryTextFocusChange:$hasFocus")
             if (hasFocus) {
                 SoftKeyboardUtil.showSoftInput(
-                    requireContext(), binding.sv.findViewById(R.id.search_src_text)
+                    requireContext(), binding.sv.findViewById(R.id.search_src_text)!!
                 )
             }
         }

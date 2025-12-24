@@ -69,7 +69,7 @@ object Dialogs {
 
         val v = LayoutInflater.from(context)
             .inflate(tech.qingge.androiddevtoolbox.R.layout.view_dialog_et, null, false)
-        val et = v.findViewById<EditText>(tech.qingge.androiddevtoolbox.R.id.et)
+        val et = v.findViewById<EditText>(tech.qingge.androiddevtoolbox.R.id.et)!!
         et.hint = hint
 
         val dialog = MaterialAlertDialogBuilder(DynamicColors.wrapContextIfAvailable(context))

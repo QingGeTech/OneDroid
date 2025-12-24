@@ -105,9 +105,14 @@ class ToolsFragment @Inject constructor() : BaseFragment<FragmentToolsBinding>()
 
     private fun initToolItems() {
         toolItems = listOf(
+//            ToolItem(
+//                R.drawable.ic_scroll_screenshot,
+//                getString(R.string.scroll_screenshot),
+//                false
+//            ),
             ToolItem(
-                R.drawable.ic_scroll_screenshot,
-                getString(R.string.scroll_screenshot),
+                R.drawable.ic_layout_inspect,
+                getString(R.string.layout_inspect),
                 false
             ),
             ToolItem(
@@ -135,11 +140,7 @@ class ToolsFragment @Inject constructor() : BaseFragment<FragmentToolsBinding>()
                 getString(R.string.decompile),
                 false
             ),
-//            ToolItem(
-//                R.drawable.ic_layout_inspect,
-//                getString(R.string.layout_inspect),
-//                false
-//            ),
+
 //            ToolItem(
 //                R.drawable.ic_logcat,
 //                getString(R.string.logcat),

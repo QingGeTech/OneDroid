@@ -99,7 +99,7 @@ class AppFilterDialogFragment @Inject constructor() : BottomSheetDialogFragment(
     }
 
     private fun updateArrowDrawable(id: Int, isDesc: Boolean) {
-        val btn = binding.btnGroupSortType.findViewById<Button>(id)
+        val btn = binding.btnGroupSortType.findViewById<Button>(id)!!
         val arrow =
             if (isDesc) ResourcesCompat.getDrawable(resources, R.drawable.ic_arrow_down, null) else
                 ResourcesCompat.getDrawable(resources, R.drawable.ic_arrow_up, null)

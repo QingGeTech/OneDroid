@@ -435,5 +435,6 @@
     <string name="layout_inspect">界面分析</string>
     <string name="terminal">终端</string>
     <string name="logcat">logcat</string>
+    <string name="inspect">分析</string>
 
 </resources>

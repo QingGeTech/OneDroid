@@ -437,5 +437,6 @@
     <string name="layout_inspect">layout inspect</string>
     <string name="terminal">terminal</string>
     <string name="logcat">logcat</string>
+    <string name="inspect">inspect</string>
 
 </resources>
