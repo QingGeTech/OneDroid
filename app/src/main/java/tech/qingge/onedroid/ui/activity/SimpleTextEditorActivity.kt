@@ -1,11 +1,7 @@
 package tech.qingge.onedroid.ui.activity
 
-import android.graphics.Color
 import android.os.Bundle
-import android.view.Gravity
 import dagger.hilt.android.AndroidEntryPoint
-import de.markusressel.kodeeditor.library.extensions.dpToPx
-import de.markusressel.kodehighlighter.language.markdown.MarkdownRuleBook
 import tech.qingge.onedroid.R
 import tech.qingge.onedroid.base.BaseActivity
 import tech.qingge.onedroid.databinding.ActivitySimpleTextEditorBinding
@@ -41,20 +37,6 @@ class SimpleTextEditorActivity : BaseActivity<ActivitySimpleTextEditorBinding>()
     }
 
     private fun initEditor() {
-        binding.codeEditorLayout.apply {
-            languageRuleBook = MarkdownRuleBook()
-            lineNumberGenerator = { lines ->
-                (1..lines).map { " $it " }
-            }
-            editable = true
-            showDivider = true
-            showMinimap = true
-            minimapBorderWidth = 1.dpToPx(context)
-            minimapBorderColor = Color.BLACK
-            minimapIndicatorColor = Color.GREEN
-            minimapMaxDimension = 150.dpToPx(context)
-            minimapGravity = Gravity.BOTTOM or Gravity.END
-        }
         RootUtil.getRemoteFs(this) { remoteFs ->
             val extendedFile = remoteFs.getFile(filePath)
             val bytes = extendedFile.newInputStream().readBytes()
@@ -64,10 +46,10 @@ class SimpleTextEditorActivity : BaseActivity<ActivitySimpleTextEditorBinding>()
                     getString(R.string.file_too_large),
                     false
                 ) { _, _ ->
-                    binding.codeEditorLayout.text = bytes.decodeToString()
+                    binding.et.setText(bytes.decodeToString())
                 }
             } else {
-                binding.codeEditorLayout.text = bytes.decodeToString()
+                binding.et.setText(bytes.decodeToString())
             }
 
         }
@@ -89,7 +71,7 @@ class SimpleTextEditorActivity : BaseActivity<ActivitySimpleTextEditorBinding>()
     private fun saveFile() {
         RootUtil.getRemoteFs(this) { remoteFs ->
             remoteFs.getFile(filePath).newOutputStream()
-                .write(binding.codeEditorLayout.text.toByteArray())
+                .write(binding.et.text.toString().toByteArray())
             Dialogs.showMessageTips(this@SimpleTextEditorActivity, getString(R.string.save_success))
         }
     }
