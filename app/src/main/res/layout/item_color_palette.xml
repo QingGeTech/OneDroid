@@ -7,14 +7,14 @@
     android:focusable="true"
     android:padding="10dp">
 
-    <tech.qingge.androiddevtoolbox.ui.view.CircleColorPaletteView
+    <tech.qingge.onedroid.ui.view.CircleColorPaletteView
         android:id="@+id/ccpv"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_centerInParent="true"
         android:visibility="visible" />
 
-    <tech.qingge.androiddevtoolbox.ui.view.CircleColorView
+    <tech.qingge.onedroid.ui.view.CircleColorView
         android:id="@+id/ccv"
         android:layout_width="60dp"
         android:layout_height="60dp"

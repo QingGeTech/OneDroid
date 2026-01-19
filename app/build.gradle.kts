@@ -14,17 +14,16 @@ idea {
 }
 
 android {
-    namespace = "tech.qingge.androiddevtoolbox"
+    namespace = "tech.qingge.onedroid"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "tech.qingge.androiddevtoolbox"
+        applicationId = "tech.qingge.onedroid"
         minSdk = 21
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildFeatures {
@@ -34,13 +33,9 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
-            )
         }
     }
     compileOptions {
-//        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -69,11 +64,6 @@ dependencies {
     implementation(libs.libsu.core)
     implementation(libs.libsu.nio)
     implementation(libs.libsu.service)
-//    implementation(libs.kodeEditor)
-//    implementation(libs.kodeHighlighter)
-//    implementation(libs.kodeHighlighterCore)
-//    coreLibraryDesugaring(libs.desugar.jdk.libs)
-//    implementation(libs.dbinspector)
     implementation(project(":TextEditor"))
     implementation(project(":axml"))
     kapt(libs.hiltCompiler)
@@ -86,7 +76,4 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
 
-//    testImplementation(libs.junit)
-//    androidTestImplementation(libs.androidx.test.ext.junit)
-//    androidTestImplementation(libs.espresso.core)
 }

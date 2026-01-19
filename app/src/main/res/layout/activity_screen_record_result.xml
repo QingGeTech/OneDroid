@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="tech.qingge.androiddevtoolbox.ui.activity.ScreenRecordResultActivity">
+    tools:context="tech.qingge.onedroid.ui.activity.ScreenRecordResultActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="tech.qingge.androiddevtoolbox.ui.activity.PickColorActivity">
+    tools:context="tech.qingge.onedroid.ui.activity.PickColorActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -21,7 +21,7 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <tech.qingge.androiddevtoolbox.ui.view.MagnifyView
+        <tech.qingge.onedroid.ui.view.MagnifyView
             android:id="@+id/magnify"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -36,7 +36,7 @@
             android:layout_weight="1">
 
 
-            <tech.qingge.androiddevtoolbox.ui.view.RoundRectColorView
+            <tech.qingge.onedroid.ui.view.RoundRectColorView
                 android:id="@+id/imgColor"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
