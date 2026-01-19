@@ -1,7 +1,0 @@
-package
-platformBuildVersionCode
-platformBuildVersionName
-violationExplanation
-violationType
-coreApp
-style

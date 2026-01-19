@@ -16,5 +16,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "OneDroid"
 include(":app")
-//include(":TextEditor")
-include(":axml")

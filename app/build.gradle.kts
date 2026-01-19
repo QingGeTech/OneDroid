@@ -64,8 +64,6 @@ dependencies {
     implementation(libs.libsu.core)
     implementation(libs.libsu.nio)
     implementation(libs.libsu.service)
-//    implementation(project(":TextEditor"))
-    implementation(project(":axml"))
     kapt(libs.hiltCompiler)
 
     implementation(libs.baksmali)
