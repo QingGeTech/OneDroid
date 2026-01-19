@@ -9,7 +9,4 @@
     android:canTakeScreenshot="true"
     android:notificationTimeout="100"
     android:description="@string/tools_accessibility_service_description"
-    android:settingsActivity="cn.recommender.androiddevtoolbox.ui.activity.MainActivity" />
-<!--    android:packageNames=""-->
-<!--    android:interactiveUiTimeout="1000"-->
-<!--    android:intro=""-->
+    android:settingsActivity="tech.qingge.onedroid.ui.activity.MainActivity" />

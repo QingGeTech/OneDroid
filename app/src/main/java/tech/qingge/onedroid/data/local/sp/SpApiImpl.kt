@@ -12,7 +12,7 @@ import javax.inject.Inject
 class SpApiImpl @Inject constructor(private val appContext: Application) : SpApi {
 
     companion object {
-        private const val SP_NAME = "AndroidDevToolbox"
+        private const val SP_NAME = "OneDroid"
         private const val THEME_COLOR_KEY = "themeColor"
         private const val DARK_THEME_KEY = "isDarkTheme"
         private const val LAST_BOTTOM_ITEM_ID = "lastBottomItemId"
