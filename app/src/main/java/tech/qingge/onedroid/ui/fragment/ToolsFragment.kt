@@ -105,11 +105,11 @@ class ToolsFragment @Inject constructor() : BaseFragment<FragmentToolsBinding>()
 
     private fun initToolItems() {
         toolItems = listOf(
-//            ToolItem(
-//                R.drawable.ic_scroll_screenshot,
-//                getString(R.string.scroll_screenshot),
-//                false
-//            ),
+            ToolItem(
+                R.drawable.ic_scroll_screenshot,
+                getString(R.string.scroll_screenshot),
+                false
+            ),
             ToolItem(
                 R.drawable.ic_layout_inspect,
                 getString(R.string.layout_inspect),
@@ -141,16 +141,31 @@ class ToolsFragment @Inject constructor() : BaseFragment<FragmentToolsBinding>()
                 false
             ),
 
-//            ToolItem(
-//                R.drawable.ic_logcat,
-//                getString(R.string.logcat),
-//                false
-//            ),
-//            ToolItem(
-//                R.drawable.ic_terminal,
-//                getString(R.string.terminal),
-//                false
-//            )
+            ToolItem(
+                R.drawable.ic_logcat,
+                getString(R.string.logcat),
+                false
+            ),
+            ToolItem(
+                R.drawable.ic_terminal,
+                getString(R.string.terminal),
+                false
+            ),
+            ToolItem(
+                R.drawable.ic_net_capture,
+                getString(R.string.net_capture),
+                false
+            ),
+            ToolItem(
+                R.drawable.ic_mock_location,
+                getString(R.string.location_mock),
+                false
+            ),
+            ToolItem(
+                R.drawable.ic_file_server,
+                getString(R.string.file_server),
+                false
+            ),
         )
         adapter =
             SimpleRvAdapter(toolItems, ItemSmallToolsBinding::inflate) { bind, item, position ->

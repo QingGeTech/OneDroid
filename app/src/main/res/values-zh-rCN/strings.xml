@@ -19,7 +19,7 @@
     <string name="theme_color">主题颜色</string>
     <string name="choose_color">选择颜色</string>
     <string name="custom_color">自定义颜色</string>
-    <string name="scroll_screenshot">滚动截图</string>
+    <string name="scroll_screenshot">长截图</string>
     <string name="screen_record">屏幕录制</string>
     <string name="color_pick_tool">屏幕取色</string>
     <string name="text_ocr">屏幕取字</string>
@@ -442,5 +442,10 @@
     <string name="other">其他</string>
     <string name="check_update">检查更新</string>
     <string name="contact_us">联系我们</string>
+    <string name="bluetooth">蓝牙</string>
+    <string name="net_capture">抓包</string>
+    <string name="process_manage">进程管理</string>
+    <string name="location_mock">模拟位置</string>
+    <string name="file_server">文件服务器</string>
 
 </resources>

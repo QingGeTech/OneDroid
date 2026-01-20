@@ -24,6 +24,9 @@ class DeviceInfoFragment @Inject constructor() : BaseFragment<FragmentDeviceInfo
     lateinit var storageFragment: DeviceInfoStorageFragment
 
     @Inject
+    lateinit var bleFragment: DeviceInfoBLEFragment
+
+    @Inject
     lateinit var screenFragment: DeviceInfoScreenFragment
 
     @Inject
@@ -60,6 +63,7 @@ class DeviceInfoFragment @Inject constructor() : BaseFragment<FragmentDeviceInfo
         R.string.battery,
         R.string.chip,
         R.string.location,
+        R.string.bluetooth,
         R.string.prop
     )
 
@@ -82,6 +86,7 @@ class DeviceInfoFragment @Inject constructor() : BaseFragment<FragmentDeviceInfo
                 batteryFragment,
                 chipFragment,
                 locationFragment,
+                bleFragment,
                 propFragment
             ), childFragmentManager, lifecycle
         )

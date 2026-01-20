@@ -444,5 +444,10 @@
     <string name="other">Other</string>
     <string name="check_update">Check Update</string>
     <string name="contact_us">Contact Us</string>
+    <string name="bluetooth">Bluetooth</string>
+    <string name="net_capture">Net Capture</string>
+    <string name="process_manage">Process Manager</string>
+    <string name="location_mock">Mock Location</string>
+    <string name="file_server">File Server</string>
 
 </resources>
