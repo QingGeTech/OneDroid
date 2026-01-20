@@ -436,7 +436,7 @@
     <string name="fail">fail</string>
     <string name="layout_inspect">layout inspect</string>
     <string name="terminal">terminal</string>
-    <string name="logcat">logcat</string>
+    <string name="logcat">Logcat</string>
     <string name="inspect">inspect</string>
     <string name="privacy">Privacy</string>
     <string name="user_agreement">User Agreement</string>
@@ -449,5 +449,9 @@
     <string name="process_manage">Process Manager</string>
     <string name="location_mock">Mock Location</string>
     <string name="file_server">File Server</string>
+    <string name="screen_analysis">Screen Analysis</string>
+    <string name="fab_status">FAB Status</string>
+    <string name="reverse_debug">Reverse Debug</string>
+    <string name="net_manage">Net Manage</string>
 
 </resources>

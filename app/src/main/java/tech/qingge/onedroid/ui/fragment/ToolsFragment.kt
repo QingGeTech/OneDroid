@@ -23,8 +23,6 @@ import tech.qingge.onedroid.ui.dialog.Dialogs
 import tech.qingge.onedroid.util.CommonPermissionCallback
 import tech.qingge.onedroid.util.FileUtil
 import tech.qingge.onedroid.util.LogUtil
-import tech.qingge.onedroid.util.ServiceUtil
-import tech.qingge.onedroid.util.ViewUtil
 import java.io.File
 import javax.inject.Inject
 
@@ -62,14 +60,14 @@ class ToolsFragment @Inject constructor() : BaseFragment<FragmentToolsBinding>()
         }
 
     override fun initViews() {
-        initToolItems()
-        if (ServiceUtil.isServiceRunning(
-                requireContext(),
-                FloatingWindowService::class.java.name
-            )
-        ) {
-            initFloatingWindowService()
-        }
+//        initToolItems()
+//        if (ServiceUtil.isServiceRunning(
+//                requireContext(),
+//                FloatingWindowService::class.java.name
+//            )
+//        ) {
+//            initFloatingWindowService()
+//        }
     }
 
     private fun initFloatingWindowService() {
@@ -103,100 +101,100 @@ class ToolsFragment @Inject constructor() : BaseFragment<FragmentToolsBinding>()
         }
     }
 
-    private fun initToolItems() {
-        toolItems = listOf(
-            ToolItem(
-                R.drawable.ic_scroll_screenshot,
-                getString(R.string.scroll_screenshot),
-                false
-            ),
-            ToolItem(
-                R.drawable.ic_layout_inspect,
-                getString(R.string.layout_inspect),
-                false
-            ),
-            ToolItem(
-                R.drawable.ic_screen_record,
-                getString(R.string.screen_record),
-                false
-            ),
-            ToolItem(
-                R.drawable.ic_color_pick_tool,
-                getString(R.string.color_pick_tool),
-                false
-            ),
-            ToolItem(
-                R.drawable.ic_text_ocr,
-                getString(R.string.text_ocr),
-                false
-            ),
-            ToolItem(
-                R.drawable.ic_wifi_password,
-                getString(R.string.wifi_password),
-                false
-            ),
-            ToolItem(
-                R.drawable.ic_decompile,
-                getString(R.string.decompile),
-                false
-            ),
-
-            ToolItem(
-                R.drawable.ic_logcat,
-                getString(R.string.logcat),
-                false
-            ),
-            ToolItem(
-                R.drawable.ic_terminal,
-                getString(R.string.terminal),
-                false
-            ),
-            ToolItem(
-                R.drawable.ic_net_capture,
-                getString(R.string.net_capture),
-                false
-            ),
-            ToolItem(
-                R.drawable.ic_mock_location,
-                getString(R.string.location_mock),
-                false
-            ),
-            ToolItem(
-                R.drawable.ic_file_server,
-                getString(R.string.file_server),
-                false
-            ),
-        )
-        adapter =
-            SimpleRvAdapter(toolItems, ItemSmallToolsBinding::inflate) { bind, item, position ->
-                bind.img.setImageResource(item.imgResId)
-                bind.tv.text = item.title
-                if (item.enabled) {
-                    bind.root.setBackgroundResource(R.drawable.tools_bg_selected)
-                } else {
-                    bind.root.background = ViewUtil.getDrawableByStyledAttr(
-                        requireContext(), R.attr.selectableItemBackground
-                    )
-                }
-                bind.root.setOnClickListener { _ ->
-                    if (position <= 3) {
-                        if (item.enabled) {
-                            onDisableItem(item, position)
-                        } else {
-                            if (floatingWindowService != null) {
-                                val enabledPosition = floatingWindowService!!.position
-                                onDisableItem(toolItems[enabledPosition], enabledPosition)
-                            }
-                            onEnableItem(item, position)
-                        }
-                    } else {
-                        onClickTool(position)
-                    }
-                }
-            }
-
-        binding.rv.adapter = adapter
-    }
+//    private fun initToolItems() {
+//        toolItems = listOf(
+//            ToolItem(
+//                R.drawable.ic_scroll_screenshot,
+//                getString(R.string.scroll_screenshot),
+//                false
+//            ),
+//            ToolItem(
+//                R.drawable.ic_layout_inspect,
+//                getString(R.string.layout_inspect),
+//                false
+//            ),
+//            ToolItem(
+//                R.drawable.ic_screen_record,
+//                getString(R.string.screen_record),
+//                false
+//            ),
+//            ToolItem(
+//                R.drawable.ic_color_pick_tool,
+//                getString(R.string.color_pick_tool),
+//                false
+//            ),
+//            ToolItem(
+//                R.drawable.ic_text_ocr,
+//                getString(R.string.text_ocr),
+//                false
+//            ),
+//            ToolItem(
+//                R.drawable.ic_wifi_password,
+//                getString(R.string.wifi_password),
+//                false
+//            ),
+//            ToolItem(
+//                R.drawable.ic_decompile,
+//                getString(R.string.decompile),
+//                false
+//            ),
+//
+//            ToolItem(
+//                R.drawable.ic_logcat,
+//                getString(R.string.logcat),
+//                false
+//            ),
+//            ToolItem(
+//                R.drawable.ic_terminal,
+//                getString(R.string.terminal),
+//                false
+//            ),
+//            ToolItem(
+//                R.drawable.ic_net_capture,
+//                getString(R.string.net_capture),
+//                false
+//            ),
+//            ToolItem(
+//                R.drawable.ic_mock_location,
+//                getString(R.string.location_mock),
+//                false
+//            ),
+//            ToolItem(
+//                R.drawable.ic_file_server,
+//                getString(R.string.file_server),
+//                false
+//            ),
+//        )
+//        adapter =
+//            SimpleRvAdapter(toolItems, ItemSmallToolsBinding::inflate) { bind, item, position ->
+//                bind.img.setImageResource(item.imgResId)
+//                bind.tv.text = item.title
+//                if (item.enabled) {
+//                    bind.root.setBackgroundResource(R.drawable.tools_bg_selected)
+//                } else {
+//                    bind.root.background = ViewUtil.getDrawableByStyledAttr(
+//                        requireContext(), R.attr.selectableItemBackground
+//                    )
+//                }
+//                bind.root.setOnClickListener { _ ->
+//                    if (position <= 3) {
+//                        if (item.enabled) {
+//                            onDisableItem(item, position)
+//                        } else {
+//                            if (floatingWindowService != null) {
+//                                val enabledPosition = floatingWindowService!!.position
+//                                onDisableItem(toolItems[enabledPosition], enabledPosition)
+//                            }
+//                            onEnableItem(item, position)
+//                        }
+//                    } else {
+//                        onClickTool(position)
+//                    }
+//                }
+//            }
+//
+//        binding.rv.adapter = adapter
+//    }
 
     private fun onClickTool(position: Int) {
         when (position) {

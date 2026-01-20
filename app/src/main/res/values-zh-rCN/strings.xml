@@ -434,7 +434,7 @@
     <string name="fail">失败</string>
     <string name="layout_inspect">界面分析</string>
     <string name="terminal">终端</string>
-    <string name="logcat">logcat</string>
+    <string name="logcat">Logcat</string>
     <string name="inspect">分析</string>
     <string name="privacy">隐私</string>
     <string name="user_agreement">用户协议</string>
@@ -447,5 +447,9 @@
     <string name="process_manage">进程管理</string>
     <string name="location_mock">模拟位置</string>
     <string name="file_server">文件服务器</string>
+    <string name="screen_analysis">屏幕分析</string>
+    <string name="fab_status">悬浮球状态</string>
+    <string name="reverse_debug">逆向调试</string>
+    <string name="net_manage">网络管理</string>
 
 </resources>
