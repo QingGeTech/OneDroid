@@ -436,5 +436,11 @@
     <string name="terminal">终端</string>
     <string name="logcat">logcat</string>
     <string name="inspect">分析</string>
+    <string name="privacy">隐私</string>
+    <string name="user_agreement">用户协议</string>
+    <string name="private_policy">隐私政策</string>
+    <string name="other">其他</string>
+    <string name="check_update">检查更新</string>
+    <string name="contact_us">联系我们</string>
 
 </resources>

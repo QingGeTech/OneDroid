@@ -44,16 +44,16 @@ import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
 import javax.inject.Inject
 
-data class ZipNode(
-    val name: String,
-    val absPath: String,
-    val children: MutableList<ZipNode>?,
-//    val isFile: Boolean,
-    val zipEntry: ZipEntry?
-)
 
 @AndroidEntryPoint
 class DecompileActivity : BaseActivity<ActivityDecompileBinding>() {
+    data class ZipNode(
+        val name: String,
+        val absPath: String,
+        val children: MutableList<ZipNode>?,
+    //    val isFile: Boolean,
+        val zipEntry: ZipEntry?
+    )
 
     private lateinit var apkPath: String
     private lateinit var apkFile: ZipFile

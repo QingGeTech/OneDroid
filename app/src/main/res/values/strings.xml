@@ -438,5 +438,11 @@
     <string name="terminal">terminal</string>
     <string name="logcat">logcat</string>
     <string name="inspect">inspect</string>
+    <string name="privacy">Privacy</string>
+    <string name="user_agreement">User Agreement</string>
+    <string name="private_policy">Private Policy</string>
+    <string name="other">Other</string>
+    <string name="check_update">Check Update</string>
+    <string name="contact_us">Contact Us</string>
 
 </resources>
