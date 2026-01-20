@@ -15,7 +15,7 @@ idea {
 
 android {
     namespace = "tech.qingge.onedroid"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "tech.qingge.onedroid"

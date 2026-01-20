@@ -1,11 +1,7 @@
 [versions]
 agp = "8.9.0"
-#desugar_jdk_libs = "2.0.4"
 kotlin = "2.1.10"
 core-ktx = "1.15.0"
-junit = "4.13.2"
-androidx-test-ext-junit = "1.2.1"
-espresso-core = "3.6.1"
 appcompat = "1.7.0"
 material = "1.13.0-alpha11"
 constraintlayout = "2.2.1"
@@ -18,25 +14,12 @@ mlkit = "16.0.1"
 photoView = "2.3.0"
 opencv = "4.11.0"
 libsu = "6.0.0"
-#kodeEditor = "4.0.1"
-##kodeHighlighter = "4.0.3"
-#kodeHighlighter = "v3.0.0"
-#dbinspector = "5.4.9"
-coroutines = "1.10.1"
-compose = "1.7.8"
-zoomlayout = "1.9.0"
-flowBinding = "1.2.0"
-guava = "33.0.0-jre"
 smali = "2.5.2"
 okhttp = "4.12.0"
 retrofit = "2.11.0"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
-#desugar_jdk_libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
@@ -52,19 +35,6 @@ opencv = { group = "org.opencv", name = "opencv", version.ref = "opencv" }
 libsu-core = { group = "com.github.topjohnwu.libsu", name = "core", version.ref = "libsu" }
 libsu-service = { group = "com.github.topjohnwu.libsu", name = "service", version.ref = "libsu" }
 libsu-nio = { group = "com.github.topjohnwu.libsu", name = "nio", version.ref = "libsu" }
-#kodeEditor = { group = "com.github.markusressel", name = "KodeEditor", version.ref = "kodeEditor" }
-#kodeHighlighter = { group = "com.github.markusressel.KodeHighlighter", name = "markdown", version.ref = "kodeHighlighter" }
-#kodeHighlighterCore = { group = "com.github.markusressel.KodeHighlighter", name = "core", version.ref = "kodeHighlighter" }
-#dbinspector = { module = "com.infinum.dbinspector:dbinspector", version.ref = "dbinspector" }
-kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
-kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
-compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "compose" }
-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "compose" }
-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "compose" }
-compose-material = { group = "androidx.compose.material", name = "material", version.ref = "compose" }
-zoomlayout = { group = "com.otaliastudios", name = "zoomlayout", version.ref = "zoomlayout" }
-flowBinding = { group = "io.github.reactivecircus.flowbinding", name = "flowbinding-android", version.ref = "flowBinding" }
-guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
 baksmali = { group = "org.smali", name = "baksmali", version.ref = "smali" }
 dexlib2 = { group = "org.smali", name = "dexlib2", version.ref = "smali" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }

@@ -53,7 +53,7 @@ abstract class BaseForegroundService : BaseService() {
             NotificationCompat.Builder(this, Constants.NOTIFICATION_CHANNEL_ID_FOREGROUND_SERVICE)
                 .setContentTitle(getNotificationData().title)
                 .setContentText(getNotificationData().content)
-                .setSmallIcon(R.drawable.app_logo_round)
+                .setSmallIcon(R.mipmap.ic_launcher_round)
                 .setContentIntent(pendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setOngoing(true)

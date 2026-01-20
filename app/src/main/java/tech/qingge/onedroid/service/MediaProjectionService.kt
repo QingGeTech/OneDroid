@@ -46,7 +46,7 @@ class MediaProjectionService : BaseForegroundService() {
             mediaProjectionManager.getMediaProjection(
                 activityResult.resultCode,
                 activityResult.data!!
-            )
+            )!!
 
         mediaProjection.registerCallback(object : MediaProjection.Callback() {
             override fun onCapturedContentResize(width: Int, height: Int) {
@@ -78,7 +78,7 @@ class MediaProjectionService : BaseForegroundService() {
             surface,
             null,
             null
-        )
+        )!!
     }
 
     override fun getNotificationData(): NotificationData {
