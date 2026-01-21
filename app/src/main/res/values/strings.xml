@@ -453,5 +453,7 @@
     <string name="fab_status">FAB Status</string>
     <string name="reverse_debug">Reverse Debug</string>
     <string name="net_manage">Net Manage</string>
+    <string name="not_supported_yet">Not Supported Yet</string>
+    <string name="developing">This feature is under development</string>
 
 </resources>

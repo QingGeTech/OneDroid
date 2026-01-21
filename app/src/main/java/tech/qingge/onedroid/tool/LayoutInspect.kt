@@ -15,7 +15,7 @@ import dagger.hilt.android.scopes.ServiceScoped
 import tech.qingge.onedroid.R
 import tech.qingge.onedroid.databinding.FloatingLayoutInspectBinding
 import tech.qingge.onedroid.ui.activity.LayoutInspectActivity
-import tech.qingge.onedroid.ui.view.FloatingFrameLayout
+import tech.qingge.onedroid.ui.view.DraggableFrameLayout
 import tech.qingge.onedroid.util.BitmapUtil
 import tech.qingge.onedroid.util.DeviceUtil
 import tech.qingge.onedroid.util.MediaUtil
@@ -45,7 +45,7 @@ class LayoutInspect @Inject constructor(val appContext: Application) :
         }, 300)
     }
 
-    override fun init(ffl: FloatingFrameLayout) {
+    override fun init(ffl: DraggableFrameLayout) {
         binding = FloatingLayoutInspectBinding.inflate(LayoutInflater.from(ffl.context))
         ffl.addView(binding.root)
         val color = ViewUtil.getColorByStyledAttr(

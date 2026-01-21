@@ -8,24 +8,25 @@ import android.graphics.PixelFormat
 import android.os.Build
 import android.os.IBinder
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
-import androidx.core.app.ServiceCompat
+import androidx.core.view.isVisible
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.google.android.material.color.DynamicColors
+import com.google.android.material.color.DynamicColorsOptions
+import dagger.hilt.android.AndroidEntryPoint
 import tech.qingge.onedroid.Constants
 import tech.qingge.onedroid.R
 import tech.qingge.onedroid.base.BaseForegroundService
 import tech.qingge.onedroid.data.local.sp.SpApi
-import tech.qingge.onedroid.tool.BaseTool
+import tech.qingge.onedroid.databinding.LayoutFloatingWindowBinding
+import tech.qingge.onedroid.tool.LayoutInspect
 import tech.qingge.onedroid.tool.ScreenPickColor
 import tech.qingge.onedroid.tool.ScreenPickText
 import tech.qingge.onedroid.tool.ScreenRecord
-import tech.qingge.onedroid.ui.view.FloatingFrameLayout
+import tech.qingge.onedroid.tool.ScrollScreenshot
 import tech.qingge.onedroid.util.DeviceUtil
-import com.google.android.material.color.DynamicColors
-import com.google.android.material.color.DynamicColorsOptions
-import dagger.hilt.android.AndroidEntryPoint
-import tech.qingge.onedroid.tool.LayoutInspect
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -34,8 +35,8 @@ class FloatingWindowService : BaseForegroundService() {
     @Inject
     lateinit var windowManager: WindowManager
 
-//    @Inject
-//    lateinit var scrollScreenshot: ScrollScreenshot
+    @Inject
+    lateinit var scrollScreenshot: ScrollScreenshot
 
     @Inject
     lateinit var layoutInspect: LayoutInspect
@@ -52,10 +53,7 @@ class FloatingWindowService : BaseForegroundService() {
     @Inject
     lateinit var spApi: SpApi
 
-    private lateinit var ffl: FloatingFrameLayout
-    var position = -1
-
-    private lateinit var tools: HashMap<Int, BaseTool>
+    private lateinit var binding: LayoutFloatingWindowBinding
 
     private val themeChangeReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -66,9 +64,8 @@ class FloatingWindowService : BaseForegroundService() {
     }
 
     private fun reCreateFloatingWindow() {
-        windowManager.removeView(ffl)
+        windowManager.removeView(binding.root)
         createFloatingWindow()
-        showFloatingWindow(position)
     }
 
     inner class Binder : android.os.Binder() {
@@ -89,13 +86,6 @@ class FloatingWindowService : BaseForegroundService() {
 
     override fun onCreate() {
         super.onCreate()
-        tools = hashMapOf(
-//            0 to scrollScreenshot,
-            0 to layoutInspect,
-            1 to screenRecord,
-            2 to screenPickColor,
-            3 to screenPickText
-        )
         createFloatingWindow()
 
         val filter = IntentFilter(Constants.LOCAL_BROADCAST_ACTION_THEME_CHANGE)
@@ -124,20 +114,36 @@ class FloatingWindowService : BaseForegroundService() {
             x = (DeviceUtil.getScreenWidth(this@FloatingWindowService) * 0.7).toInt()
             y = (DeviceUtil.getScreenHeight(this@FloatingWindowService) * 0.5).toInt()
         }
-        ffl = FloatingFrameLayout(
-            DynamicColors.wrapContextIfAvailable(
-                applicationContext,
-                DynamicColorsOptions.Builder().setContentBasedSource(spApi.getThemeColor()).build()
-            )
-        ).apply {
+
+        val themeContext = DynamicColors.wrapContextIfAvailable(
+            applicationContext,
+            DynamicColorsOptions.Builder().setContentBasedSource(spApi.getThemeColor()).build()
+        )
+
+        binding =
+            LayoutFloatingWindowBinding.inflate(LayoutInflater.from(themeContext), null, false)
+        binding.root.apply {
             onDrag = { x, y ->
                 layoutParams.x = x
                 layoutParams.y = y
-                windowManager.updateViewLayout(ffl, layoutParams)
+                windowManager.updateViewLayout(binding.root, layoutParams)
             }
-            visibility = View.GONE
+            onTouchOutside = {
+                binding.llMenu.visibility = View.GONE
+                binding.btnControl.setImageResource(R.drawable.ic_add)
+            }
         }
-        windowManager.addView(ffl, layoutParams)
+        binding.btnControl.setOnClickListener {
+            if (binding.llMenu.isVisible){
+                binding.llMenu.visibility = View.GONE
+                binding.btnControl.setImageResource(R.drawable.ic_add)
+            }else{
+                binding.llMenu.visibility = View.VISIBLE
+                binding.btnControl.setImageResource(R.drawable.ic_subtract)
+            }
+        }
+
+        windowManager.addView(binding.root, layoutParams)
     }
 
 
@@ -145,25 +151,10 @@ class FloatingWindowService : BaseForegroundService() {
         super.onDestroy()
         // if service killed by system, remove fab
         try {
-            windowManager.removeView(ffl)
+            windowManager.removeView(binding.root)
         } catch (_: Exception) {
         }
         LocalBroadcastManager.getInstance(this).unregisterReceiver(themeChangeReceiver)
     }
-
-    fun showFloatingWindow(position: Int) {
-        this.position = position
-        tools[position]!!.init(ffl)
-        ffl.visibility = View.VISIBLE
-    }
-
-    fun closeFloatingWindow(position: Int) {
-        this.position = -1
-        windowManager.removeView(ffl)
-        tools[position]!!.deInit()
-        ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)
-        stopSelf()
-    }
-
 
 }

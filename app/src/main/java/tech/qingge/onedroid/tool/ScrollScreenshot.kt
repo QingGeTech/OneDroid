@@ -16,7 +16,7 @@ import dagger.hilt.android.scopes.ServiceScoped
 import tech.qingge.onedroid.R
 import tech.qingge.onedroid.databinding.FloatingScrollScreenshotBinding
 import tech.qingge.onedroid.ui.activity.ScrollScreenshotResultActivity
-import tech.qingge.onedroid.ui.view.FloatingFrameLayout
+import tech.qingge.onedroid.ui.view.DraggableFrameLayout
 import tech.qingge.onedroid.util.BitmapUtil
 import tech.qingge.onedroid.util.DeviceUtil
 import tech.qingge.onedroid.util.MediaUtil
@@ -253,7 +253,7 @@ class ScrollScreenshot @Inject constructor(val appContext: Application) :
         }, 300)
     }
 
-    override fun init(ffl: FloatingFrameLayout) {
+    override fun init(ffl: DraggableFrameLayout) {
         binding = FloatingScrollScreenshotBinding.inflate(LayoutInflater.from(ffl.context))
         ffl.addView(binding.root)
         ffl.onTouchOutside = {

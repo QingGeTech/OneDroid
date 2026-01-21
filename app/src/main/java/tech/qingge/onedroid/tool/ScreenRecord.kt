@@ -12,7 +12,7 @@ import dagger.hilt.android.scopes.ServiceScoped
 import tech.qingge.onedroid.R
 import tech.qingge.onedroid.databinding.FloatingScreenRecordBinding
 import tech.qingge.onedroid.ui.activity.ScreenRecordResultActivity
-import tech.qingge.onedroid.ui.view.FloatingFrameLayout
+import tech.qingge.onedroid.ui.view.DraggableFrameLayout
 import tech.qingge.onedroid.util.DeviceUtil
 import tech.qingge.onedroid.util.RandomUtil
 import tech.qingge.onedroid.util.ViewUtil
@@ -66,7 +66,7 @@ class ScreenRecord @Inject constructor(val appContext: Application) : BaseMediaP
         return recordSavePath
     }
 
-    override fun init(ffl: FloatingFrameLayout) {
+    override fun init(ffl: DraggableFrameLayout) {
         binding = FloatingScreenRecordBinding.inflate(LayoutInflater.from(ffl.context))
         ffl.addView(binding.root)
         val color = ViewUtil.getColorByStyledAttr(

@@ -451,5 +451,7 @@
     <string name="fab_status">悬浮球状态</string>
     <string name="reverse_debug">逆向调试</string>
     <string name="net_manage">网络管理</string>
+    <string name="not_supported_yet">暂不支持</string>
+    <string name="developing">功能正在开发中</string>
 
 </resources>

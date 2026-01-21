@@ -1,17 +1,13 @@
 package tech.qingge.onedroid.ui.view
 
-import android.annotation.SuppressLint
 import android.content.Context
+import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.WindowManager
 import android.widget.FrameLayout
 import kotlin.math.abs
 
-@SuppressLint("ClickableViewAccessibility")
-class FloatingFrameLayout(
-    context: Context
-) : FrameLayout(context) {
-
+class DraggableFrameLayout : FrameLayout {
     var onDrag: ((newX: Int, newY: Int) -> Unit)? = null
     var onTouchOutside: (() -> Unit)? = null
 
@@ -20,6 +16,21 @@ class FloatingFrameLayout(
     private var offsetY = 0
     private var downX = 0
     private var downY = 0
+
+    constructor(context: Context) : super(context)
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    )
+
+    constructor(
+        context: Context,
+        attrs: AttributeSet?,
+        defStyleAttr: Int,
+        defStyleRes: Int
+    ) : super(context, attrs, defStyleAttr, defStyleRes)
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
         when (event.action) {
