@@ -23,6 +23,7 @@ import tech.qingge.onedroid.data.local.sp.SpApi
 import tech.qingge.onedroid.databinding.LayoutFloatingWindowBinding
 import tech.qingge.onedroid.tool.PickColorTool
 import tech.qingge.onedroid.tool.PickTextTool
+import tech.qingge.onedroid.tool.ScreenRecordTool
 import tech.qingge.onedroid.util.DeviceUtil
 import javax.inject.Inject
 
@@ -37,6 +38,9 @@ class FloatingWindowService : BaseForegroundService() {
 
     @Inject
     lateinit var pickTextTool : PickTextTool
+
+    @Inject
+    lateinit var screenRecordTool: ScreenRecordTool
 
     @Inject
     lateinit var spApi: SpApi
@@ -117,7 +121,7 @@ class FloatingWindowService : BaseForegroundService() {
                 windowManager.updateViewLayout(binding.root, layoutParams)
             }
             onTouchOutside = {
-                hideMenu()
+//                hideMenu()
             }
         }
         binding.btnControl.setOnClickListener {
@@ -145,6 +149,17 @@ class FloatingWindowService : BaseForegroundService() {
         when (v.id) {
             binding.btnPickColor.id -> pickColorTool.start(binding.root)
             binding.btnTextOcr.id -> pickTextTool.start(binding.root)
+            binding.btnScreenRecord.id -> screenRecordTool.start(binding){
+                hideMenu()
+                binding.btnControl.setOnClickListener {
+                    if (binding.llMenu.isVisible) {
+                        hideMenu()
+                    } else {
+                        binding.llMenu.visibility = View.VISIBLE
+                        binding.btnControl.setImageResource(R.drawable.ic_subtract)
+                    }
+                }
+            }
         }
     }
 

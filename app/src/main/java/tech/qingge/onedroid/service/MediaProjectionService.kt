@@ -26,6 +26,8 @@ class MediaProjectionService : BaseForegroundService() {
         fun getService(): MediaProjectionService = this@MediaProjectionService
     }
 
+    private lateinit var onStopListener: () -> Unit
+
     @Inject
     lateinit var mediaProjectionManager: MediaProjectionManager
 
@@ -45,6 +47,10 @@ class MediaProjectionService : BaseForegroundService() {
         override fun onStop() {
             super.onStop()
             LogUtil.d("onStop")
+            //手动在状态栏点击了停止录制
+            if (this@MediaProjectionService::onStopListener.isInitialized){
+                onStopListener()
+            }
         }
     }
 
@@ -77,6 +83,10 @@ class MediaProjectionService : BaseForegroundService() {
             null,
             null
         )!!
+    }
+
+    fun setOnStopListener(onStopListener:()->Unit){
+        this.onStopListener = onStopListener
     }
 
     override fun getNotificationData(): NotificationData {

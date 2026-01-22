@@ -1,6 +1,7 @@
 package tech.qingge.onedroid.tool
 
 import android.app.Activity
+import android.app.Application
 import android.app.Service
 import android.content.BroadcastReceiver
 import android.content.ComponentName
@@ -8,37 +9,77 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.ServiceConnection
-import android.graphics.Bitmap
-import android.graphics.PixelFormat
 import android.hardware.display.VirtualDisplay
-import android.media.ImageReader
+import android.media.MediaRecorder
+import android.os.Handler
 import android.os.IBinder
-import android.view.View
+import android.os.Looper
 import androidx.activity.result.ActivityResult
 import androidx.core.content.IntentCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import dagger.hilt.android.scopes.ServiceScoped
 import tech.qingge.onedroid.Constants
 import tech.qingge.onedroid.R
+import tech.qingge.onedroid.databinding.LayoutFloatingWindowBinding
 import tech.qingge.onedroid.service.MediaProjectionService
 import tech.qingge.onedroid.ui.activity.MediaProjectionPermissionActivity
+import tech.qingge.onedroid.ui.activity.ScreenRecordResultActivity
 import tech.qingge.onedroid.ui.dialog.Dialogs
-import tech.qingge.onedroid.util.BitmapUtil
 import tech.qingge.onedroid.util.DeviceUtil
-import tech.qingge.onedroid.util.MediaUtil
 import tech.qingge.onedroid.util.RandomUtil
 import java.io.File
+import javax.inject.Inject
 
-abstract class BaseMediaProjectionTool {
+@ServiceScoped
+class ScreenRecordTool @Inject constructor(val appContext: Application) {
 
+    private lateinit var resetBtn: () -> Unit
     var mediaProjectionService: MediaProjectionService? = null
     var serviceConnection: ServiceConnection? = null
 
-    var virtualDisplay: VirtualDisplay? = null
-    var imageReader: ImageReader? = null
+    private var virtualDisplay: VirtualDisplay? = null
+    private var mediaRecorder: MediaRecorder? = null
 
-    lateinit var fab: View
+    private lateinit var recordSavePath: String
 
-    fun applyPermission(appContext: Context) {
+    private lateinit var binding: LayoutFloatingWindowBinding
+
+
+    private fun prepareMediaRecorder(mediaRecorder: MediaRecorder) {
+        recordSavePath = getRandomFilePath()
+        mediaRecorder.apply {
+//            setAudioSource(MediaRecorder.AudioSource.MIC)
+            setVideoSource(MediaRecorder.VideoSource.SURFACE)
+            setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
+            setOutputFile(recordSavePath)
+            setVideoSize(
+                DeviceUtil.getScreenWidth(appContext), DeviceUtil.getScreenHeight(appContext)
+            )
+            setVideoEncoder(MediaRecorder.VideoEncoder.H264)
+//            setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
+            setVideoEncodingBitRate(5000 * 1000)
+            setVideoFrameRate(30)
+            prepare()
+        }
+    }
+
+    private fun getRandomFilePath(): String {
+        val dir = File("${appContext.externalCacheDir.toString()}/ScreenRecord")
+        if (!dir.exists()) {
+            dir.mkdir()
+        }
+        recordSavePath = "$dir/${RandomUtil.uuid()}.mp4"
+        return recordSavePath
+    }
+
+    fun start(binding: LayoutFloatingWindowBinding, resetBtn: () -> Unit) {
+        this.binding = binding
+        this.resetBtn = resetBtn
+        applyPermission()
+    }
+
+
+    fun applyPermission() {
         val intentFilter =
             IntentFilter(Constants.LOCAL_BROADCAST_ACTION_MEDIA_PROJECTION_PERMISSION_RESULT)
         val receiver = object : BroadcastReceiver() {
@@ -76,19 +117,19 @@ abstract class BaseMediaProjectionTool {
             override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
                 mediaProjectionService =
                     (service as MediaProjectionService.Binder).getService()
-                imageReader = ImageReader.newInstance(
-                    DeviceUtil.getScreenWidth(appContext),
-                    DeviceUtil.getScreenHeight(appContext),
-                    PixelFormat.RGBA_8888, 1
-                )
+                mediaRecorder = MediaRecorder()
+                prepareMediaRecorder(mediaRecorder!!)
                 virtualDisplay =
-                    mediaProjectionService!!.createVirtualDisplay(imageReader!!.surface)
-                onScreenRecordStart()
+                    mediaProjectionService!!.createVirtualDisplay(mediaRecorder!!.surface)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    startRecord()
+                }, 300)
             }
 
             override fun onServiceDisconnected(name: ComponentName?) {
                 serviceConnection = null
                 mediaProjectionService = null
+                stopRecord()
             }
         }
         val intent = Intent(appContext, MediaProjectionService::class.java)
@@ -96,29 +137,35 @@ abstract class BaseMediaProjectionTool {
         appContext.bindService(intent, serviceConnection!!, Service.BIND_AUTO_CREATE)
     }
 
-    fun screenshot(appContext: Context): String {
-        val image = imageReader!!.acquireLatestImage()
-        val bitmap = MediaUtil.imageToBitmap(image)
-        image.close()
 
-        val filePath = saveBitmapToFile(bitmap, appContext)
-        return filePath
-    }
+    private fun startRecord() {
 
-    fun saveBitmapToFile(bitmap: Bitmap, appContext: Context): String {
-        val dir = File("${appContext.externalCacheDir.toString()}/Screenshot")
-        if (!dir.exists()) {
-            dir.mkdir()
+        mediaProjectionService!!.setOnStopListener {
+            stopRecord()
         }
 
-        val filePath = "$dir/${RandomUtil.uuid()}.png"
-        BitmapUtil.saveBitmapAsPng(bitmap, 100, filePath)
-        return filePath
+        mediaRecorder!!.start()
+        binding.btnControl.setImageResource(R.drawable.ic_stop_circle)
+        binding.btnControl.setOnClickListener {
+            stopRecord()
+        }
     }
 
-    fun stopScreenRecord(appContext: Context){
-        imageReader?.close()
-        imageReader = null
+    private fun stopRecord() {
+        resetBtn()
+
+        val intent = Intent(appContext, ScreenRecordResultActivity::class.java)
+        intent.putExtra("filePath", recordSavePath)
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY)
+        appContext.startActivity(intent)
+
+        release()
+
+    }
+
+    private fun release() {
+        mediaRecorder?.release()
+        mediaRecorder = null
 
         virtualDisplay?.release()
         virtualDisplay = null
@@ -133,13 +180,5 @@ abstract class BaseMediaProjectionTool {
         appContext.stopService(Intent(appContext, MediaProjectionService::class.java))
 
     }
-
-    fun start(fab: View){
-        this.fab = fab
-        applyPermission(fab.context)
-    }
-
-    abstract fun onScreenRecordStart()
-
 
 }

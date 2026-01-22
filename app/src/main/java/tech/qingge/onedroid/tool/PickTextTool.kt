@@ -10,7 +10,7 @@ import tech.qingge.onedroid.ui.activity.TextRecognitionActivity
 import javax.inject.Inject
 
 @ServiceScoped
-class PickTextTool @Inject constructor(val appContext: Application) : BaseMediaProjectionTool() {
+class PickTextTool @Inject constructor(val appContext: Application) : BaseScreenshotTool() {
 
 
     override fun onScreenRecordStart() {

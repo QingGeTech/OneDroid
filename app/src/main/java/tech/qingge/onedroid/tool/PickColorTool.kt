@@ -10,7 +10,7 @@ import tech.qingge.onedroid.ui.activity.PickColorActivity
 import javax.inject.Inject
 
 @ServiceScoped
-class PickColorTool @Inject constructor(val appContext: Application) : BaseMediaProjectionTool() {
+class PickColorTool @Inject constructor(val appContext: Application) : BaseScreenshotTool() {
 
     override fun onScreenRecordStart() {
         fab.visibility = View.GONE
