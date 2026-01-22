@@ -134,7 +134,7 @@ abstract class BaseScreenshotTool {
 
     }
 
-    fun start(fab: View){
+    open fun start(fab: View){
         this.fab = fab
         applyPermission(fab.context)
     }

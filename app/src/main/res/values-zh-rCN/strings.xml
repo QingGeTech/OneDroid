@@ -23,7 +23,7 @@
     <string name="screen_record">屏幕录制</string>
     <string name="color_pick_tool">屏幕取色</string>
     <string name="text_ocr">屏幕取字</string>
-    <string name="tools_accessibility_service_description">支持Android开发工具箱的截图、录屏等功能</string>
+    <string name="tools_accessibility_service_description">支持OneDroid的截图、录屏等功能</string>
     <string name="permission_not_granted">未授权,在设置中授权</string>
     <string name="floating_button_enable">显示悬浮按钮</string>
     <string name="open_accessibility_service">请开启无障碍服务</string>
@@ -453,5 +453,6 @@
     <string name="net_manage">网络管理</string>
     <string name="not_supported_yet">暂不支持</string>
     <string name="developing">功能正在开发中</string>
+    <string name="node_detail_hint">点击控件查看详细属性</string>
 
 </resources>

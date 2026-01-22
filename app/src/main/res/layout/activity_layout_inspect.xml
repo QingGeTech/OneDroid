@@ -14,14 +14,21 @@
         app:navigationIcon="@drawable/ic_close"
         app:title="@string/layout_inspect" />
 
-    <ImageView
-        android:id="@+id/img"
+    <tech.qingge.onedroid.ui.view.InspectView
+        android:id="@+id/inspectView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_weight="1"
-        android:scaleType="fitCenter" />
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tvNodeInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:background="#EEEEEE"
+        android:hint="@string/node_detail_hint"
+        android:textSize="12sp"
+        android:textIsSelectable="true"/>
 
 
 </LinearLayout>

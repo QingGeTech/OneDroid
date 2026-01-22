@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.hiltAndroid)
     alias(libs.plugins.kotlinKapt)
+    alias(libs.plugins.kotlinParcelize)
     idea
 }
 

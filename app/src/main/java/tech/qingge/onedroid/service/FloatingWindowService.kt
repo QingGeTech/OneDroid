@@ -21,6 +21,7 @@ import tech.qingge.onedroid.R
 import tech.qingge.onedroid.base.BaseForegroundService
 import tech.qingge.onedroid.data.local.sp.SpApi
 import tech.qingge.onedroid.databinding.LayoutFloatingWindowBinding
+import tech.qingge.onedroid.tool.LayoutInspectTool
 import tech.qingge.onedroid.tool.PickColorTool
 import tech.qingge.onedroid.tool.PickTextTool
 import tech.qingge.onedroid.tool.ScreenRecordTool
@@ -41,6 +42,10 @@ class FloatingWindowService : BaseForegroundService() {
 
     @Inject
     lateinit var screenRecordTool: ScreenRecordTool
+
+    @Inject
+    lateinit var layoutInspectTool: LayoutInspectTool
+
 
     @Inject
     lateinit var spApi: SpApi
@@ -149,6 +154,7 @@ class FloatingWindowService : BaseForegroundService() {
         when (v.id) {
             binding.btnPickColor.id -> pickColorTool.start(binding.root)
             binding.btnTextOcr.id -> pickTextTool.start(binding.root)
+            binding.btnLayoutInspect.id -> layoutInspectTool.start(binding.root)
             binding.btnScreenRecord.id -> screenRecordTool.start(binding){
                 hideMenu()
                 binding.btnControl.setOnClickListener {
