@@ -148,7 +148,7 @@ class ToolsFragment @Inject constructor() : BaseFragment<FragmentToolsBinding>()
     }
 
     private fun onClickScreenshot() {
-        requestSystemWindowPermission()
+        Dialogs.showMessageTips(requireContext(), getString(R.string.developing))
     }
 
     private fun requestSystemWindowPermission() {

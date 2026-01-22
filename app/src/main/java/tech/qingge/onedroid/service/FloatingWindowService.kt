@@ -141,7 +141,7 @@ class FloatingWindowService : BaseForegroundService() {
         listOf(
             binding.btnPickColor,
             binding.btnTextOcr,
-            binding.btnScrollScreenshot,
+//            binding.btnScrollScreenshot,
             binding.btnLayoutInspect,
             binding.btnScreenRecord
         ).forEach { it.setOnClickListener(this::onClick) }

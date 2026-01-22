@@ -19,18 +19,17 @@
             android:gravity="center"
             android:visibility="gone">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_scroll_screenshot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/scroll_screenshot"
-                />
+<!--            <com.google.android.material.button.MaterialButton-->
+<!--                android:id="@+id/btn_scroll_screenshot"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/scroll_screenshot"-->
+<!--                />-->
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_layout_inspect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:text="@string/layout_inspect"
                 />
 
