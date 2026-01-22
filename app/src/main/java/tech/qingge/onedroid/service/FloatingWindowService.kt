@@ -21,11 +21,8 @@ import tech.qingge.onedroid.R
 import tech.qingge.onedroid.base.BaseForegroundService
 import tech.qingge.onedroid.data.local.sp.SpApi
 import tech.qingge.onedroid.databinding.LayoutFloatingWindowBinding
-import tech.qingge.onedroid.tool.LayoutInspect
-import tech.qingge.onedroid.tool.ScreenPickColor
-import tech.qingge.onedroid.tool.ScreenPickText
-import tech.qingge.onedroid.tool.ScreenRecord
-import tech.qingge.onedroid.tool.ScrollScreenshot
+import tech.qingge.onedroid.tool.PickColorTool
+import tech.qingge.onedroid.tool.PickTextTool
 import tech.qingge.onedroid.util.DeviceUtil
 import javax.inject.Inject
 
@@ -36,19 +33,10 @@ class FloatingWindowService : BaseForegroundService() {
     lateinit var windowManager: WindowManager
 
     @Inject
-    lateinit var scrollScreenshot: ScrollScreenshot
+    lateinit var pickColorTool: PickColorTool
 
     @Inject
-    lateinit var layoutInspect: LayoutInspect
-
-    @Inject
-    lateinit var screenRecord: ScreenRecord
-
-    @Inject
-    lateinit var screenPickColor: ScreenPickColor
-
-    @Inject
-    lateinit var screenPickText: ScreenPickText
+    lateinit var pickTextTool : PickTextTool
 
     @Inject
     lateinit var spApi: SpApi
@@ -129,23 +117,42 @@ class FloatingWindowService : BaseForegroundService() {
                 windowManager.updateViewLayout(binding.root, layoutParams)
             }
             onTouchOutside = {
-                binding.llMenu.visibility = View.GONE
-                binding.btnControl.setImageResource(R.drawable.ic_add)
+                hideMenu()
             }
         }
         binding.btnControl.setOnClickListener {
-            if (binding.llMenu.isVisible){
-                binding.llMenu.visibility = View.GONE
-                binding.btnControl.setImageResource(R.drawable.ic_add)
-            }else{
+            if (binding.llMenu.isVisible) {
+                hideMenu()
+            } else {
                 binding.llMenu.visibility = View.VISIBLE
                 binding.btnControl.setImageResource(R.drawable.ic_subtract)
             }
         }
 
+        listOf(
+            binding.btnPickColor,
+            binding.btnTextOcr,
+            binding.btnScrollScreenshot,
+            binding.btnLayoutInspect,
+            binding.btnScreenRecord
+        ).forEach { it.setOnClickListener(this::onClick) }
+
         windowManager.addView(binding.root, layoutParams)
     }
 
+    private fun onClick(v: View) {
+        hideMenu()
+        when (v.id) {
+            binding.btnPickColor.id -> pickColorTool.start(binding.root)
+            binding.btnTextOcr.id -> pickTextTool.start(binding.root)
+        }
+    }
+
+
+    private fun hideMenu() {
+        binding.llMenu.visibility = View.GONE
+        binding.btnControl.setImageResource(R.drawable.ic_add)
+    }
 
     override fun onDestroy() {
         super.onDestroy()

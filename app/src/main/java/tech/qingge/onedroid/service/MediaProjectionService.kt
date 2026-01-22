@@ -7,7 +7,6 @@ import android.media.projection.MediaProjection
 import android.media.projection.MediaProjectionManager
 import android.os.IBinder
 import android.view.Surface
-import android.view.WindowManager
 import androidx.activity.result.ActivityResult
 import androidx.core.content.IntentCompat
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,10 +29,24 @@ class MediaProjectionService : BaseForegroundService() {
     @Inject
     lateinit var mediaProjectionManager: MediaProjectionManager
 
-    @Inject
-    lateinit var windowManager: WindowManager
-
     private lateinit var mediaProjection: MediaProjection
+
+    val callback = object : MediaProjection.Callback() {
+        override fun onCapturedContentResize(width: Int, height: Int) {
+            super.onCapturedContentResize(width, height)
+            LogUtil.d("onCapturedContentResize:width:$width,height:$height")
+        }
+
+        override fun onCapturedContentVisibilityChanged(isVisible: Boolean) {
+            super.onCapturedContentVisibilityChanged(isVisible)
+            LogUtil.d("onCapturedContentVisibilityChanged:isVisible:$isVisible")
+        }
+
+        override fun onStop() {
+            super.onStop()
+            LogUtil.d("onStop")
+        }
+    }
 
     override fun onBind(intent: Intent?): IBinder {
         super.onBind(intent)
@@ -48,22 +61,7 @@ class MediaProjectionService : BaseForegroundService() {
                 activityResult.data!!
             )!!
 
-        mediaProjection.registerCallback(object : MediaProjection.Callback() {
-            override fun onCapturedContentResize(width: Int, height: Int) {
-                super.onCapturedContentResize(width, height)
-                LogUtil.d("onCapturedContentResize:width:$width,height:$height")
-            }
-
-            override fun onCapturedContentVisibilityChanged(isVisible: Boolean) {
-                super.onCapturedContentVisibilityChanged(isVisible)
-                LogUtil.d("onCapturedContentVisibilityChanged:isVisible:$isVisible")
-            }
-
-            override fun onStop() {
-                super.onStop()
-                LogUtil.d("onStop")
-            }
-        }, null)
+        mediaProjection.registerCallback(callback, null)
 
         return Binder()
     }
@@ -91,6 +89,14 @@ class MediaProjectionService : BaseForegroundService() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
         return START_NOT_STICKY
+    }
+
+    fun stop(){
+        mediaProjection.unregisterCallback(callback)
+        mediaProjection.stop()
+
+        stopForeground(true)
+        stopSelf()
     }
 
 

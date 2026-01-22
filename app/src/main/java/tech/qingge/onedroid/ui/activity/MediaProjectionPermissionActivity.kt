@@ -3,6 +3,7 @@ package tech.qingge.onedroid.ui.activity
 import android.content.Intent
 import android.graphics.Color
 import android.media.projection.MediaProjectionManager
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
@@ -32,7 +33,11 @@ class MediaProjectionPermissionActivity : AppCompatActivity() {
                 Intent(Constants.LOCAL_BROADCAST_ACTION_MEDIA_PROJECTION_PERMISSION_RESULT)
             broadIntent.putExtra("activityResult", activityResult)
             LocalBroadcastManager.getInstance(this).sendBroadcast(broadIntent)
-            finish()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                finishAndRemoveTask()
+            } else {
+                finish()
+            }
         }
 
         val activityResultLauncher = registerForActivityResult(

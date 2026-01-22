@@ -82,6 +82,7 @@
         <activity
             android:name=".ui.activity.MediaProjectionPermissionActivity"
             android:launchMode="singleInstance"
+            android:excludeFromRecents="true"
             android:taskAffinity=".mediaProjectionPermission" />
         <activity
             android:name=".ui.activity.SimpleTextEditorActivity"

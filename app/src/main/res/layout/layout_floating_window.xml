@@ -20,12 +20,14 @@
             android:visibility="gone">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_scroll_screenshot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/scroll_screenshot"
                 />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_layout_inspect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -33,6 +35,7 @@
                 />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_screen_record"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -40,6 +43,7 @@
                 />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_pick_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -47,6 +51,7 @@
                 />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_text_ocr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"

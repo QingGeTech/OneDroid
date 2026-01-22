@@ -55,7 +55,7 @@ class ToolsFragment @Inject constructor() : BaseFragment<FragmentToolsBinding>()
         listOf(
             binding.llScreenShot,
             binding.llUiInspect,
-            binding.llScreenShot,
+            binding.llScreenRecord,
             binding.llPickColor,
             binding.llTextOcr,
             binding.llDecompile,
