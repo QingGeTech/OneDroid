@@ -46,7 +46,7 @@ class ToolsFragment @Inject constructor() : BaseFragment<FragmentToolsBinding>()
                 intent.putExtra("apkPath", tmpPath)
                 startActivity(intent)
             } ?: run {
-                Dialogs.showMessageTips(requireContext(), getString(R.string.not_select_file))
+                Dialogs.showMessageTips(requireActivity(), getString(R.string.not_select_file))
             }
         }
 
@@ -69,7 +69,19 @@ class ToolsFragment @Inject constructor() : BaseFragment<FragmentToolsBinding>()
 
         binding.switchFab.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                launchFWService()
+                XXPermissions.with(requireContext()).permission(Permission.SYSTEM_ALERT_WINDOW)
+                    .request(object : CommonPermissionCallback(requireActivity()) {
+                        override fun onAllGranted() {
+                            launchFWService()
+                        }
+
+                        override fun onDenied(
+                            permissions: MutableList<String>,
+                            doNotAskAgain: Boolean
+                        ) {
+                            binding.switchFab.isChecked = false
+                        }
+                    })
             } else {
                 destroyFWService()
             }
@@ -103,11 +115,11 @@ class ToolsFragment @Inject constructor() : BaseFragment<FragmentToolsBinding>()
     }
 
     private fun onClickFileServer() {
-        Dialogs.showMessageTips(requireContext(), getString(R.string.developing))
+        Dialogs.showMessageTips(requireActivity(), getString(R.string.developing))
     }
 
     private fun onClickNetCapture() {
-        Dialogs.showMessageTips(requireContext(), getString(R.string.developing))
+        Dialogs.showMessageTips(requireActivity(), getString(R.string.developing))
     }
 
     private fun onClickWifiPassword() {
@@ -115,15 +127,15 @@ class ToolsFragment @Inject constructor() : BaseFragment<FragmentToolsBinding>()
     }
 
     private fun onClickMockLocation() {
-        Dialogs.showMessageTips(requireContext(), getString(R.string.developing))
+        Dialogs.showMessageTips(requireActivity(), getString(R.string.developing))
     }
 
     private fun onClickTerminal() {
-        Dialogs.showMessageTips(requireContext(), getString(R.string.developing))
+        Dialogs.showMessageTips(requireActivity(), getString(R.string.developing))
     }
 
     private fun onClickLogcat() {
-        Dialogs.showMessageTips(requireContext(), getString(R.string.developing))
+        Dialogs.showMessageTips(requireActivity(), getString(R.string.developing))
     }
 
     private fun onClickDecompile() {
@@ -148,12 +160,12 @@ class ToolsFragment @Inject constructor() : BaseFragment<FragmentToolsBinding>()
     }
 
     private fun onClickScreenshot() {
-        Dialogs.showMessageTips(requireContext(), getString(R.string.developing))
+        Dialogs.showMessageTips(requireActivity(), getString(R.string.developing))
     }
 
     private fun requestSystemWindowPermission() {
         XXPermissions.with(requireContext()).permission(Permission.SYSTEM_ALERT_WINDOW)
-            .request(object : CommonPermissionCallback(requireContext()) {
+            .request(object : CommonPermissionCallback(requireActivity()) {
                 override fun onAllGranted() {
                     launchFWService()
                 }
