@@ -16,6 +16,7 @@ import tech.qingge.onedroid.data.local.sp.SpApi
 import tech.qingge.onedroid.data.net.ApiService
 import tech.qingge.onedroid.data.net.CheckUpdate
 import tech.qingge.onedroid.databinding.ActivityMainBinding
+import tech.qingge.onedroid.ui.dialog.Dialogs
 import tech.qingge.onedroid.ui.fragment.AppManagerFragment
 import tech.qingge.onedroid.ui.fragment.DeviceInfoFragment
 import tech.qingge.onedroid.ui.fragment.SettingsFragment
@@ -56,12 +57,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         binding.bnv.selectedItemId = spApi.getLastBottomItemId()
         onBackPressedDispatcher.addCallback(DoublePressBackExit(this))
 
-//        checkUpdate()
 
     }
 
     private fun checkUpdate() {
-        //TODO: 放在Service
         lifecycleScope.launch {
             Log.d("Thread", "Thread: ${Thread.currentThread().name}")
             val commonResp =

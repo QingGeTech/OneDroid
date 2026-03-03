@@ -65,24 +65,29 @@
             android:exported="false"
             android:launchMode="singleInstance"
             android:taskAffinity=".pickColor" />
+
+
+        <activity
+            android:name=".ui.activity.LaunchActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".ui.activity.MainActivity"
             android:exported="true"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"/>
         <activity
             android:name=".ui.activity.AppDetailActivity"
             android:launchMode="singleTask" />
         <activity
             android:name=".ui.activity.MediaProjectionPermissionActivity"
-            android:launchMode="singleInstance"
             android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
             android:taskAffinity=".mediaProjectionPermission" />
         <activity
             android:name=".ui.activity.SimpleTextEditorActivity"

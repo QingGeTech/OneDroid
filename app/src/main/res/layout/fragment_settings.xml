@@ -154,7 +154,7 @@
                 android:textAppearance="?textAppearanceBodyMedium" />
 
             <RelativeLayout
-                android:id="@+id/rl_contact_us"
+                android:id="@+id/rl_get_source_code"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/bg_ripple_rounded"
@@ -168,7 +168,7 @@
                     android:layout_height="match_parent"
                     android:layout_centerVertical="true"
                     android:gravity="center"
-                    android:text="@string/contact_us"
+                    android:text="@string/get_source_code"
                     android:textAppearance="?textAppearanceBodyLarge" />
 
                 <ImageView
@@ -191,11 +191,12 @@
                 >
 
                 <TextView
+                    android:id="@+id/tv_version"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_centerVertical="true"
                     android:gravity="center"
-                    android:text="@string/check_update"
+                    android:text="@string/get_new_version"
                     android:textAppearance="?textAppearanceBodyLarge" />
 
                 <ImageView

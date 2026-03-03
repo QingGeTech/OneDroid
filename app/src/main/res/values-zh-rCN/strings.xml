@@ -345,6 +345,7 @@
     <string name="screen_x_dpi">x dpi</string>
     <string name="screen_y_dpi">y dpi</string>
     <string name="screen_density">density</string>
+    <string name="screen_scaled_density">scaled density</string>
     <string name="screen_refresh_rate">refresh rate</string>
     <string name="screen_width_inch">screen width inch</string>
     <string name="screen_height_inch">screen height inch</string>
@@ -395,6 +396,7 @@
     <string name="location_longitude">longitude</string>
     <string name="satellite_info">satellite info</string>
     <string name="location_time">time</string>
+    <string name="location_extras">extras</string>
     <string name="location_accuracy">accuracy</string>
     <string name="location_bearing">bearing</string>
     <string name="location_altitude">altitude</string>
@@ -454,5 +456,9 @@
     <string name="not_supported_yet">暂不支持</string>
     <string name="developing">功能正在开发中</string>
     <string name="node_detail_hint">点击控件查看详细属性</string>
+    <string name="get_new_version">获取新版本</string>
+    <string name="get_source_code">获取源代码</string>
+    <string name="agree">同意</string>
+    <string name="disagree">拒绝</string>
 
 </resources>

@@ -22,7 +22,7 @@ android {
         applicationId = "tech.qingge.onedroid"
         minSdk = 21
         targetSdk = 36
-        versionCode = 1
+        versionCode = 1000
         versionName = "1.0"
 
     }
@@ -31,8 +31,21 @@ android {
         buildConfig = true
     }
 
+    signingConfigs {
+        create("app"){
+            storeFile = file("app.keystore")
+            storePassword ="onedroid"
+            keyAlias = "onedroid"
+            keyPassword = "onedroid"
+        }
+    }
+
     buildTypes {
+        debug {
+            signingConfig = signingConfigs.getByName("app")
+        }
         release {
+            signingConfig = signingConfigs.getByName("app")
             isMinifyEnabled = false
         }
     }
@@ -46,6 +59,7 @@ android {
     viewBinding {
         enable = true
     }
+
 }
 
 dependencies {

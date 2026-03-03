@@ -3,11 +3,13 @@ package tech.qingge.onedroid.ui.fragment
 import android.content.Intent
 import androidx.fragment.app.viewModels
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import dagger.hilt.android.AndroidEntryPoint
+import tech.qingge.onedroid.BuildConfig
 import tech.qingge.onedroid.Constants
 import tech.qingge.onedroid.base.BaseFragment
 import tech.qingge.onedroid.databinding.FragmentSettingsBinding
+import tech.qingge.onedroid.util.CommonUtil.openUrl
 import tech.qingge.onedroid.viewmodel.SettingsFragmentViewModel
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -23,6 +25,15 @@ class SettingsFragment @Inject constructor() : BaseFragment<FragmentSettingsBind
         initAppearanceSetting()
 
         viewModel.loadSettings()
+
+        binding.rlUserAgreement.setOnClickListener { openUrl(requireActivity(),"https://qingge.tech/onedroid/user-protocol.html") }
+        binding.rlPrivatePolicy.setOnClickListener { openUrl(requireActivity(),"https://qingge.tech/onedroid/privacy-policy.html") }
+
+        binding.rlGetSourceCode.setOnClickListener { openUrl(requireActivity(),"https://github.com/QingGeTech/OneDroid") }
+        binding.rlCheckUpdate.setOnClickListener { openUrl(requireActivity(),"https://github.com/QingGeTech/OneDroid/releases") }
+
+        binding.tvVersion.text = "${binding.tvVersion.text}  ${BuildConfig.VERSION_NAME}(${BuildConfig.VERSION_CODE})"
+
     }
 
     private fun sendThemeChangeBroadcast() {

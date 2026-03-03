@@ -25,4 +25,8 @@ interface SpApi {
 
     fun setAppSortDesc(isDesc: Boolean)
     fun isAppSortDesc(): Boolean
+
+    fun isAgreeProtocol(): Boolean
+    fun setAgreeProtocol()
+
 }

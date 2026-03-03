@@ -456,5 +456,9 @@
     <string name="not_supported_yet">Not Supported Yet</string>
     <string name="developing">This feature is under development</string>
     <string name="node_detail_hint">Click to see details</string>
+    <string name="get_new_version">Get New Version</string>
+    <string name="get_source_code">Get Source Code</string>
+    <string name="agree">Agree</string>
+    <string name="disagree">Disagree</string>
 
 </resources>

@@ -19,6 +19,7 @@ class SpApiImpl @Inject constructor(private val appContext: Application) : SpApi
         private const val APP_FILTER_TYPE = "appFilterType"
         private const val APP_SORT_TYPE = "appSortType"
         private const val App_SORT_DESC = "isAppSortDesc"
+        private const val AGREE_PROTOCOL = "agreeProtocol"
     }
 
     override fun setThemeColor(themeColor: Int) {
@@ -27,8 +28,7 @@ class SpApiImpl @Inject constructor(private val appContext: Application) : SpApi
 
     override fun getThemeColor(): Int {
         return getSp().getInt(
-            THEME_COLOR_KEY,
-            ContextCompat.getColor(appContext, R.color.color_primary_1)
+            THEME_COLOR_KEY, ContextCompat.getColor(appContext, R.color.color_primary_1)
         )
     }
 
@@ -77,6 +77,14 @@ class SpApiImpl @Inject constructor(private val appContext: Application) : SpApi
 
     override fun isAppSortDesc(): Boolean {
         return getSp().getBoolean(App_SORT_DESC, false)
+    }
+
+    override fun isAgreeProtocol(): Boolean {
+        return getSp().getBoolean(AGREE_PROTOCOL, false)
+    }
+
+    override fun setAgreeProtocol() {
+        getSp().edit().putBoolean(AGREE_PROTOCOL, true).apply()
     }
 
 }
