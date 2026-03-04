@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OneDroid - 系统级Android全能工具箱</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>OneDroid</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#features" data-lang-key="features">特性</a>
+                <a href="#download" data-lang-key="download">下载</a>
+                <a href="#screenshots" data-lang-key="screenshots">截图</a>
+                <a href="#disclaimer" data-lang-key="disclaimer">免责声明</a>
+                <a href="#license" data-lang-key="license">许可协议</a>
+                <a href="#contributing" data-lang-key="contributing">贡献</a>
+                <a href="#contact" data-lang-key="contact">联系我们</a>
+                <button class="lang-toggle" id="langToggle">English</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="hero">
+        <div class="container">
+            <h1 data-lang-key="hero-title">OneDroid - 系统级Android全能工具箱</h1>
+            <p data-lang-key="hero-subtitle">一款功能强大的安卓多功能工具集，集成了多种实用工具，帮助用户更好地管理和了解自己的安卓设备。</p>
+            <a href="#download" class="btn" data-lang-key="hero-btn">立即下载</a>
+        </div>
+    </section>
+
+    <!-- 特性区域 -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 data-lang-key="features-title">特性</h2>
+            <div class="feature-cards">
+                <!-- 应用管理 -->
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3 data-lang-key="app-management">应用管理</h3>
+                    <ul>
+                        <li data-lang-key="app-list">应用列表</li>
+                        <li data-lang-key="app-info">基础信息、签名、权限、组件</li>
+                        <li data-lang-key="app-operations">应用操作（启动、提取、卸载、修改内部文件、反编译）</li>
+                    </ul>
+                </div>
+                <!-- 设备管理 -->
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 data-lang-key="device-management">设备管理</h3>
+                    <p data-lang-key="device-info">设备、系统、CPU、GPU、内存、存储、屏幕、网络、位置、传感器、相机、温度、PROP</p>
+                </div>
+                <!-- 小工具合集 -->
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3 data-lang-key="tool-collection">小工具合集</h3>
+                    <ul>
+                        <li data-lang-key="screen-analysis">屏幕分析：长截图(待完善)、界面分析、屏幕录制、屏幕取色、屏幕取字</li>
+                        <li data-lang-key="reverse-debugging">逆向调试：反编译、Logcat(待实现)、终端(待实现)、模拟位置(待实现)、wifi密码(需要root)</li>
+                        <li data-lang-key="network-management">网络管理：抓包(待实现)、文件服务器(待实现)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载区域 -->
+    <section id="download" class="download">
+        <div class="container">
+            <h2 data-lang-key="download-title">下载</h2>
+            <p data-lang-key="download-desc">在 Release页面 下载最新的APK</p>
+            <a href="https://github.com/QingGeTech/OneDroid/releases" class="btn" target="_blank" data-lang-key="download-btn">前往下载</a>
+        </div>
+    </section>
+
+    <!-- 截图展示 -->
+    <section id="screenshots" class="screenshots">
+        <div class="container">
+            <h2 data-lang-key="screenshots-title">截图展示</h2>
+            
+            <h3 data-lang-key="app-management-screenshots">应用管理</h3>
+            <div class="screenshot-grid">
+                <div class="screenshot-item">
+                    <img src="../screenshots/应用管理/应用列表.png" alt="应用列表">
+                    <p data-lang-key="app-list">应用列表</p>
+                </div>
+                <div class="screenshot-item">
+                    <img src="../screenshots/应用管理/基础信息.png" alt="基础信息">
+                    <p data-lang-key="basic-info">基础信息</p>
+                </div>
+                <div class="screenshot-item">
+                    <img src="../screenshots/应用管理/应用操作(apk启动_提取_卸载_修改内部文件).png" alt="应用操作">
+                    <p data-lang-key="app-operations">应用操作</p>
+                </div>
+            </div>
+
+            <h3 data-lang-key="device-management-screenshots">设备管理 & 小工具合集</h3>
+            <div class="screenshot-grid">
+                <div class="screenshot-item">
+                    <img src="../screenshots/设备管理/设备信息.png" alt="设备信息">
+                    <p data-lang-key="device-info">设备信息</p>
+                </div>
+                <div class="screenshot-item">
+                    <img src="../screenshots/小工具合集.png" alt="小工具合集">
+                    <p data-lang-key="tool-collection">小工具合集</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 免责声明 -->
+    <section id="disclaimer" class="disclaimer">
+        <div class="container">
+            <h2 data-lang-key="disclaimer-title">免责声明</h2>
+            <p data-lang-key="disclaimer-content">本工具仅供学习与技术交流使用，请勿将其用于任何非法用途，使用该软件产生的任何法律后果由使用者自行承担。</p>
+            <div class="disclaimer-links">
+                <a href="https://qingge.tech/onedroid/user-protocol.html" target="_blank" data-lang-key="user-agreement">用户协议</a>
+                <a href="https://qingge.tech/onedroid/privacy-policy.html" target="_blank" data-lang-key="privacy-policy">隐私政策</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 许可协议 -->
+    <section id="license" class="license">
+        <div class="container">
+            <h2 data-lang-key="license-title">许可协议</h2>
+            <p data-lang-key="license-content">本项目采用 CC BY-NC-SA 4.0 (署名-非商业性使用-相同方式共享 4.0 国际) 许可协议。</p>
+            
+            <h3 data-lang-key="core-terms">核心条款：</h3>
+            <ul>
+                <li data-lang-key="attribution">署名 (Attribution)：您必须给出适当的署名，并提供指向本许可协议的链接。</li>
+                <li data-lang-key="non-commercial">非商业性使用 (Non-Commercial)：您不得将本作品用于任何形式的商业目的（包括但不限于：直接出售、在应用内加入广告、用于付费课程、或作为收费服务的组成部分）。</li>
+                <li data-lang-key="share-alike">相同方式共享 (ShareAlike)：如果您再混合、转换或基于本作品进行创作，您必须基于与原先许可协议相同的许可协议分发您贡献的作品。</li>
+            </ul>
+            
+            <h3 data-lang-key="commercial-license">商业授权：</h3>
+            <p data-lang-key="commercial-license-content">如果您计划将本项目用于商业用途，必须获得作者的额外书面授权。请联系：qinggetech@163.com</p>
+        </div>
+    </section>
+
+    <!-- 贡献 -->
+    <section id="contributing" class="contributing">
+        <div class="container">
+            <h2 data-lang-key="contributing-title">贡献</h2>
+            <p data-lang-key="contributing-content">如果你喜欢这个项目，欢迎通过 Star 、提交 Issue 和 Pull Request 来帮助改进 OneDroid！</p>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 data-lang-key="contact-title">联系我们</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3 data-lang-key="email">邮箱</h3>
+                    <p>qinggetech@163.com</p>
+                </div>
+                <div class="contact-item">
+                    <h3 data-lang-key="wechat">微信</h3>
+                    <img src="../screenshots/wx_fwh_qrcode.jpg" alt="微信服务号" width="200">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 深圳市清鸽科技有限公司. 保留所有权利.</p>
+            <p><a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备2024329706号-1</a> | 
+            <a href="https://beian.mps.gov.cn/#/query/webSearch?code=44030002005244" target="_blank">粤公网安备44030002005244号</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

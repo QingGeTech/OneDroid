@@ -2,7 +2,9 @@
 
 > 一款功能强大的安卓多功能工具集，集成了多种实用工具，帮助用户更好地管理和了解自己的安卓设备。
 
-中文 | [English](README_EN.md)
+中文 | [English](README_EN.md)  
+
+官方网站: [https://qingge.tech/onedroid/web/](https://qingge.tech/onedroid/web/)
 
 ## 🚀 特性
 
@@ -25,23 +27,15 @@
 
 ### 应用管理
 
-| 功能 | 截图 |
-|------|------|
-| 应用列表 | <img src="screenshots/应用管理/应用列表.png" width="300" alt="应用列表"> |
-| 基础信息 | <img src="screenshots/应用管理/基础信息.png" width="300" alt="基础信息"> |
-| 应用操作 | <img src="screenshots/应用管理/应用操作(apk启动_提取_卸载_修改内部文件).png" width="300" alt="应用操作"> |
+| 应用列表 | 基础信息 | 应用操作 |
+|---------|---------|--------|
+| <img src="screenshots/应用管理/应用列表.png" width="200" alt="应用列表"> | <img src="screenshots/应用管理/基础信息.png" width="200" alt="基础信息"> | <img src="screenshots/应用管理/应用操作(apk启动_提取_卸载_修改内部文件).png" width="200" alt="应用操作"> |
 
-### 设备管理
+### 设备管理 & 小工具合集
 
-| 功能 | 截图 |
-|------|------|
-| 设备信息 | <img src="screenshots/设备管理/设备信息.png" width="300" alt="设备信息"> |
-
-### 小工具合集
-
-| 功能 | 截图 |
-|------|------|
-| 小工具合集 | <img src="screenshots/小工具合集.png" width="300" alt="小工具合集"> |
+| 设备信息 | 小工具合集 |
+|---------|----------|
+| <img src="screenshots/设备管理/设备信息.png" width="200" alt="设备信息"> | <img src="screenshots/小工具合集.png" width="200" alt="小工具合集"> |
 
 ## ⚠️ 免责声明
 
@@ -66,10 +60,10 @@
 ---
 
 ## 🌟 贡献
-
-欢迎提交 Issue 和 Pull Request 来帮助改进 OneDroid！
+如果你喜欢这个项目，欢迎通过 Star 、提交 Issue 和 Pull Request 来帮助改进 OneDroid！
 
 ## 📞 联系我们
 
 - 邮箱：qinggetech@163.com
 - 微信
+<img src="screenshots/wx_fwh_qrcode.jpg" width="200" alt="微信服务号">

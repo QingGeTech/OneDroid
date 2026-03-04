@@ -4,6 +4,9 @@
 
 English | [中文](README.md)
 
+Official Website: [https://qingge.tech/onedroid/web/](https://qingge.tech/onedroid/web/)
+
+
 ## 🚀 Features
 
 - 📦 **App Management**:
@@ -27,23 +30,15 @@ Download the latest APK from the [Release page](https://github.com/QingGeTech/On
 
 ### App Management
 
-| Feature | Screenshot |
-|---------|------------|
-| App List | <img src="screenshots/应用管理/应用列表.png" width="300" alt="App List"> |
-| Basic Info | <img src="screenshots/应用管理/基础信息.png" width="300" alt="Basic Info"> |
-| App Operations | <img src="screenshots/应用管理/应用操作(apk启动_提取_卸载_修改内部文件).png" width="300" alt="App Operations"> |
+| App List | Basic Info | App Operations |
+|---------|---------|--------|
+| <img src="screenshots/应用管理/应用列表.png" width="200" alt="App List"> | <img src="screenshots/应用管理/基础信息.png" width="200" alt="Basic Info"> | <img src="screenshots/应用管理/应用操作(apk启动_提取_卸载_修改内部文件).png" width="200" alt="App Operations"> |
 
-### Device Management
+### Device Management & Tool Collection
 
-| Feature | Screenshot |
-|---------|------------|
-| Device Info | <img src="screenshots/设备管理/设备信息.png" width="300" alt="Device Info"> |
-
-### Tool Collection
-
-| Feature | Screenshot |
-|---------|------------|
-| Tool Collection | <img src="screenshots/小工具合集.png" width="300" alt="Tool Collection"> |
+| Device Info | Tool Collection |
+|---------|----------|
+| <img src="screenshots/设备管理/设备信息.png" width="200" alt="Device Info"> | <img src="screenshots/小工具合集.png" width="200" alt="Tool Collection"> |
 
 ## ⚠️ Disclaimer
 
@@ -69,9 +64,10 @@ This project is licensed under the [CC BY-NC-SA 4.0 (Attribution-NonCommercial-S
 
 ## 🌟 Contributing
 
-Issues and Pull Requests are welcome to help improve OneDroid!
+If you like this project, welcome to help improve OneDroid by Star, submitting Issues and Pull Requests!
 
 ## 📞 Contact Us
 
 - Email: qinggetech@163.com
 - WeChat
+<img src="screenshots/wx_fwh_qrcode.jpg" width="200" alt="WeChat Service Account">
