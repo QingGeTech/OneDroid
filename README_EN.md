@@ -26,6 +26,11 @@ Official Website: [https://qingge.tech/onedroid/web/](https://qingge.tech/onedro
 
 Download the latest APK from the [Release page](https://github.com/QingGeTech/OneDroid/releases)
 
+## 🌟 Contributing
+
+Certain functionalities of the project are currently pending implementation or undergoing further optimization.If you like this project, welcome to help improve OneDroid by Star, submitting Issues and Pull Requests!
+
+
 ## 📸 Screenshots
 
 ### App Management
@@ -61,10 +66,6 @@ This project is licensed under the [CC BY-NC-SA 4.0 (Attribution-NonCommercial-S
 **If you plan to use this project for commercial purposes, you must obtain additional written authorization from the author.** Please contact: qinggetech@163.com
 
 ---
-
-## 🌟 Contributing
-
-If you like this project, welcome to help improve OneDroid by Star, submitting Issues and Pull Requests!
 
 ## 📞 Contact Us
 

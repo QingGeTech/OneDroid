@@ -23,6 +23,10 @@
 
 在 [Release页面](https://github.com/QingGeTech/OneDroid/releases) 下载最新的APK
 
+## 🌟 贡献
+项目目前仍有部分功能模块处于开发中或需进一步优化，如果你喜欢这个项目，欢迎通过 Star 、提交 Issue 和 Pull Request 来帮助改进 OneDroid！
+
+
 ## 📸 截图展示
 
 ### 应用管理
@@ -58,9 +62,6 @@
 **如果您计划将本项目用于商业用途，必须获得作者的额外书面授权。** 请联系：qinggetech@163.com
 
 ---
-
-## 🌟 贡献
-如果你喜欢这个项目，欢迎通过 Star 、提交 Issue 和 Pull Request 来帮助改进 OneDroid！
 
 ## 📞 联系我们
 
