@@ -52,10 +52,11 @@ class DeviceInfoTemperatureFragment @Inject constructor() : DeviceInfoBaseFragme
 //        )
 
         return File("/sys/class/thermal/").listFiles()
-            .filter { dir -> dir.name.startsWith("thermal_zone") }
-            .map { zoneDir -> getTemp(zoneDir) }
-            .filter { p -> p.first.isNotEmpty() }
-            .toMutableList()
+            ?.filter { dir -> dir.name.startsWith("thermal_zone") }
+            ?.map { zoneDir -> getTemp(zoneDir) }
+            ?.filter { p -> p.first.isNotEmpty() }
+            ?.toMutableList()
+            ?: mutableListOf()
 
     }
 

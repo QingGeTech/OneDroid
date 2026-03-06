@@ -22,8 +22,8 @@ android {
         applicationId = "tech.qingge.onedroid"
         minSdk = 21
         targetSdk = 36
-        versionCode = 1000
-        versionName = "1.0"
+        versionCode = 10001
+        versionName = "1.0.1"
 
     }
 

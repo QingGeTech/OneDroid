@@ -460,5 +460,6 @@
     <string name="get_source_code">获取源代码</string>
     <string name="agree">同意</string>
     <string name="disagree">拒绝</string>
+    <string name="os">系统</string>
 
 </resources>

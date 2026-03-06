@@ -53,7 +53,7 @@ class DeviceInfoFragment @Inject constructor() : BaseFragment<FragmentDeviceInfo
 
     private val titles = listOf(
         R.string.device,
-        R.string.system,
+        R.string.os,
         R.string.network,
         R.string.storage,
         R.string.screen,
