@@ -17,6 +17,7 @@ libsu = "6.0.0"
 smali = "2.5.2"
 okhttp = "4.12.0"
 retrofit = "2.11.0"
+andServer = "2.1.12"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -41,6 +42,8 @@ okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhtt
 logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+andserver-api = { group = "com.yanzhenjie.andserver", name = "api", version.ref = "andServer" }
+andserver-processor = { group = "com.yanzhenjie.andserver", name = "processor", version.ref = "andServer" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -49,3 +52,4 @@ kotlinKapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 hiltAndroid = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 kotlinParcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+andServer = {id = "com.yanzhenjie.andserver",version.ref = "andServer"}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android 文件服务器</title>
+    <style>
+        body { font-family: sans-serif; max-width: 900px; margin: 20px auto; padding: 0 20px; color: #333; }
+        .breadcrumb { background: #eee; padding: 10px; border-radius: 4px; margin-bottom: 15px; font-family: monospace; }
+        .breadcrumb span { color: #007bff; cursor: pointer; }
+        .item-icon { margin-right: 10px; }
+        .folder { color: #f39c12; font-weight: bold; cursor: pointer; }
+        .file { color: #34495e; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { text-align: left; padding: 12px; border-bottom: 1px solid #ddd; }
+        tr:hover { background-color: #f9f9f9; }
+        .btn { padding: 5px 10px; background: #007bff; color: white; border-radius: 3px; text-decoration: none; font-size: 14px; }
+        .upload-bar { margin-bottom: 20px; padding: 15px; background: #e8f4fd; border-radius: 8px; }
+    </style>
+</head>
+<body>
+
+<h2>文件管理器</h2>
+
+<div class="breadcrumb" id="pathNav">当前位置: /sdcard</div>
+
+<div class="upload-bar">
+    <input type="file" id="fileInput">
+    <button class="btn" onclick="uploadFile()">上传到当前目录</button>
+    <span id="uploadStatus" style="margin-left:10px;"></span>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>名称</th>
+        <th>大小</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody id="fileList">
+    </tbody>
+</table>
+
+<script>
+    // 初始路径，通常是 Android 的外部存储根目录
+    let currentPath = "/sdcard";
+
+    window.onload = () => fetchFileList(currentPath);
+
+    async function fetchFileList(path) {
+        currentPath = path;
+        document.getElementById('pathNav').innerText = `当前位置: ${path}`;
+
+        try {
+            // 向后端请求指定路径的文件列表
+            const response = await fetch(`/api/list?path=${encodeURIComponent(path)}`);
+            const data = await response.json();
+
+            const listElement = document.getElementById('fileList');
+            listElement.innerHTML = '';
+
+            // 1. 添加“返回上级”选项 (如果不在根目录)
+            if (path !== "/sdcard" && path !== "/") {
+                const parentPath = path.substring(0, path.lastIndexOf('/')) || "/";
+                appendRow(".. (返回上级)", parentPath, true, "");
+            }
+
+            // 2. 渲染文件夹和文件
+            data.forEach(item => {
+                appendRow(item.name, item.path, item.isDir, item.size);
+            });
+        } catch (err) {
+            alert("获取列表失败，请检查后端服务");
+        }
+    }
+
+    function appendRow(name, path, isDir, size) {
+        const listElement = document.getElementById('fileList');
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+            <td>
+                <span class="item-icon">${isDir ? '📁' : '📄'}</span>
+                <span class="${isDir ? 'folder' : 'file'}" onclick="${isDir ? `fetchFileList('${path.replace(/'/g, "\\'")}')` : ''}">
+                    ${name}
+                </span>
+            </td>
+            <td>${isDir ? '--' : size}</td>
+            <td>
+                ${isDir ? '' : `<a href="/api/download?path=${encodeURIComponent(path)}" class="btn">下载</a>`}
+            </td>
+        `;
+        listElement.appendChild(row);
+    }
+
+    async function uploadFile() {
+        const fileInput = document.getElementById('fileInput');
+        if (fileInput.files.length === 0) return alert("请选择文件");
+
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+        formData.append('targetPath', currentPath); // 告诉后端传到哪个目录下
+
+        document.getElementById('uploadStatus').innerText = "上传中...";
+
+        const response = await fetch('/api/upload', { method: 'POST', body: formData });
+        if (response.ok) {
+            document.getElementById('uploadStatus').innerText = "完成！";
+            fetchFileList(currentPath);
+        }
+    }
+</script>
+</body>
+</html>
