@@ -44,6 +44,7 @@ retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = 
 converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 andserver-api = { group = "com.yanzhenjie.andserver", name = "api", version.ref = "andServer" }
 andserver-processor = { group = "com.yanzhenjie.andserver", name = "processor", version.ref = "andServer" }
+andserver-plugin = {group = "com.yanzhenjie.andserver", name = "plugin", version.ref = "andServer"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -52,4 +53,3 @@ kotlinKapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 hiltAndroid = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 kotlinParcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
-andServer = {id = "com.yanzhenjie.andserver",version.ref = "andServer"}

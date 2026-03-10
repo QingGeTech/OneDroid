@@ -1,3 +1,12 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath(libs.andserver.plugin)
+    }
+}
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     alias(libs.plugins.androidApplication) apply false
@@ -6,6 +15,5 @@ plugins {
     alias(libs.plugins.kotlinKapt) apply false
     alias(libs.plugins.androidLibrary) apply false
     alias(libs.plugins.kotlinParcelize) apply false
-    alias(libs.plugins.andServer) apply false
 }
 true // Needed to make the Suppress annotation work for the plugins block

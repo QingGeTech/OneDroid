@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlinKapt)
     alias(libs.plugins.kotlinParcelize)
     idea
+    id("com.yanzhenjie.andserver")
 }
 
 idea {
@@ -88,5 +89,8 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
+
+    implementation(libs.andserver.api)
+    kapt(libs.andserver.processor)
 
 }
