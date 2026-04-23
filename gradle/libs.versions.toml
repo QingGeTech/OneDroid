@@ -18,6 +18,9 @@ smali = "2.5.2"
 okhttp = "4.12.0"
 retrofit = "2.11.0"
 andServer = "2.1.12"
+umengCommon = "9.8.8"
+umengAsms = "1.8.7.2"
+umengApm = "2.0.6"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -45,6 +48,9 @@ converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", ve
 andserver-api = { group = "com.yanzhenjie.andserver", name = "api", version.ref = "andServer" }
 andserver-processor = { group = "com.yanzhenjie.andserver", name = "processor", version.ref = "andServer" }
 andserver-plugin = {group = "com.yanzhenjie.andserver", name = "plugin", version.ref = "andServer"}
+umeng-common = { group = "com.umeng.umsdk", name = "common", version.ref = "umengCommon" }
+umeng-asms = { group = "com.umeng.umsdk", name = "asms", version.ref = "umengAsms" }
+umeng-apm = { group = "com.umeng.umsdk", name = "apm", version.ref = "umengApm" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

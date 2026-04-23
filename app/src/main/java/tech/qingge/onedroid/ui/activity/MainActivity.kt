@@ -7,7 +7,10 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.umeng.commonsdk.UMConfigure
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import tech.qingge.onedroid.BuildConfig
 import tech.qingge.onedroid.R
@@ -57,6 +60,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         binding.bnv.selectedItemId = spApi.getLastBottomItemId()
         onBackPressedDispatcher.addCallback(DoublePressBackExit(this))
 
+        UMConfigure.init(this,"69b8e50a9a7f376488956b85","github",UMConfigure.DEVICE_TYPE_PHONE, "")
 
     }
 

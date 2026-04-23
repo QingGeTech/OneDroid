@@ -80,7 +80,7 @@
             android:name=".ui.activity.MainActivity"
             android:exported="true"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"/>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".ui.activity.AppDetailActivity"
             android:launchMode="singleTask" />

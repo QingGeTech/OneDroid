@@ -9,6 +9,7 @@ import com.google.android.material.color.DynamicColors
 import com.google.android.material.color.DynamicColorsOptions
 import com.google.android.material.color.HarmonizedColors
 import com.google.android.material.color.HarmonizedColorsOptions
+import com.umeng.commonsdk.UMConfigure
 import dagger.hilt.android.HiltAndroidApp
 import tech.qingge.onedroid.data.local.sp.SpApi
 import tech.qingge.onedroid.util.LogUtil
@@ -25,6 +26,9 @@ class App : Application() {
         addActivityLifecycleObserver()
         initDarkMode()
         setTheme(R.style.AppTheme)
+
+        UMConfigure.setLogEnabled(true)
+        UMConfigure.preInit(this,"69b8e50a9a7f376488956b85","github")
     }
 
     private fun initThemeColor(activity: Activity) {
