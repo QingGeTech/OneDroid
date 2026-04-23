@@ -64,7 +64,7 @@
 ---
 
 ## 📞 联系我们
-
+- 本项目由作者**独立开发与维护**。如果您觉得 OneDroid 对您有帮助，或者您有 **Android App 定制开发、技术咨询或项目外包**方面的需求，欢迎通过以下方式联系我：
 - 邮箱：qinggetech@163.com
 - 微信
 <img src="screenshots/wx_fwh_qrcode.jpg" width="200" alt="微信服务号">
