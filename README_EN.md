@@ -70,5 +70,9 @@ This project is licensed under the [CC BY-NC-SA 4.0 (Attribution-NonCommercial-S
 ## 📞 Contact Us
 - This project is **independently developed and maintained** by the author. If you find OneDroid helpful, or if you are looking for **custom Android app development, technical consulting, or project outsourcing**, feel free to reach out via:
 - Email: qinggetech@163.com
-- WeChat
+- WeChat Service Account:
 <img src="screenshots/wx_fwh_qrcode.jpg" width="200" alt="WeChat Service Account">
+- WeChat Group Chat:
+<img src="web/wechat_group.png" alt="WeChat Group Chat" width="200">
+- Discord Group Chat:
+<img src="web/discord_group.png" alt="Discord Group Chat" width="200">

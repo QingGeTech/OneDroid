@@ -44,8 +44,9 @@ const translations = {
         'contributing-title': '贡献',
         'contributing-content': '如果你喜欢这个项目，欢迎通过 Star 、提交 Issue 和 Pull Request 来帮助改进 OneDroid！',
         'contact-title': '联系我们',
-        'email': '邮箱',
-        'wechat': '微信'
+        'wechat-official': '微信服务号',
+        'wechat-group': '微信群聊',
+        'discord-group': 'Discord群聊'
     },
     en: {
         features: 'Features',
@@ -91,8 +92,9 @@ const translations = {
         'contributing-title': 'Contributing',
         'contributing-content': 'If you like this project, welcome to help improve OneDroid by Star, submitting Issues and Pull Requests!',
         'contact-title': 'Contact Us',
-        'email': 'Email',
-        'wechat': 'WeChat'
+        'wechat-official': 'WeChat Official Account',
+        'wechat-group': 'WeChat Group',
+        'discord-group': 'Discord Group'
     }
 };
 
